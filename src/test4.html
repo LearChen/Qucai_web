@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <link rel="stylesheet" href="css/test.css">
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        *{margin:0;padding:0;}
+        body { font-size: 13px; line-height: 130%; padding: 60px }
+        #panel {position: relative; width: 300px; border: 1px solid #0050D0 }
+        #panel .head { padding: 5px; background: #96E555; cursor: pointer }
+        #panel .content { padding: 10px; text-indent: 2em; border-top: 1px solid #0050D0;}
+
+    </style>
+</head>
+<body>
+<div id="panel">
+    <h3 class="head">你猜我现在是多大脑袋？</h3>
+    <div class="content">
+        脑袋一直就是这么大
+    </div>
+</div>
+</body>
+<script>
+    $(function () {
+        $("#panel h3.head").bind("click", function () {
+            var $content = $(this).next();
+            if ($content.is(":visible")){
+                $content.slideUp(500);
+//                $content.hide(500);
+//                $content.fadeOut(500);
+            } else {
+                $content.slideDown(500);
+//                $content.show(500);
+//                $content.fadeIn(500);
+            }
+        })
+    })
+//    $(function () {
+//        $("#panel h5.head").toggle(function () {
+//            $(this).next().hide();
+//        }, function () {
+//            $(this).next().show();
+//        });
+//    });
+</script>
+</html>

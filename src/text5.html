@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <link rel="stylesheet" href="css/test.css">
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<script type="text/javascript">
+//    $(function(){
+//        $('span').bind("click",function(event){
+//            var txt = $('#msg').html()+"<p>内层span元素被单击.</p>"
+//            $('#msg').html(txt);
+//            event.stopPropagation();
+//        });
+//        $('#content').bind("click",function(event){
+//            var txt = $('#msg').html()+"<p>外层div元素被单击.</p>"
+//            $('#msg').html(txt);
+//            event.stopPropagation();
+//        });
+//        $("body").bind("click",function(event){
+//            var txt = $('#msg').html()+"<p>body元素被单击：</p>";
+//            $('#msg').html(txt);
+//            event.stopPropagation();
+//            return false
+//        });
+//        $("#sub").bind("click",function(){
+//            var username = $("#username").val();
+//            if (username == ""){
+//                $("#msg").html("<p>文本框的值不能为空.</p>");
+//                return false
+//            }
+//        });
+//    })
+//$(function() {
+//   $('#btn').bind("click",myFun1 = function(){
+//       $('#test').append("<p>我的绑定函数1</p>");
+//   }).bind("click",myFun2 = function(){
+//       $('#test').append("<p>我的绑定函数2</p>");
+//   }).bind("click",myFun3 = function(){
+//       $('#test').append("<p>我的绑定函数3</p>");
+//   });
+////    $('#delTwo').click(function(){
+////        $('#btn').unbind("click",myFun2);
+////    });
+//    $('#btn').bind("myClick",function(event,message1,message2){
+//        $('#test').append("<p>"+message1+message2+"</p>");
+//    });
+//    $('#btn').trigger("myClick",["我的自定义","事件"]);
+//});
+    $(function(){
+        $("div").bind("mouseover mouseout",function(){
+            $(this).toggleClass("over");
+        });
+    });
+</script>
+<button id="btn">单击我</button>
+<button id="delTwo">删除所有事件</button>
+<div id="test"></div>
+</body>
+</html>

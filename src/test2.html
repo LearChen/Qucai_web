@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <link rel="stylesheet" href="css/test.css">
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <!--<form id="form1" action="#">-->
+        <!--<input type="button" value="Button"/><br/>-->
+        <!--<input type="checkbox" name="c"/>1-->
+        <!--<input type="checkbox" name="c"/>2-->
+        <!--<input type="checkbox" name="c"/>3<br/>-->
+        <!--&lt;!&ndash; 插入文件&ndash;&gt;-->
+        <!--<input type="file" /><br/>-->
+        <!--<input type="hidden" /><div style="display: none;">test</div><br/>-->
+        <!--<input type="image"/><br/>-->
+        <!--<input type="password"/><br/>-->
+        <!--<input type="radio" name="a"/>1<input type="radio" name="a"/>2<br/>-->
+        <!--<input type="reset" /><br/>-->
+        <!--<input type="submit" value="提交"/>-->
+        <!--<input type="text" /><br/>-->
+        <!--<select><option>Option</option><option>呵呵</option><option>嘿嘿</option></select><br/>-->
+        <!--<textarea></textarea><br/>-->
+        <!--<button>Button</button><br/>-->
+    <!--</form>-->
+<!--<div class="SubCategoryBox">-->
+    <!--<ul>-->
+        <!--<li><a href="#">佳能</a><i>(30440)</i></li>-->
+        <!--<li><a href="#">索尼</a><i>(11235)</i></li>-->
+        <!--<li><a href="#">三星</a><i>(21345)</i></li>-->
+        <!--<li><a href="#">尼康</a><i>(7478)</i></li>-->
+        <!--<li><a href="#">卡西欧</a><i>(51256)</i></li>-->
+        <!--<li><a href="#">富康</a><i>(7123)</i></li>-->
+        <!--<li><a href="#">柯达</a><i>(2145)</i></li>-->
+        <!--<li><a href="#">宾得</a><i>(1092)</i></li>-->
+        <!--<li><a href="#">理光</a><i>(2152)</i></li>-->
+        <!--<li><a href="#">奥林巴斯</a><i>(23214)</i></li>-->
+        <!--<li><a href="#">松下</a><i>(12300)</i></li>-->
+        <!--<li><a href="#">明基</a><i>(6523)</i></li>-->
+        <!--<li><a href="#">爱国者</a><i>(2465)</i></li>-->
+        <!--<li><a href="#">苹果</a><i>(1111)</i></li>-->
+        <!--<li><a href="#">其他品牌相继</a><i>(45780)</i></li>-->
+    <!--</ul>-->
+    <!--<div class="showmore">-->
+        <!--<a href="more.html"><span>显示全部品牌</span></a>-->
+    <!--</div>-->
+<!--</div>-->
+<p title="选择你最喜欢的水果">你最喜欢的水果是？</p>
+<ul id="test">
+    <li title="苹果">苹果</li>
+    <li title="橘子">橘子</li>
+    <li title="香蕉">香蕉</li>
+</ul>
+</body>
+<script type="text/javascript">
+    $(function () {
+        var $category = $("ul li:gt(5):not(:last)");
+        $category.hide();
+        var $toggleBtn = $("div.showmore>a");
+        $toggleBtn.click(function () {
+            if ($category.is(":visible")) {
+                //元素隐藏
+                $category.hide();
+                $(".showmore a span")
+                    .css("background", "url(arrow_down.gif) no-repeat scroll 10px center")
+                    .text("显示全部品牌");
+                $("ul li").removeClass("promoted");
+            } else {
+                //元素显示
+                $category.show();
+                $(".showmore a span")
+                    .css("background", "url(arrow_up.gif) no-repeat scroll 10px center")
+                    .text("精简显示品牌");
+//                $("ul li").filter(":contains('佳能'),:contains('尼康'),:contains('奥林巴斯')")
+//                    .addClass("promoted");
+            }
+//            超链接不跳转
+            return false;
+        })
+    })
+    $(function(){
+        var $para = $("p");
+        var p_txt = $para.attr("title");
+        var $li_1 = $("<li title='甘蔗'>甘蔗</li>");
+        var $li_2 = $("<li title='柚子'>柚子</li>");
+        $("#test").append($li_1);
+        $("#test").prepend($li_2);
+        alert(p_txt);
+        $("li").click(function () {
+//            $(this).clone().appendTo("ul");
+            alert($(this).attr("title"));
+        })
+    })
+</script>
+</html>

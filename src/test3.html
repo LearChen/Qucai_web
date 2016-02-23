@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <link rel="stylesheet" href="css/test.css">
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <meta charset="UTF-8">
+    <title>文字提示</title>
+    <style type="text/css">
+        body{
+            margin:0;
+            padding:40px;
+            background:#fff;
+            font:80% Arial, Helvetica, sans-serif;
+            color:#555;
+            line-height:180%;
+        }
+        p{
+            clear:both;
+            margin:0;
+            padding:.5em 0;
+        }
+        /* tooltip */
+        #tooltip{
+            position:absolute;
+            border:1px solid #333;
+            background:#f7f5d1;
+            padding:1px;
+            color:#333;
+            display:none;
+        }
+    </style>
+</head>
+<body>
+<input id="address" type="text" value="请输入邮箱地址" class="placeHolder"/>
+<input id="password" type="text" value="请输入邮箱密码" class="placeHolder"/>
+<input type="button" value="登录"/>
+<br/>
+<select id="single">
+    <option>选择1号</option>
+    <option>选择2号</option>
+    <option>选择3号</option>
+</select>
+<select id="multiple" multiple="multiple" style="height: 120px">
+    <option selected="selected">选择1号</option>
+    <option>选择2号</option>
+    <option>选择3号</option>
+    <option>选择4号</option>
+    <option selected="selected">选择5号</option>
+</select>
+<input type="checkbox" value="check1"/>多选1
+<input type="checkbox" value="check1"/>多选2
+<input type="checkbox" value="check1"/>多选3
+<input type="checkbox" value="check1"/>多选4
+<input type="radio" value="radio1"/>单选1
+<input type="radio" value="radio2"/>单选2
+<input type="radio" value="radio3"/>单选3
+<br/>
+<p><a href="#" class="tooltip" title="这是我的超链接提示1.">提示1.</a></p>
+<p><a href="#" class="tooltip" title="这是我的超链接提示2.">提示2.</a></p>
+<p><a href="#" title="这是自带提示1.">自带提示1.</a></p>
+<p><a href="#" title="这是自带提示2.">自带提示2.</a></p>
+<br/>
+<ul>
+    <li><a href="img/backgroundimg.jpg" class="tooltip" title="苹果 iPod"><img src="img/60X60.bmp" alt="苹果 iPod" /></a></li>
+    <li><a href="img/60X60.bmp" class="tooltip" title="苹果 iPad"><img src="img/60X60.bmp" alt="苹果 iPad" /></a></li>
+    <li><a href="img/60X60.bmp" class="tooltip" title="苹果 iPhone"><img src="img/60X60.bmp" alt="苹果 iPhone" /></a></li>
+    <li><a href="img/60X60.bmp" class="tooltip" title="苹果 iMac"><img src="img/60X60.bmp" alt="苹果 iMac" /></a></li>
+</ul>
+</body>
+<script>
+    $("#address").focus(function () {
+        var txt_value = $(this).val();
+        if (txt_value == "请输入邮箱地址"){
+            $(this).val("");
+        }
+    })
+    $("#address").blur(function () {
+        var txt_value = $(this).val();
+        if (txt_value == ""){
+            $(this).val("请输入邮箱地址");
+        }
+    })
+    $("#password").focus(function () {
+        var txt_value = $(this).val();
+        if (txt_value == "请输入邮箱密码"){
+            $(this).val("");
+        }
+    })
+    $("#password").blur(function () {
+        var txt_value = $(this).val();
+        if (txt_value == ""){
+            $(this).val("请输入邮箱密码");
+        }
+    })
+    $("#single option:eq(2)").attr("selected",true);
+    $("#multiple").val(["选择2号","选择3号"]);
+//    $(function(){
+//        var x = 10;
+//        var y = 20;
+//        $("a.tooltip").mouseover(function (e) {
+//            this.myTitle = this.title;
+//            this.title = "";
+//            var imgTitle = this.myTitle?"<br/>"+this.myTitle:"";
+//            var tooltip = "<div id='tooltip'><img src='"+this.href+"' alt='产品预览图' />"+imgTitle+"</div>";
+//            $("body").append(tooltip);
+//            $("#tooltip")
+//                .css({
+//                    "top": (e.pageY+y) + "px",
+//                    "left": (e.pageX+x) + "px"
+//                }).show("fast");
+//        }).mouseout(function () {
+//            this.title = this.myTitle;
+//            $("#tooltip").remove();
+//        }).mousemove(function(e){
+//            $("#tooltip")
+//                .css({
+//                    "top":(e.pageY+y) + "px",
+//                    "left":(e.pageX+x) + "px",
+//                });
+//        });
+//    });
+    $("a").click(function(event){
+        var tg = event.target;
+        alert(tg.href );
+        return false;
+    })
+</script>
+</html>

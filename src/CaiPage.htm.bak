@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<html>
+<head lang="en">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/scrolltabbar.css">
+    <link rel="stylesheet" href="css/lightbox.css"/>
+    <link rel="stylesheet" href="css/screen.css"/>
+    <!--<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=PdtmsQUMj8BxYqA2LcquMseZ"></script>-->
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="js/lib.js"></script>
+    <script src="js/lightbox-2.6.min.js"></script>
+    <script src="js/prefixfree.min.js"></script>
+    <script type="text/javascript">
+    	function setCookie(name,value,hours,path,domain,secure){
+						var cdata = name + "=" + value;
+						if(hours){
+							var d = new Date();
+							d.setHours(d.getHours() + hours);
+							cdata += "; expires=" + d.toGMTString();
+						}
+						cdata +=path ? ("; path=" + path) : "" ;
+						cdata +=domain ? ("; domain=" + domain) : "" ;
+						cdata +=secure ? ("; secure=" + secure) : "" ;
+						document.cookie = cdata;
+					}
+
+        <!-- 获取数据-->
+        $(document).ready(function(){
+//        截取quiz_id
+//            var quiz_id = window.location.search.substr(87,111);.
+//            var quiz_id = substring window.location.indexof('quiz_id='),
+//            var url = window.location.search;
+//            var url = "http://www.uguess.me:8080/web/guess.htm?t=52MZ5LR6KH8QE2F0DYZ04JNM35W3HPI4FZWM0KZVL02OCCD62L5WAE6CCIKFE54JB19W64UUFTN&quiz_id=5677aac70cf2286dd9bfc671";
+//            var startIndex = url.indexOf("quiz_id")+8;
+//            var endIndex = url.indexOf("from")-1;
+//            var quiz_id = url.substring(startIndex,endIndex);
+//            var jsonStr =
+//            {quiz_id:'5672a3737c1f2a3e8409143f',
+//            query_type:7};
+            var quizId=GetQueryString("quiz_id");
+            var unionId = GetQueryString("union_id");
+            if(unionId==""){
+                var URLCode = GetQueryString("code");
+                var code = "{\"code\":\""+URLCode+"\"}";
+                $.ajax({
+                    url:"http://www.uguess.me/user/weixin_web_login.html",
+                    type:"post",
+                    dataType:"json",
+                    data:code,
+                    success:function(response){
+                        //var result = JSON.stringify(response);
+//                    alert(response);
+//                   alert(response.body.token);
+//                    var jsonResult = result.substring(result.indexOf("body") + 6, result.indexOf("result_code") - 2);
+//                    var body = eval("(" + jsonResult + ")");
+//                    $("#showuser_id").html(body.user_id);
+//                    alert(code);
+                        tokenId = response.body.token;
+                        unionId = respones.body.union_id;
+                        
+                    }
+
+                });
+            }else{
+                var union_ID = "{\"union_id\":\""+unionId+"\"}";
+                $.ajax({
+                    url:"http://www.uguess.me/user/weixin_web_login.html",
+                    type:"post",
+                    dataType:"json",
+                    data:union_ID,
+                    success:function(response){
+                       // var result = JSON.stringify(response);
+//                    alert(response);
+//                   alert(response.body.token);
+//                    var jsonResult = result.substring(result.indexOf("body") + 6, result.indexOf("result_code") - 2);
+//                    var body = eval("(" + jsonResult + ")");
+//                    $("#showuser_id").html(body.user_id);
+//                    alert(code);
+                        tokenId = response.body.token;
+                    }
+
+                });
+            }
+
+            //
+//            $.post('http://.qucai8.com:8080/quiz/get_detail.html?t=52MZ5LR6KH8QE2F0DYZ04JNM35W3HPI4FZWM0KZVL02OCCD62L5WAE6CCIKFE54JB19W64UUFTN',jsonStr, function (response, nickname) { alert(text); });
+//             var para = "{\"quiz_id\":\"56838fa30cf26a26fbefeacb\",\"query_type\":\"7\" }";
+            var para = "{\"quiz_id\":\""+quizId+"\",\"query_type\":\"5\" }";
+//          var para = "{\"quiz_id\":\"window.location.search\",\"query_type\":\"7\" }";
+            $.ajax({
+//                url: "http://test.qucai8.com:8080/quiz/get_detail.html",
+//                url:"http://www.uguess.me:8080/quiz/get_detail.html?t="+response.body.token,
+                url:"http://www.uguess.me/quiz/get_detail.html",
+                type: "post",
+                dataType: "json",
+                data:para,
+                success: function (response) {
+                    var result = JSON.stringify(response);
+                    var jsonResult = result.substring(result.indexOf("body") + 6, result.indexOf("result_code") - 2);
+                    var body = eval("(" + jsonResult + ")");
+//                    alert(body.nickname);
+//                    拼接用户名
+                    $("#showNickname").html(body.nickname);
+//                    拼接参与人数参数
+                    $("#participant_num").html(body.participant_num);
+//                    拼接截止时间
+                    var timeline = body.deadline;
+                    var deadline = getInterval(timeline)
+                    $("#deadline").html(deadline);
+//                    拼接用户头像
+                    var headPort = body.portrait_url;
+                    $("#portrait_url").attr('src', body.portrait_url);
+
+
+//                    竞猜类型(图文)
+                    var caiType = body.type;
+                    if (caiType == 0) {
+                        var files = body.files;
+                        var showInfo = "<div style='clear:both;padding: 5px;'>";
+                        if (files.length == 1) {
+                            showInfo += "<div class='col-xs-12 image-set' style='float:left padding: 5px;'><a class='example-image-link' href='" + files[i].file_url + "' data-lightbox='example-set'><img class='example-image' style='width: 220px;height: 220px;' src='" + files[i].file_url + "'/></div>";
+                        }
+                        else {
+                            for (var i = 0; i < files.length; i++) {
+                                if (i == 3 || i == 6) {
+                                    showInfo += "</div>";
+                                    showInfo += "<div style='padding: 5px; clear:both'>";
+                                }
+                                showInfo += "<div class='col-xs-4 image-set'><a style='margin-left: -20px; width: 120%;height: 100%;' class='example-image-link' href='" + files[i].file_url + "' data-lightbox='example-set'><img style='width:100% ;height: 100%;' src='" + files[i].file_url + "'/></a></div>";
+                            }
+                        }
+                        showInfo += "</div>";
+                        $("#thumbnail_url").append(showInfo);
+                    }
+
+//                    拼接奖品
+                    var reward = body.prize_type;
+                    var showReward = "<div style='clear: both'>"
+                    if (reward == 0 || reward == 1){
+                        showReward += "<span>奖励" + body.prize_value + "猜豆</span></div>"
+                    }else if(reward == 2){
+                        var prizes = body.prizes;
+                        showReward += "<span>奖励"+ prizes +"福利</span></div>"
+                    }else if(reward == 3){
+                        var prize_desc = body.prize_desc;
+                        showReward += "<span>奖励"+ prize_desc+"</span></div>"
+                    }
+                    $("#prize_url").html(showReward);
+
+//                    拼接竞猜内容
+                    $("#contentInfo01").html(body.content);
+                    $("#contentInfo02").html(body.content);
+
+//                    拼接答案类型
+                    var jsonAnswer = result.substring(result.indexOf("answers") + 10, result.indexOf("birthday") - 3);
+                    var bodyStr = eval("(" + jsonAnswer + ")");
+                    var answerType = body.quiz_answer_type;
+                    var otherType = bodyStr.answer_type;
+                    $("#answerType").val(answerType);//设置答案类型到隐藏属性中
+
+                    var showAnswer = $("#answerCenter");
+                    if (answerType == 0) {
+                        showAnswer.html("<textarea placeholder='你猜的答案是什么呢？' id='AnswerText' rows='3' cols='20'></textarea>");
+                        // showAnswer += "<div id='QuestionDiv'><textarea id='AnswerText' rows='3' cols='20'></textarea><input type='button' id='SumbitBtn' value='确定'></div></div>"
+                    } else if (answerType == 1) {
+//                        alert(bodyStr.answer_type);
+                        if (otherType == 0){
+                        var resultChoose = body.answers;
+                        var redioHtml = "<div id='changeForm' class='from-wrapper'><fieldset class='radio-check-label'>";
+                        for (var i = 0; i < resultChoose.length; i++) {
+                            redioHtml += "<label id='" + resultChoose[i].answer_id + "' class='radio'><input type='radio' name='redioAnswer' onclick='changeColor(this.value)' value='" + resultChoose[i].answer_id + "'><span style='font-size: 20px;' onclick='changeColor(this.value)' value='" + resultChoose[i].answer_id + "'>&nbsp;" + resultChoose[i].answer + "</span><br/></input></label>"
+                            // showAnswer += "<input id='+resultChoose[i].answer_id' type='radio' checked='checked' name='answer' value='+resultChoose[i].answer_id+' onclick='text()'/><span>&nbsp;"+resultChoose[i].answer+"</span><br/></div>";
+                           }
+                        redioHtml +="</fieldset></div>";
+                        showAnswer.html(redioHtml);
+                        }else{
+//                            隐藏确定按钮
+//                            document.getElementById('missBtn').style.display="none";
+                            document.getElementById('submitbtn').value=("请到App中下载");
+//                            $(function(){ $("#submitbtn").val('请到App中下载');})
+
+                        }
+                    }
+                }
+            });
+        });
+        //        时间解析算法
+        //        $(function(){
+        //            var deadline=getInterval(1450947780000);
+        //            alert(deadline);
+        //        });
+
+        function getInterval( millisecondparam){
+            var millisecond = millisecondparam - new Date().getTime();
+            var second = millisecond / 1000;
+            if (second <= 0) {
+                second = 0;
+            }
+            //--------------（标准）
+            if (second == 0) {
+                interval = "竞猜结束";
+            } else if (second < 30 && second > 5) {
+                interval = parseInt(second)  + "秒内结束";
+            } else if (second >= 30 && second < 60) {
+                interval = "半分钟内结束";
+            } else if (second >= 60 && second < 60 * 60) {//大于1分钟 小于1小时
+                var minute = parseInt(second / 60);
+                interval = minute + "分钟后结束";
+            } else if (second >= 60 * 60 && second < 60 * 60 * 24) {//大于1小时 小于24小时
+                var hour = parseInt(second / 60 / 60);
+                interval = hour + "小时后结束";
+            } else if (second >= 60 * 60 * 24) {//大于1D 小于2D
+                interval = "一天以上";
+            }
+            return interval;
+        }
+
+
+        var submitData = {
+
+            textareaData : function(){
+//                alert("textareaData");
+//                return {"quiz_id":GetQueryString("quiz_id"), "answer": $("#AnswerText").val()};
+//                var code = "{\"code\":\""+URLCode+"\"}";
+                return "{\"quiz_id\":\""+GetQueryString('quiz_id')+"\",\"answer\":\""+$('#AnswerText')+"\" }";
+
+            },
+
+            redioData : function(){
+//                alert("redioData");
+                return "{\"quiz_id\":\""+GetQueryString('quiz_id')+"\", \"answer_id\":\""+$("input[name='redioAnswer']:checked").val()+"\"}";
+            }
+
+        };
+
+        function submitAnswer(){
+            $("#submitbtn").attr("disabled", "disabled");
+            var params = null;
+//            文本类型
+            if($("#answerType").val() == 0){
+                params = submitData.textareaData();
+                $("#AnswerText").attr("readonly", "readonly");
+//                alert(params.quiz_id);
+//                alert(params.answer);
+//                选项类型
+            } else if ($("#answerType").val() == 1){
+                params = submitData.redioData();
+                $("input[name='redioAnswer']").attr("disabled", "disabled");
+//                alert(params.quiz_id);
+//                alert(params.answer_id);
+            }
+
+            var joinUrl = "http://www.uguess.me/quiz/join.html";
+            // 这里不应该有token吗？？？注意一下。页面加载时的方法也注意一下.下面假设获取的token参数名为token
+            // joinUrl += "?t=" + GetQueryString("token");
+            $.ajax({
+                url:"http://www.uguess.me/quiz/web_join.html?t="+tokenId,
+                type: "post",
+                dataType: "json",
+                data:params,
+                success: function (response) {
+//                    alert(response);
+//                    response.result_code;
+//                    alert(tokenId);
+//                    alert(response.result_code);
+                    // 请求成功
+                    if($("#answerType").val() == 0){
+                        //如果是文本类型
+                        if (response.result_code == 46) {
+                            alert("该用户被禁言，不允许发布竞猜");
+                        } else if(response.result_code == 47){
+                           alert("该竞猜已经过了截止时间");
+                        }else if(response.result_code == 48){
+                            alert("该竞猜已经结束了");
+                        }else if(response.result_code == 49){
+                            alert("该竞猜已经被删除了");
+                        }else if(response.result_code == 39){
+                            alert("您已经参与过该竞猜了");
+                        }else if(response.result_code == 0){
+                            alert("参与成功，更多信息请下载优猜App")
+                        }else if(response.result_code == 9999){
+                            alert("想获取更多信息请关注微信公众号优猜！")
+                        }
+                        self.location='http://www.uguess.me/web/QuCai/src/download.htm';
+                    } else if ($("#answerType").val() == 1){
+                        //如果是选项类型
+                        if (response.result_code == 46) {
+                            alert("该用户被禁言，不允许发布竞猜");
+                        }else if(response.result_code == 47){
+                            alert("该竞猜已经过了截止时间");
+                        }else if(response.result_code == 48){
+                            alert("该竞猜已经结束了");
+                        }else if(response.result_code == 49){
+                            alert("该竞猜已经被删除了");
+                        }else if(response.result_code == 39){
+                            alert("您已经参与过该竞猜了");
+                        }else if(response.result_code == 0){
+                            alert("参与成功，更多信息请下载优猜App")
+                        }else if(response.result_code == 9999){
+                            alert("想获取更多信息请关注微信公众号优猜！")
+                        }
+                        self.location='http://www.uguess.me/web/QuCai/src/download.htm';
+                    }
+                }
+            });
+        }
+
+        <!--图片展示测试-->
+        //        function CreatePicShow(caiType,picAmount,divID) {
+        //            if(caiType == 0){
+        //                var showInfo = "<div style='clear:both;padding: 5px;'>";
+        //                if (picAmount == 1) {
+        //                    showInfo += "<div class='col-xs-12' style='float:left padding: 5px;'><img style='width: 220px;height: 220px;' src='img/personal_center_tx.jpg' id='thumbnail_url'/></div>";
+        //                }
+        //                else {
+        //                    for (var i = 0; i < picAmount; i++) {
+        //                        if (i == 3||i==6) {
+        //                            showInfo += "</div>";
+        //                            showInfo += "<div class='col-xs-12' style='padding:5px;clear:both;'>";
+        //                        }
+        //                        showInfo += "<div class='col-xs-4'><img style='margin-top: 5px;width: 100%;height: 100%;' src='img/personal_center_tx.jpg' id='thumbnail_url'/></div>";
+        //                    }
+        //                }
+        //            }
+        //            showInfo += "</div>";
+        //            $("#"+divID).append(showInfo);
+        //        }
+
+        //        $(function(){
+        //            CreatePicShow(pic,'showInfo');
+        //        })
+
+        //        答案选择展示
+        //            function CreateAnswerShow(answerAmount,divID) {
+        //                var showAnswer = "<div style='clear:both;padding: 10px;'><div class='col-xs-12'><div>";
+        //                    for(var i = 0;i < answerAmount;i++){
+        //                        showAnswer += "<input type='radio' checked='checked' name='answer' value='value'/><span>&nbsp;你猜我是个什么东西</span><br/>";
+        //                    }
+        //                showAnswer += "</div></div></div>";
+        //                $("#"+divID).append(showAnswer);
+        //            }
+        //        $(function () {
+        //            CreateAnswerShow(2,'answerCenter');
+        //            //        $.ajax({
+        //            //            url: "HallInterface/SentCurrency.ashx",
+        //            //            type: "post",
+        //            //            data: { "para": "1696^4059ba6462a4c5a8e3cb8e7bd7be77ab^ ^1^4059ba6462a4c5a8e3cb8e7bd7be77ab^739029^500000" },
+        //            //            success: function (data) {
+        //            //                console.log(data);
+        //            //            }
+        //            //        })
+        //        })
+
+        //        测试结果展示
+        //        function CreateResultShow(resultAmount,divID) {
+        //            var showResult = "<div style='clear:both;'>";
+        //            for(var i = 0;i < resultAmount;i++){
+        //                showResult += "<div class='col-xs-12'><div class='progress'><div class='progress-bar' role='progressbar' aria-valuenow='60' aria-valuemin='0' aria-valuemax='100' style='width: 60%'><span>你猜你猜你猜猜猜&nbsp60%</span></div></div></div>";
+        //            }
+        //            showResult += "</div>";
+        //            $("#"+divID).append(showResult);
+        //        }
+        //        $(function () {
+        //            CreateResultShow(9,'resultCenter');
+        //            //        $.ajax({
+        //            //            url: "HallInterface/SentCurrency.ashx",
+        //            //            type: "post",
+        //            //            data: { "para": "1696^4059ba6462a4c5a8e3cb8e7bd7be77ab^ ^1^4059ba6462a4c5a8e3cb8e7bd7be77ab^739029^500000" },
+        //            //            success: function (data) {
+        //            //                console.log(data);
+        //            //            }
+        //            //        })
+        //        })
+
+        //        $(document).ready(function() {
+        //            $('a[title]').css('text-decoration', 'none');
+        //        });
+
+
+    </script>
+</head>
+<body id="pc-body">
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+<![endif]-->
+
+<!-- Add your site or application content here -->
+<!--<header>-->
+<!-- 头文件展示（参与、头像、参与时间）-->
+<div>
+    <div style="margin-bottom: -60px;">
+    <div class="cai-top col-xs-12">
+        <!-- 参与人数展示 -->
+        <div class="col-xs-4">
+            <img src="img/toupiao01.png" alt=""/>&nbsp<label id="participant_num"></label><span>&nbsp;人参与</span>
+        </div>
+        <!-- 头像展示 -->
+        <div class="col-xs-4">
+            <div class="cai-top-tx" style="margin-left: -7px;">
+                <img style="margin-top: 2px;margin-left: 2px;" id="portrait_url"/>
+            </div>
+        </div>
+        <!-- 结束时间展示 -->
+        <div class="cai-top-deadline">
+            <div id="deadline">
+            </div>
+        </div>
+    </div>
+    <!-- 用户昵称展示-->
+    <div class="cai-name row col-xs-12">
+        <label id="showNickname" style="margin-left: 40px;"></label>
+    </div>
+
+<!--</header>-->
+
+<!--tab数据你猜我猜交互-->
+<div class="wrap col-xs-12">
+    <div class="tabs col-xs-11">
+        <a href="#" hidefocus="true" class="active ">你猜</a>
+        <a href="#" hidefocus="true">我猜</a>
+    </div>
+    <!-- tab切换框架 -->
+     <div class="swiper-container" style="margin-top: 40px;">
+         <div class="swiper-wrapper">
+
+            <!-- 你猜 -->
+            <div class="swiper-slide">
+                <div id="contentInfo01" class="content-slide">
+                </div>
+                <!-- 图片展示 -->
+                <div id="thumbnail_url" class="col-xs-12">
+                </div>
+                <div class="col-xs-12" style="margin-bottom: 10px;">
+                </div>
+                <div style="text-align: center;margin-left: 6rem;">
+                    <div style="float:left;text-align: center;">
+                        <img src="img/reward.png" style="height: 15px;width: 20px;margin-bottom: 5px;"/>
+                    </div>
+                    <div id="prize_url" style="float:left;text-align: center;">
+                    </div></div>
+            </div>
+            <!-- 我猜 -->
+                <div class="swiper-slide">
+                    <input type="hidden" id="answerType"/>
+                    <div id="contentInfo02" class="content-slide">
+                    </div>
+                    <div class="col-xs-12">
+                        <div id="answerCenter">
+                        </div>
+                    </div>
+                    <div class="col-xs-12">
+                        <div class="col-xs-6">
+                            <input id="submitbtn" type='button' style="color: black;margin-top: 10px;text-align: center;" value='确定' onclick="submitAnswer();">
+                        </div>
+                    </div>
+                    <div id="AnswerDiv" style="display: none">
+                        <label id="AnswerLbl"></label>
+                    </div>
+                    <div class="col-xs-12" style="margin-bottom: 10px;">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+
+<!--tabjs（你猜、我猜切换）-->
+<script src="http://www.lanrenzhijia.com/ajaxjs/jquery-1.10.1.min.js"></script>
+<script src="http://www.lanrenzhijia.com/ajaxjs/idangerous.swiper.min.js"></script>
+<script>
+    var tabsSwiper = new Swiper('.swiper-container',{
+        speed:500,
+//        height:60%
+        onSlideChangeStart: function(){
+            $(".tabs .active").removeClass('active');
+            $(".tabs a").eq(tabsSwiper.activeIndex).addClass('active');
+        }
+    });
+
+    $(".tabs a").on('touchstart mousedown',function(e){
+        e.preventDefault()
+        $(".tabs .active").removeClass('active');
+        $(this).addClass('active');
+        tabsSwiper.swipeTo($(this).index());
+    });
+    $(".tabs a").click(function(e){
+        e.preventDefault();
+    });
+</script>
+</body>
+<!--<script type="text/javascript">-->
+    <!--$(function() {-->
+        <!--$(":radio").click(function () {-->
+            <!--$("#changeForm").find('label').css('background-color', 'white');-->
+            <!--$("#" + $(this).val()).css('background-color', 'black');-->
+            <!--alert($("#" + $(this).val()));-->
+        <!--});-->
+    <!--})-->
+<!--</script>-->
+<script type="text/javascript">
+    function changeColor(value){
+        $("#changeForm").find('label').css('background-color','white');
+        $("#"+value).css('background-color','#f75842');
+//        $("#changeSpan").find('span').css('font-color','black');
+//        $("#"+value).css('font-color','white');
+    }
+    $(function(){
+
+    })
+</script>
+</html>

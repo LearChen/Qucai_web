@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>春节活动界面</title>
+    <link rel="stylesheet" type="text/css" href="css/normalize.css" />
+    <link rel="stylesheet" type="text/css" href="css/default.css">
+    <link rel="stylesheet" type="text/css" href="css/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="css/crosscover.min.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
+
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script src="http://libs.useso.com/js/html5shiv/3.7/html5shiv.min.js"></script>
+    <script type="text/javascript" src="js/lib.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            var para = "{\"id\":\"569cea987c1f76dd68d3934a\"}";
+            var topic_id="";
+            $.ajax({
+                url:"http://test.qucai8.com/activity/get_activity_detail.html",
+                type:"post",
+                dataType:"json",
+                data:para,
+                async:false,
+                success: function (response) {
+                    var body = response.body;
+//                    var banner_pic = body.thumbnail_url;
+//                    $("#bannerPic").attr('src', banner_pic);
+                    for(var i=0; i<body.topics.length;i++ ){
+                        topic_id += ("\""+body.topics[i].topic_id+"\",");
+                    }
+                    topic_id = topic_id.substring(1,topic_id.length-2);
+//                    alert(topic_id);
+                }
+            });
+//            var topicId = topic_id;
+//            alert(topicId);
+            var data = "{\"activity_id\":\"569cea987c1f76dd68d3934a\",\"topic_ids\":[\""+topic_id+"\"],\"size\":10 }";
+//            alert(data);
+            $.ajax({
+                url:"http://test.qucai8.com/activity/activity_quiz_list.html",
+                type:"post",
+                dataType:"json",
+                data:data,
+                success: function (response) {
+                    var body = response.body;
+//                    alert(body);
+//                    var quiz_id = body[0].quiz_id;
+//                    var nickname = body[1].nickname;
+//                    $("#nickname").html(body[1].nickname);
+//
+//                    var participant_num = body[1].participant_num;
+//                    $("#participant_num").html(body[1].participant_num);
+//
+//                    var content = body[1].content;
+                    $("#contentInfo").html(body[1].content);
+//                    for (var i=0;i<body.length;i++){
+//                        contentInfo +=
+//                    }
+//                    alert(content);
+                    var showAll = $("#showAll");
+                    var showContent = "<div id='demo' style='overflow:hidden;height: 30px;width: 100%;background:rgba(255,255,255,0);color:#000000'><div id='demo1'>";
+                    for (var i = 0; i < body.length; i++) {
+                        $("#nickname").html(body[i].nickname);
+                        $("#participant_num").html(body[i].participant_num);
+                        $("#contentInfo").html(body[i].content);
+                        showContent += "<span id='nickname'>&nbsp;<img style='width: 10%;height: 10%;font-size: 5px;' src='images/horn.png'>&nbsp;</span><span id='contentInfo'></span><span id='participant_num'></span>";
+                    }
+                    showContent +="</div><div id='demo2'></div></div>";
+                    showAll.html(showContent);
+                }
+            })
+        });
+    </script>
+</head>
+<body id="ac-body">
+<div class="crosscover">
+    <ul class="crosscover-list">
+        <li><img src="./images/01.jpg" alt="image01"><div id="demo" style="overflow:hidden;height: 30px;;width: 100%;background:rgba(255,255,255,0);color:#000000"><div id="demo1"><span style="float: left;margin-top: 10px;color: #f75842;">&nbsp;<img style="width: 10%;height: 10%;font-size: 5px;" src="images/horn.png">&nbsp;大四喜说的:</span><span id="contentInfo" style="color: #ffffff;float: left;margin-top: 10px;margin-left: -10px;overflow:hidden;width:130px;white-space:nowrap;text-overflow:ellipsis;"></span><span style="float: right;margin-right: 5%;color: #ffffff;margin-top: 10px;">100人参与</span><span style="float: left;margin-top: 10px;color: #f75842;">&nbsp;<img style="width: 10%;height: 10%;font-size: 5px;" src="images/horn.png">&nbsp;大三元:</span><span style="color: #ffffff;float: left;margin-top: 10px;margin-left: -10px;overflow:hidden;width:130px;white-space:nowrap;text-overflow:ellipsis;">d飞洒发沙发发顺丰</span><span style="float: right;margin-right: 5%;color: #ffffff;margin-top: 10px;">80人参与</span></div><div id="demo2"></div></div></li>
+<li>地图噶身体钢铁<img src="./images/02.jpg" alt="image02"></li>
+<li>12512515<img src="./images/03.jpg" alt="image03"></li>
+<li>呵呵呵呵呵呵<img src="./images/04.jpg" alt="image04"></li>
+<li>呵呵呵呵呵<img src="./images/05.jpg" alt="image05"></li>
+</ul>
+</div>
+<img style="width: 100%;;" src="images/activityContent.png" />
+<div>
+    <img style="height: 30%;width: 32%;" src="images/reward01.png">
+    <img style="height: 30%;width: 32%;" src="images/reward02.png">
+    <img style="height: 30%;width: 32%;margin-top: -5px;" src="images/reward03.png">
+</div>
+<div>
+    <div id="send_cai"></div>
+    <img style="width: 100%;height: 150%;margin-top: 5%;margin-bottom: 5%;" src="images/hotContent.png">
+</div>
+<div class="hotContent col-xs-12" style="vertical-align: middle;margin-left: -35px;overflow: hidden">
+    <div class="col-xs-4" style="color: #f75842;">&nbsp&nbsp&nbsp1.
+        <a href="masterDownload.htm"><img src="images/01.jpg"/>
+        </a>
+    </div>
+    <div class="col-xs-4">
+        <img src="images/joinPeople.png"/>
+    </div>
+    <div class="col-xs-4" style="text-align: center;margin-top: 5px;">100人参与</div>
+</div>
+<div class="hotContent col-xs-12" style="vertical-align: middle;margin-left: -35px;overflow: hidden;margin-top: 5px;">
+    <div class="col-xs-4" style="color: #f75842;">&nbsp&nbsp&nbsp2.
+        <a href="masterDownload.htm">
+            <img src="images/02.jpg"/>
+        </a>
+    </div>
+    <div class="col-xs-4">
+        <img src="images/joinPeople.png"/>
+    </div>
+    <div class="col-xs-4" style="text-align: center;margin-top: 5px;">80人参与</div>
+</div>
+<div>
+    <div style="padding: 0!important;margin-left: 5%;margin-bottom: 10%;">
+        <div style="margin-top: 30%;margin-bottom: 10%;">
+            <div>
+                <img style="width:44%;border-radius: 5px 5px 5px 5px" src="images/03.jpg" />
+                <div style="width: 44%;height: 20px;margin-top: -20px;position: relative;border-radius: 5px 5px 0px 0px;background: rgba(0,0,0,0.6);">
+                    <p style="color: #ffffff;overflow:hidden;width:80%;white-space:nowrap;text-overflow:ellipsis;float: right;text-align: right;font-size: 14px;">你猜他们是什么狗更舍得给刚说的公司</p>
+                </div>
+                <div style="width: 44%;height: 20px;margin-top: -11px;position: relative;border-radius: 0px 0px 5px 5px;background: rgba(255,255,255,1);float: left;text-align: right;">
+                    <p style="color: #000000;overflow:hidden;width:100px;">大四喜</p>
+                </div>
+                <img style="border-radius:999px;width: 33px;height: 33px;margin-left: -43%;margin-top: -7%;position: relative;z-index: 1000;" src="images/02.jpg" />
+                </br></br>
+
+                <!--<img style="margin-left: 50%;margin-top: -45%;width:44%;border-radius: 5px 5px 5px 5px" src="images/04.jpg" />-->
+                <!--<div style="margin-left: 50%;margin-top: -20%;">-->
+                <!--<div style="margin-left: 50%;width: 44%;height: 20px;margin-top: -20px;position: relative;border-radius: 5px 5px 0px 0px;background: rgba(0,0,0,0.6);">-->
+                <!--<p style="color: #ffffff;overflow:hidden;width:80%;white-space:nowrap;text-overflow:ellipsis;float: right;text-align: right;font-size: 10px;">你猜他们是什么狗更舍得给</p>-->
+                <!--</div>-->
+                <!--<div style="width: 44%;height: 20px;margin-top: -10px;position: relative;border-radius: 0px 0px 5px 5px;background: rgba(255,255,255,1);float: left;text-align: right;">-->
+                <!--<p style="color: #000000;overflow:hidden;width:100px;">大四喜</p>-->
+                <!--</div>-->
+                <!--<img style="border-radius:999px;width: 33px;height: 33px;margin-left: -86%;margin-top: -13%;position: relative;z-index: 1000;" src="images/02.jpg" />-->
+                <!--</div>-->
+            </div>
+
+            <!--<img style="width:44%;border-radius: 5px 5px 5px 5px" src="images/04.jpg" />-->
+            <!--<div style="margin-top: 5%;">-->
+            <!--<div style="width: 44%;height: 20px;margin-top: -20px;position: relative;border-radius: 5px 5px 0px 0px;background: rgba(0,0,0,0.6);">-->
+            <!--<p style="color: #ffffff;overflow:hidden;width:80%;white-space:nowrap;text-overflow:ellipsis;float: right;text-align: right;font-size: 5px;">你猜我们干哈UI干撒大概</p>-->
+            <!--</div>-->
+            <!--<div style="width: 44%;height: 20px;margin-top: -10px;position: relative;border-radius: 0px 0px 5px 5px;background: rgba(255,255,255,1);float: left;text-align: right;">-->
+            <!--<p style="color: #000000;overflow:hidden;width:100px;">大三元</p>-->
+            <!--</div>-->
+            <!--<img style="border-radius:999px;width: 33px;height: 33px;margin-left: -43%;margin-top: -7%;position: relative;z-index: 1000;" src="images/02.jpg" />-->
+            <!--</div>-->
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    var screenH = $(window).height()
+</script>
+<!--<script src="http://libs.useso.com/js/jquery/2.1.1/jquery.min.js" type="text/javascript"></script>-->
+<script>window.jQuery || document.write('<script src="js/jquery-2.1.1.min.js"><\/script>')</script>
+<script src="js/crosscover.min.js"></script>
+<script type="text/javascript">
+    $(".crosscover").crosscover({
+        animateInClass:'lightSpeedIn',
+        animateOutClass:'lightSpeedOut',
+        interval : 60000,
+        startIndex : 0,
+        autoPlay : true,
+        controller : true,
+        prevClass : 'crosscover-prev',
+        nextClass : 'crosscover-next',
+        prevInnerHtml : '<span class="crosscover-icon-prev"></span>',
+        nextInnerHtml : '<span class="crosscover-icon-next"></span>'
+    });
+</script>
+<script>
+    var speed=150
+    demo2.innerHTML=demo1.innerHTML
+    demo.scrollTop=demo.scrollHeight
+    function Marquee(){
+        if(demo1.offsetTop-demo.scrollTop>=0)
+            demo.scrollTop+=demo2.offsetHeight
+        else{
+            demo.scrollTop--
+        }
+    }
+    var MyMar=setInterval(Marquee,speed)
+    demo.onmouseover=function() {clearInterval(MyMar)}
+    demo.onmouseout=function() {MyMar=setInterval(Marquee,speed)}
+</script>
+</body>
+</html>

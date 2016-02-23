@@ -1,0 +1,50 @@
+<html>
+    <head>
+        <script src="js/jquery-1.11.3.min.js"></script>
+        <script type="text/javascript" src="js/winner-1.0.js"></script>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+            if (songwinners.contains(2222)){
+                $("#img1").show();
+            }else{
+                $("#img1").hidden();
+            }
+            })
+        </script>
+
+    </head>
+    <body>
+        <!--<img id="img1" src="img/backgroundimg.jpg" style="display: none;"/>-->
+    <form id="form1" action="#">
+        可用元素：<input name="add" value="可用文本框"/><br/>
+        不可用元素：<input name="email" disabled="disabled" value="不可用文本框"/><br/>
+        可用元素：<input name="che" value="可用文本框"/><br/>
+        不可用元素：<input name="email" disabled="disabled" value="不可用文本框"/><br/>
+        多选框：<br/>
+        <input type="checkbox" name="newsletter" checked="checked" value="test1"/>test1
+        <input type="checkbox" name="newsletter" value="test2"/>test2
+        <input type="checkbox" name="newsletter" value="test3"/>test3
+        <input type="checkbox" name="newsletter" value="test4"/>test4
+        <input type="checkbox" name="newsletter" checked="checked" value="test5"/>test5
+        <br/>
+        下拉列表1：<br/>
+        <select name="test">
+            <option>浙江</option>
+            <option selected="selected">黑龙江</option>
+            <option>辽宁</option>
+            <option>吉林</option>
+            <option>山东</option>
+            <option>湖北</option>
+            <option>湖南</option>
+            <option>广东</option>
+        </select>
+    </form>
+    </body>
+<script type="text/javascript">
+    $("#form1 input:enabled").val("呵呵，这变了！！");
+</script>
+</html>

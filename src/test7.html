@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <link rel="stylesheet" href="css/test.css">
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<form action="#" method="post" id="regForm">
+    <fieldset>
+        <legend>个人基本信息</legend>
+        <div>
+            <label for="username">名称:</label>
+            <input id="username" type="text" />
+        </div>
+        <div>
+            <label for="pass">密码:</label>
+            <input id="pass" type="password" />
+        </div>
+        <div>
+            <label for="msg">详细信息:</label>
+            <textarea id="msg"></textarea>
+        </div>
+    </fieldset>
+</form>
+<form method="post" action="">
+    <div class="msg">
+        <div class="msg_caption">
+            <span class="up">放大</span>
+            <span class="down">缩小</span>
+        </div>
+        <div>
+            <textarea id="comment" rows="8" cols="20">哈所改回复傲世发送时口袋里你广发卡送发哦是今年分咯看就.服你骄傲尚能饭否</textarea>
+        </div>
+    </div>
+</form>
+<br/>
+<form method="post" action="">
+    你爱好的运动是？<input type="checkbox" id="CheckedAll" />全选/全不选<br/>
+    <input type="checkbox" name="items" value="足球"/>足球
+    <input type="checkbox" name="items" value="篮球"/>篮球
+    <input type="checkbox" name="items" value="羽毛球"/>羽毛球
+    <input type="checkbox" name="items" value="乒乓球"/>乒乓球<br/>
+    <input type="button" id="send" value="提　交"/>
+</form>
+</body>
+<script>
+//    $(function () {
+//        $(":input").focus(function(){
+//            $(this).addClass("focus");
+//        }).blur(function(){
+//            $(this).removeClass("focus");
+//        });
+//    });
+    $(function(){
+        var $comment = $('#comment');
+        $('.up').click(function(){
+            if(!$comment.is(":animated")){
+                if ($comment.height() < 600){
+                    $comment.animate({scrollTop: "+=50"},400);
+                }
+            }
+        });
+        $('.down').click(function(){
+            if (!$comment.is(":animated")){
+                if ($comment.height() > 50){
+                    $comment.animate({scrollTop: "-=50"},400);
+                }
+            }
+        });
+    });
+    $("#CheckedAll").click(function(){
+        //所有checkbox跟着全选的checkbox走。
+        $('[name=items]:checkbox').attr("checked", this.checked );
+    });
+    $('[name=items]:checkbox').click(function(){
+        //定义一个临时变量，避免重复使用同一个选择器选择页面中的元素，提升程序效率。
+        var $tmp=$('[name=items]:checkbox');
+        //用filter方法筛选出选中的复选框。并直接给CheckedAll赋值。
+        $('#CheckedAll').attr('checked',$tmp.length==$tmp.filter(':checked').length);
+
+        /*
+         //一行做过多的事情需要写更多注释。复杂选择器还可能影响效率。因此不推荐如下写法。
+         $('#CheckedAll').attr('checked',!$('[name=items]:checkbox').filter(':not(:checked)').length);
+         */
+    });
+    $("#CheckedRev").click(function(){
+        $('[name=items]:checkbox').each(function(){
+            this.checked = !this.checked;
+        });
+    });
+    $("#send").click(function(){
+        var str = "你选中的是: \r\n";
+        $('[name=items]:checkbox:checked').each(function(){
+            str += $(this).val()+"\r\n";
+        });
+        alert(str);
+    });
+
+</script>
+</html>

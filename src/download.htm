@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/bootstrap.css"/>
+    <script src="js/jquery-1.11.3.min.js"></script>
+</head>
+<body>
+    <div id="dl-body" style="position:absolute; z-index:-1;">
+        <img src="img/downloadbg.png" height="100%" width="100%"/>
+    </div>
+    <div id="reviewResult">
+        <a href="http://a.app.qq.com/o/simple.jsp?pkgname=com.qucai.guess&g_f=991653"><img src="img/reviewResult.png" height="8%" width="40%" style="margin-top: 120%;margin-left: 30%;"/></a>
+    </div>
+</body>
+</html>
+<script type="text/javascript">
+    $(function(){
+        $('#dl-body').height($(window).height());
+        $('#dl-body').width($(window).width());
+    });
+    $(function(){
+        $('#reviewResult').height($(window).height());
+        $('#reviewResult').width($(window).width());
+    });
+</script>
