@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="format-detection" content="telephone=no" >
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>我的奖品</title>
+    <link rel="stylesheet" href="vender/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/app.css">
+    <script src="js/lib/requirejs/require.min.js"></script>
+    <script src="js/require.config.js"></script>
+    <script>
+        require(['authorize']);
+    </script>
+</head>
+<body>
+
+    <header class="qc-header">
+        <div class="header-nav">
+            <span class="fa fa-angle-left nav-back"></span>
+            <span>已获奖品</span>
+        </div>
+    </header>
+
+    <div class="qc-prize-list no-more" id="prizeListCtx">
+
+        <section class="prize-list" id="prizeList">
+            <div class="prize-item">
+                <a href="prize.htm">
+                    <div class="prize-pic">
+                        <img src="img/demo/p_01.png">
+                    </div>
+                    <div class="prize-content">
+                        <h3 class="prize-title">机场星巴克30元优惠券</h3>
+                        <p class="prize-desc">在白云机场星巴克店内任意消费满60元可使用，此券不找零，不兑换，一次仅限使用一张</p>
+                    </div>
+                </a>
+            </div>
+            <div class="prize-item">
+                <a href="prize.htm">
+                    <div class="prize-pic">
+                        <img src="img/demo/p_01.png">
+                    </div>
+                    <div class="prize-content">
+                        <h3 class="prize-title">机场星巴克30元优惠券</h3>
+                        <p class="prize-desc">在白云机场星巴克店内任意消费满60元可使用，此券不找零，不兑换，一次仅限使用一张</p>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <section class="qc-btn-wp">
+            <span class="qc-btn more-btn">加载更多</span>
+        </section>
+
+        <section class="qc-tip-wp">
+            <span>还没有获得奖品</span>
+        </section>
+    </div>
+
+    <script>
+        require(['prizeList']);
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,164 @@
+@import "mixins";
+/*guess list*/
+.qc-prize-list
+{
+    .clearfix();
+
+}
+
+.prize-list
+{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    .prize-item
+    {
+        padding: 10px;
+        background: #fff;
+        margin-top: 10px;
+        margin-bottom: 20px;
+        box-shadow: 0 1px 1px rgba(0,0,0,.2);
+
+        .clearfix();
+
+        .prize-pic
+        {
+            float: left;
+            width: 25%;
+            height: 0;
+            padding-bottom: 25%;
+            overflow: hidden;
+            border-radius: 6px;
+
+            @media (min-width: 600px) {
+                width: 150px;
+                padding-bottom: 150px;
+            }
+
+            img
+            {
+                width: 100%;
+            }
+        }
+
+        .prize-content
+        {
+            margin-left: 28%;
+
+            @media (min-width: 600px) {
+                margin-left: 180px;
+            }
+
+            .prize-title
+            {
+                margin: 2% 0;
+                font-size: 1.4em;
+                color: #333;
+            }
+
+            .prize-desc
+            {
+                font-size: 1.2em;
+                color: #777;
+            }
+        }
+
+    }
+}
+
+.qc-prize-detail
+{
+    .prize-detail-img-wp
+    {
+        position: relative;
+        width: 100%;
+        height: 0;
+        padding-bottom: 40%;
+
+        .prize-detail-img
+        {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            text-align: center;
+
+            img
+            {
+                height: 100%;
+                vertical-align: top;
+            }
+        }
+
+
+    }
+
+    .prize-detail-title
+    {
+        text-align: center;
+        margin: 4% 0;
+        font-size: 1.4em;
+        color: #333;
+    }
+
+    .prize-detail-info
+    {
+        margin-bottom: 20px;
+        background: #fff;
+        color: #333;
+        box-shadow: 0 0 1px rgba(0,0,0,.3);
+
+        .clearfix();
+
+        .info-item
+        {
+            position: relative;
+            border-bottom: 1px solid #f2f2f2;
+            font-size: 1.2em;
+            padding: 15px;
+            text-align: right;
+            .clearfix();
+
+            &:last-child
+            {
+                border-bottom: none;
+            }
+
+            .info-item-key
+            {
+                float: left;
+                color: #999;
+            }
+        }
+
+        .info-qr-wp
+        {
+            padding: 20px;
+
+            .info-qr-text
+            {
+                text-align: center;
+                margin-bottom: 15px;
+                font-size: 1.2em;
+            }
+
+            .info-qr-pic
+            {
+                text-align: center;
+                width: 33%;
+                margin: 0 auto;
+
+                img
+                {
+                    width: 100%;
+                }
+            }
+        }
+
+    }
+}

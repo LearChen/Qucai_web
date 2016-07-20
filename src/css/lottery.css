@@ -1,0 +1,183 @@
+.qc-lottery-channel:before,
+.qc-lottery-channel:after {
+  content: " ";
+  display: table;
+}
+.qc-lottery-channel:after {
+  clear: both;
+}
+.qc-lottery-channel .lottery-channel-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.qc-lottery-channel .lottery-channel-list li {
+  display: block;
+  margin: 20px 0;
+}
+.qc-lottery-channel .lottery-channel-list li > a {
+  display: block;
+  width: 100%;
+  text-decoration: none;
+  overflow: hidden;
+}
+.qc-lottery-channel .lottery-channel-list li > a > img {
+  width: 100%;
+  height: auto;
+  vertical-align: top;
+}
+/*lottery*/
+.qc-lottery {
+  background: #f0f0f0 url("../img/lottery/lottery_bg.png") 0 0 repeat;
+}
+.qc-lottery .qc-lottery-header {
+  position: relative;
+}
+.qc-lottery .qc-lottery-header:before,
+.qc-lottery .qc-lottery-header:after {
+  content: " ";
+  display: table;
+}
+.qc-lottery .qc-lottery-header:after {
+  clear: both;
+}
+.qc-lottery .qc-lottery-header .qc-lottery-header-img {
+  text-align: center;
+}
+.qc-lottery .qc-lottery-header .qc-lottery-header-img img {
+  width: 90%;
+  height: auto;
+  vertical-align: top;
+  margin-top: 30px;
+}
+.qc-lottery .qc-lottery-header .qc-lottery-asset {
+  position: relative;
+  width: 83%;
+  margin: 20px auto;
+}
+.qc-lottery .qc-lottery-header .qc-lottery-asset .asset-text {
+  font-size: 1.2em;
+  font-weight: normal;
+  text-align: left;
+  color: #8B0024;
+}
+.qc-lottery .qc-lottery-header .qc-lottery-asset .asset-bean {
+  display: inline-block;
+  position: absolute;
+  width: 110px;
+  right: 0;
+  border-radius: 12px;
+  height: 24px;
+  line-height: 24px;
+  background: #fff;
+  padding-left: 10px;
+}
+.qc-lottery .qc-lottery-header .qc-lottery-asset .asset-bean:before {
+  content: "";
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background: url("../img/icon/icon_bean.png") left center no-repeat;
+  background-size: contain;
+  vertical-align: middle;
+  margin-right: 6px;
+  margin-top: -4px;
+}
+.qc-lottery .qc-lottery-body:before,
+.qc-lottery .qc-lottery-body:after {
+  content: " ";
+  display: table;
+}
+.qc-lottery .qc-lottery-body:after {
+  clear: both;
+}
+.qc-lottery .qc-lottery-body .qc-lottery-box-wp {
+  position: relative;
+  width: 100%;
+  background: url("../img/lottery/lottery_box.gif") center top no-repeat;
+  background-size: cover;
+}
+.qc-lottery .qc-lottery-body .qc-lottery-box-wp .qc-lottery-box {
+  position: relative;
+  width: 100%;
+  padding: 0 0 100%;
+}
+.qc-lottery .qc-lottery-body .qc-lottery-box-wp .qc-lottery-list-wp {
+  position: absolute;
+  width: 64%;
+  height: 0;
+  padding-bottom: 64%;
+  left: 18.5%;
+  top: 10%;
+  overflow: hidden;
+}
+.qc-lottery .qc-lottery-body .qc-lottery-box-wp .qc-lottery-list {
+  position: relative;
+  display: block;
+  margin: 0;
+  padding: 1% 0 0;
+  list-style: none;
+}
+.qc-lottery .qc-lottery-body .qc-lottery-box-wp .qc-lottery-list:before,
+.qc-lottery .qc-lottery-body .qc-lottery-box-wp .qc-lottery-list:after {
+  content: " ";
+  display: table;
+}
+.qc-lottery .qc-lottery-body .qc-lottery-box-wp .qc-lottery-list:after {
+  clear: both;
+}
+.qc-lottery .qc-lottery-body .qc-lottery-box-wp .qc-lottery-list li {
+  position: relative;
+  float: left;
+  width: 31%;
+  padding-bottom: 31%;
+  margin-right: 2%;
+  margin-bottom: 2%;
+  height: 0;
+  border-radius: 10%;
+  text-align: center;
+  overflow: hidden;
+  background-color: #f8e1c9;
+  background-image: -webkit-linear-gradient(top, #fff0d5 0%, rgba(255, 240, 213, 0.8) 100%);
+  background-image: -o-linear-gradient(top, #fff0d5 0%, rgba(255, 240, 213, 0.8) 100%);
+  background-image: linear-gradient(to bottom, #fff0d5 0%, rgba(255, 240, 213, 0.8) 100%);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fffff0d5', endColorstr='#ccfff0d5', GradientType=0);
+}
+.qc-lottery .qc-lottery-body .qc-lottery-box-wp .qc-lottery-list li:nth-child(3n) {
+  margin-right: 0;
+}
+.qc-lottery .qc-lottery-body .qc-lottery-box-wp .qc-lottery-list li.active {
+  background-color: #fdcd1e;
+  background-image: -webkit-linear-gradient(top, #fdcd1e 0%, rgba(255, 200, 31, 0.8) 100%);
+  background-image: -o-linear-gradient(top, #fdcd1e 0%, rgba(255, 200, 31, 0.8) 100%);
+  background-image: linear-gradient(to bottom, #fdcd1e 0%, rgba(255, 200, 31, 0.8) 100%);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fffdcd1e', endColorstr='#ccffc81f', GradientType=0);
+}
+.qc-lottery .qc-lottery-body .qc-lottery-box-wp .qc-lottery-list li.lottery-btn {
+  background: none;
+  cursor: pointer;
+}
+.qc-lottery .qc-lottery-body .qc-lottery-box-wp .qc-lottery-list li .lottery-li-item {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  padding: 5px;
+  width: 100%;
+  height: 100%;
+}
+.qc-lottery .qc-lottery-body .qc-lottery-box-wp .qc-lottery-list li .lottery-li-item img {
+  width: 100%;
+  vertical-align: middle;
+}
+.qc-lottery .qc-lottery-footer:before,
+.qc-lottery .qc-lottery-footer:after {
+  content: " ";
+  display: table;
+}
+.qc-lottery .qc-lottery-footer:after {
+  clear: both;
+}

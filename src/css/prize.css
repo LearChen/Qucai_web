@@ -1,0 +1,142 @@
+/*guess list*/
+.qc-prize-list:before,
+.qc-prize-list:after {
+  content: " ";
+  display: table;
+}
+.qc-prize-list:after {
+  clear: both;
+}
+.prize-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.prize-list .prize-item {
+  padding: 10px;
+  background: #fff;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+}
+.prize-list .prize-item:before,
+.prize-list .prize-item:after {
+  content: " ";
+  display: table;
+}
+.prize-list .prize-item:after {
+  clear: both;
+}
+.prize-list .prize-item .prize-pic {
+  float: left;
+  width: 25%;
+  height: 0;
+  padding-bottom: 25%;
+  overflow: hidden;
+  border-radius: 6px;
+}
+@media (min-width: 600px) {
+  .prize-list .prize-item .prize-pic {
+    width: 150px;
+    padding-bottom: 150px;
+  }
+}
+.prize-list .prize-item .prize-pic img {
+  width: 100%;
+}
+.prize-list .prize-item .prize-content {
+  margin-left: 28%;
+}
+@media (min-width: 600px) {
+  .prize-list .prize-item .prize-content {
+    margin-left: 180px;
+  }
+}
+.prize-list .prize-item .prize-content .prize-title {
+  margin: 2% 0;
+  font-size: 1.4em;
+  color: #333;
+}
+.prize-list .prize-item .prize-content .prize-desc {
+  font-size: 1.2em;
+  color: #777;
+}
+.qc-prize-detail .prize-detail-img-wp {
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-bottom: 40%;
+}
+.qc-prize-detail .prize-detail-img-wp .prize-detail-img {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  text-align: center;
+}
+.qc-prize-detail .prize-detail-img-wp .prize-detail-img img {
+  height: 100%;
+  vertical-align: top;
+}
+.qc-prize-detail .prize-detail-title {
+  text-align: center;
+  margin: 4% 0;
+  font-size: 1.4em;
+  color: #333;
+}
+.qc-prize-detail .prize-detail-info {
+  margin-bottom: 20px;
+  background: #fff;
+  color: #333;
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.3);
+}
+.qc-prize-detail .prize-detail-info:before,
+.qc-prize-detail .prize-detail-info:after {
+  content: " ";
+  display: table;
+}
+.qc-prize-detail .prize-detail-info:after {
+  clear: both;
+}
+.qc-prize-detail .prize-detail-info .info-item {
+  position: relative;
+  border-bottom: 1px solid #f2f2f2;
+  font-size: 1.2em;
+  padding: 15px;
+  text-align: right;
+}
+.qc-prize-detail .prize-detail-info .info-item:before,
+.qc-prize-detail .prize-detail-info .info-item:after {
+  content: " ";
+  display: table;
+}
+.qc-prize-detail .prize-detail-info .info-item:after {
+  clear: both;
+}
+.qc-prize-detail .prize-detail-info .info-item:last-child {
+  border-bottom: none;
+}
+.qc-prize-detail .prize-detail-info .info-item .info-item-key {
+  float: left;
+  color: #999;
+}
+.qc-prize-detail .prize-detail-info .info-qr-wp {
+  padding: 20px;
+}
+.qc-prize-detail .prize-detail-info .info-qr-wp .info-qr-text {
+  text-align: center;
+  margin-bottom: 15px;
+  font-size: 1.2em;
+}
+.qc-prize-detail .prize-detail-info .info-qr-wp .info-qr-pic {
+  text-align: center;
+  width: 33%;
+  margin: 0 auto;
+}
+.qc-prize-detail .prize-detail-info .info-qr-wp .info-qr-pic img {
+  width: 100%;
+}

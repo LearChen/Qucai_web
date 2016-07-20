@@ -1,0 +1,198 @@
+/*dialog*/
+.qc-dialog .dialog-overlay {
+  opacity: 0.4;
+}
+.qc-dialog .dialog-content {
+  border-radius: 8px;
+  overflow: hidden;
+  top: 40%;
+}
+.qc-dialog .dialog-content .dialog-content-hd {
+  position: relative;
+  padding: 15px 0;
+  margin: 0;
+  background: #fe6656;
+  color: #fff;
+}
+.qc-dialog .dialog-content .dialog-content-hd .dialog-content-title {
+  font-size: 16px;
+  font-weight: 400;
+}
+.qc-dialog .dialog-content .dialog-content-hd .btn-close {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  right: 0;
+  top: 0;
+  font-family: "FontAwesome";
+  -webkit-font-smoothing: antialiased;
+  content: "\f00d";
+  text-align: center;
+  color: #fff;
+  font-size: 20px;
+  cursor: pointer;
+}
+.qc-dialog .dialog-content .dialog-content-bd {
+  padding: 0;
+  margin: 0;
+}
+.qc-dialog .dialog-content .dialog-content-bd .info-text {
+  font-size: 15px;
+}
+.qc-dialog .dialog-content-ft {
+  margin-top: 0;
+}
+.qc-dialog .dialog-content-ft .dialog-btn-ok {
+  color: #fc6656;
+}
+.qc-dialog.qc-dialog-header-bg .dialog-content-hd {
+  background: #fe6656 url("../img/dialog_header_bg.png") 0 0 no-repeat;
+  background-size: contain;
+}
+.qc-dialog.qc-dialog-info .dialog-content-bd {
+  position: relative;
+  padding: 10px;
+  margin: 0;
+  width: auto;
+  min-width: 150px;
+  max-width: 180px;
+  height: auto;
+  text-align: center;
+}
+.qc-dialog.qc-dialog-info .dialog-content-bd .info-icon {
+  margin: 5px;
+  display: none !important;
+}
+.qc-dialog.qc-dialog-info .dialog-content-bd .info-text {
+  position: static;
+  padding: 0;
+  line-height: 1.4;
+}
+.qc-dialog.qc-dialog-info .dialog-content-bd .info-text:before {
+  content: '';
+  display: block;
+  width: 50px;
+  height: 50px;
+  margin: 5px auto;
+  overflow: hidden;
+  position: relative;
+}
+.qc-dialog.qc-dialog-info.icon-success .info-text:before {
+  background: url("../img/icon/success.png") 0 0 no-repeat;
+  background-size: 100%;
+}
+.qc-dialog.qc-dialog-info.icon-fail .info-text:before {
+  background: url("../img/icon/fail.png") 0 0 no-repeat;
+  background-size: 100%;
+}
+.qc-dialog.qc-dialog-info.no-info-pic .info-icon {
+  display: none !important;
+}
+.qc-dialog.qc-dialog-info.no-info-pic .info-text:before {
+  display: none;
+}
+.qc-info-content .dialog-content .dialog-content-hd {
+  padding: 10px 0;
+}
+.qc-info-content .dialog-content .dialog-content-hd .dialog-content-title {
+  font-size: 1.5rem;
+}
+.qc-info-content .dialog-content .dialog-content-bd {
+  text-align: center;
+  padding: 15px;
+  font-size: 1.4rem;
+}
+.qc-info-content .dialog-content .qc-bean-input-wp {
+  text-align: center;
+}
+.qc-info-content .dialog-content .qc-bean-input-wp input {
+  display: inline-block;
+  width: 50%;
+  height: 30px;
+  line-height: 30px;
+  padding: 2px 5px;
+  border: 1px solid #ddd;
+}
+.qc-info-content .dialog-content .qc-bean-input-wp input:active,
+.qc-info-content .dialog-content .qc-bean-input-wp input:focus {
+  outline: none;
+  border: 1px solid #fc6656;
+}
+.qc-info-content .dialog-content .qc-bean-input-wp .qc-bean-plus {
+  text-align: center;
+  padding-top: 15px;
+}
+.qc-info-content .dialog-content .qc-bean-input-wp .qc-bean-plus .bean-btn {
+  display: inline-block;
+  color: #fff;
+  margin: 0 5px;
+  padding: 2px 5px;
+  font-size: 1rem;
+  border-radius: 5px;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+  background: #fc6656;
+  cursor: pointer;
+}
+.qc-info-content .dialog-content .qc-bean-input-wp .qc-bean-plus .bean-btn .qc-icon {
+  width: 14px;
+  height: 13px;
+}
+.qc-dialog-no-button .dialog-content-ft,
+.qc-dialog-no-button .dialog-btn {
+  display: none !important;
+}
+.qc-dialog-area-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.qc-dialog-area-list li {
+  border-top: 1px solid #e2e2e2;
+  text-align: center;
+  padding: 20px;
+  color: #f45548;
+  cursor: pointer;
+}
+.qc-dialog-area-list li:first-child {
+  border: none;
+}
+.qc-dialog-prise-detail:before,
+.qc-dialog-prise-detail:after {
+  content: " ";
+  display: table;
+}
+.qc-dialog-prise-detail:after {
+  clear: both;
+}
+.qc-dialog-prise-detail .qc-dialog-prise-img {
+  position: relative;
+}
+.qc-dialog-prise-detail .qc-dialog-prise-img img {
+  width: 100%;
+  height: auto;
+  vertical-align: top;
+}
+.qc-dialog-prise-detail .qc-dialog-prise-info {
+  padding: 10px;
+}
+.qc-dialog-prise-detail .qc-dialog-prise-info .prise-info-name {
+  display: block;
+  text-align: center;
+  font-size: 16px;
+  color: #f45548;
+  font-weight: 400;
+  padding: 8px;
+  margin: 0;
+}
+.qc-dialog-prise-detail .qc-dialog-prise-info .prise-info-detail {
+  color: #333;
+  font-size: 14px;
+  text-indent: 2em;
+  word-break: break-all;
+  padding-bottom: 10px;
+}
+.qc-dialog-prise-detail .qc-dialog-prise-info .prise-info-detail a {
+  text-indent: 0;
+  color: #729aff;
+}

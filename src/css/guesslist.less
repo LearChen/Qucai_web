@@ -1,0 +1,257 @@
+@import "mixins";
+/*guess list*/
+.qc-guess-list
+{
+    .clearfix();
+
+}
+
+.guess-list
+{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    .guess-item
+    {
+        border-bottom: 1px solid @border-color;
+        padding: 0;
+        background: #fff;
+        -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+        margin-bottom: 20px;
+
+        a
+        {
+            text-decoration: none;
+        }
+
+        .guess-item-pic
+        {
+            position: relative;
+            width: 100%;
+            height: 0;
+            padding-bottom: 40%;
+            overflow: hidden;
+
+            .pic-wp
+            {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                left: 0;
+                right: 0;
+                top: 0;
+                bottom: 0;
+                overflow: hidden;
+
+                img
+                {
+                    width: 100%;
+                    height: auto;
+                    vertical-align: top;
+
+                }
+
+                &.video
+                {
+                    &:after
+                    {
+                        position: absolute;
+                        width: 100px;
+                        height: 100px;
+                        left: 50%;
+                        top: 50%;
+                        margin-left: -50px;
+                        margin-top: -50px;
+                        content: "";
+                        background: url("../img/bofang.png") 0 0 no-repeat;
+                        background-size: contain;
+                    }
+                }
+            }
+        }
+
+        .guess-item-content
+        {
+            color: #333;
+            word-wrap: break-word;
+            font-size: 1.3rem;
+            padding: 10px;
+        }
+
+        .guess-item-voice
+        {
+            padding: 10px;
+            .clearfix();
+
+            span
+            {
+                vertical-align: middle;
+            }
+
+            .voice-button
+            {
+                display: inline-block;
+                position: relative;
+                padding: 10px 15px;
+                background: #fff;
+                width: 150px;
+                height: 36px;
+                border-radius: 10px;
+                border: 1px solid #eee;
+                box-shadow: 1px 1px 2px rgba(0,0,0,.2);
+                cursor: pointer;
+                margin-right: 10px;
+
+                &:before
+                {
+                    content: "";
+                    position: absolute;
+                    top: 50%;
+                    margin-top: -10px;
+                    left: 15px;
+                    width: 0;
+                    height: 0;
+                    line-height: 0;
+                    border:10px solid transparent;
+                    border-left:14px solid @theme-color;
+                    z-index: 1;
+                }
+
+                &:after
+                {
+                    content: "";
+                    position: absolute;
+                    top: 50%;
+                    margin-top: -8px;
+                    left: 16px;
+                    width: 0;
+                    height: 0;
+                    line-height: 0;
+                    border:8px solid transparent;
+                    border-left:12px solid #fff;
+                    z-index: 2;
+                }
+            }
+        }
+    }
+}
+
+/*guess list2*/
+.guess-list-flex
+{
+    list-style: none;
+    padding: 0;
+    margin: 0 -10px;
+
+    .clearfix();
+
+    > li
+    {
+        position: relative;
+        margin-top: 10px;
+        padding: 0 5px 0 10px;
+        float: left;
+        width: 50%;
+
+        &:nth-child(2n)
+        {
+            padding: 0 10px 0 5px;
+        }
+
+        .anchor
+        {
+            position: relative;
+            display: block;
+            overflow: hidden;
+            border-radius: 5px;
+        }
+
+        .item-content
+        {
+            position: relative;
+            width: 100%;
+            padding-bottom: 70%;
+
+            .img-wp
+            {
+                display: block;
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                overflow: hidden;
+
+                img
+                {
+                    width: 100%;
+                }
+
+                &.video
+                {
+                    &:after
+                    {
+                        position: absolute;
+                        width: 80px;
+                        height: 80px;
+                        left: 50%;
+                        top: 20%;
+                        margin-left: -40px;
+                        margin-top: 0;
+                        content: "";
+                        background: url("../img/bofang.png") 0 0 no-repeat;
+                        background-size: contain;
+                    }
+                }
+            }
+        }
+
+        .item-info
+        {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 2;
+            background: rgba(0,0,0, .2);
+
+            .info-box
+            {
+                position: relative;
+                .clearfix();
+
+                > aside
+                {
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    width: 60px;
+                    height: 60px;
+                }
+
+                > section
+                {
+                    color: #fff;
+                    font-size: 1.2rem;
+
+                    p
+                    {
+                        margin: 0;
+                        padding-left:60px;
+                        height: 2.5rem;
+                        line-height: 2.5rem;
+                        .text-overflow();
+
+                        &.nick
+                        {
+                            background: #fff;
+                            color: #333;
+                        }
+                    }
+                }
+
+            }
+        }
+
+    }
+}

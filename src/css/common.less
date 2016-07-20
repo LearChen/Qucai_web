@@ -1,0 +1,77 @@
+@import "mixins";
+@import "normalize";
+
+/*common*/
+*,*:before,*:after
+{
+    word-break: break-all;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color:transparent;
+}
+
+html
+{
+    padding: 0;
+    margin: 0;
+    font-size: 10px;
+    -webkit-text-size-adjust: 100%;
+}
+
+body
+{
+    padding: 0;
+    margin: 0;
+    font-family: "Microsoft YaHei",Arial,sans-serif;
+    color: #333;
+    background: #fff url("../img/bg_page.png") 0 0 repeat;
+
+    &.guess-page
+    {
+        background: rgba(20, 42, 95, 0.5) url("../img/bg_page_guess.jpg") 0 0 no-repeat fixed;
+        background-size: cover;
+    }
+}
+
+a
+{
+    text-decoration: none;
+}
+
+img
+{
+    border: none;
+}
+
+input,
+textarea
+{
+    box-shadow: none;
+
+    &:focus,
+    &:active
+    {
+        box-shadow: none;
+        outline: none;
+    }
+}
+
+.color-red
+{
+    color: #ff3f05;
+}
+
+.hide
+{
+    display: none;
+}
+
+.hide-xs
+{
+    @media (max-width: 360px) {
+        display: none;
+    }
+}
+
+@import "components";
+@import "dialog";

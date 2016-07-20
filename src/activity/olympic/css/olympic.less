@@ -1,0 +1,1026 @@
+@import "../../../css/mixins";
+html,
+body
+{
+    min-height: 100%;
+}
+
+body
+{
+    position: relative;
+    background: #00a6f0 url('../img/olympic_bg.png') 0 0 repeat-y;
+    height: 100%;
+    background-size: 100%;
+
+    &:before
+    {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        background: url("../img/olympic_bg_cover.png") 0 0 no-repeat;
+        background-size: 100%;
+        z-index: -2;
+    }
+
+    &.cover-2
+    {
+        &:before
+        {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            background: url("../img/olympic_bg_cover_2.png") 0 0 no-repeat;
+            background-size: 100%;
+            z-index: -2;
+        }
+    }
+
+}
+
+.op-header
+{
+    .clearfix();
+    position: relative;
+
+    img
+    {
+        width: 100%;
+        height: auto;
+        vertical-align: top;
+    }
+
+}
+
+.op-body
+{
+    .clearfix();
+
+    &.op-padding
+    {
+        padding: 0 10px;
+    }
+
+}
+
+.op-medals
+{
+    border-radius: 5px;
+    background: rgba(255,255,255,.2);
+    overflow: hidden;
+
+    .clearfix();
+    .medals-header
+    {
+        .clearfix();
+        color: #fff;
+        background: #00a6f0;
+        height: 36px;
+        line-height: 36px;
+        overflow: hidden;
+        position: relative;
+
+        section
+        {
+            position: relative;
+            display: inline-block;
+            height: 100%;
+            font-size: 1.6rem;
+            padding: 0 36px 0 10px;
+            background: #ee3c96;
+
+            &:before
+            {
+                content: "";
+                position: absolute;
+                top:0;
+                right: -20px;
+                height: 40px;
+                width: 40px;
+                background: #a33292;
+                -webkit-transform:rotate(45deg);
+                transform:rotate(45deg);
+                -webkit-transform-origin: center center;
+                transform-origin: center center;
+            }
+
+            &:after
+            {
+                content: "";
+                position: absolute;
+                top:0;
+                right: -25px;
+                height: 40px;
+                width: 40px;
+                background: #00a6f0;
+                -webkit-transform:rotate(45deg);
+                transform:rotate(45deg);
+                -webkit-transform-origin: center center;
+                transform-origin: center center;
+            }
+        }
+
+        aside
+        {
+            position: absolute;
+            right: 10px;
+            display: inline-block;
+            font-size: 1.4rem;
+
+        }
+
+    }
+
+    .medals-content
+    {
+        .medals-list
+        {
+            font-size: 1.4rem;
+
+            > header
+            {
+                .clearfix();
+                background: #fff;
+                padding: 5px 0;
+                #gradient.vertical(@start-color: #fff,@end-color: #e4f8ff);
+
+            }
+
+            > ol
+            {
+                list-style: none;
+                padding: 10px 0;
+                margin: 0;
+
+
+                > li
+                {
+                    .clearfix();
+                    color: #fff;
+                    font-size: 1.3rem;
+                    padding: 4px 0;
+
+                    .list-item
+                    {
+                        &.gold
+                        {
+                            color: #fff100;
+                        }
+
+                        &.country
+                        {
+                            img
+                            {
+                                width:16px;
+                                height: 16px;
+                                border-radius: 50%;
+                                vertical-align: middle;
+                                margin-right: 4px;
+                            }
+                        }
+
+                        @media (max-width: 350px) {
+                            &.rank
+                            {
+                                width: 10%;
+                            }
+
+                            &.country
+                            {
+                                width: 30%;
+                            }
+
+                            &.gold
+                            {
+                                width: 15%;
+                            }
+
+                            &.silver
+                            {
+                                width: 15%;
+                            }
+
+                            &.copper
+                            {
+                                width: 15%;
+                            }
+
+                            &.count
+                            {
+                                width: 15%;
+                            }
+                        }
+
+                    }
+
+                }
+            }
+
+            .list-item
+            {
+                float: left;
+                width: 16.66666%;
+                text-align: center;
+
+                &.rank
+                {
+                    width: 12%;
+                }
+
+                &.country
+                {
+                    text-align: left;
+                    width: 21.2222%;
+                }
+
+                &.gold
+                {
+
+                }
+
+                &.silver
+                {
+
+                }
+
+                &.copper
+                {
+
+                }
+
+                &.count
+                {
+
+                }
+            }
+
+
+        }
+
+
+    }
+}
+
+.op-to-cheer
+{
+    .clearfix();
+
+    position: relative;
+    border-radius: 5px;
+    background: rgba(0,0,0,.2);
+    margin-top: 40px;
+
+    .title
+    {
+        font-size: 1.5rem;
+        color: #fff;
+
+        &:before
+        {
+            display: inline-block;
+            content: "";
+            width: 20%;
+            padding-bottom: 17%;
+            background: url("../img/oil_china.png") center center no-repeat;
+            background-size: contain;
+            vertical-align: middle;
+        }
+
+        span{
+            margin-left: -1em;
+            vertical-align: middle;
+        }
+
+        strong
+        {
+            color: #fff100;
+        }
+    }
+
+    .go-go-go
+    {
+        position: absolute;
+        width: 35%;
+        right: 0;
+        top:0;
+
+        -webkit-transform: translate(0, 23%);
+        transform: translate(0, 23%);
+
+        .go-btn
+        {
+            display: block;
+            position: relative;
+        }
+
+        img
+        {
+            width: 100%;
+            vertical-align: middle;
+        }
+
+        .anim
+        {
+            position: absolute;
+            z-index: -1;
+            display: block;
+            top:-62%;
+            width: 100%;
+            padding-bottom: 28%;
+            background: url("../img/btn_go_anim.png") top center no-repeat;
+            background-size: contain;
+
+            -webkit-animation: go-jump .6s linear  infinite;
+            animation: go-jump .6s linear  infinite;
+        }
+    }
+}
+
+@-webkit-keyframes go-jump {
+    0%   {top: -62%}
+    25%  {top: -52%}
+    50% {top: -40%}
+    75% {top: -52%}
+    100% {top: -62%}
+}
+
+@keyframes go-jump {
+    0%   {top: -62%}
+    25%  {top: -52%}
+    50% {top: -40%}
+    75% {top: -52%}
+    100% {top: -62%}
+}
+
+.op-guess-area
+{
+    .clearfix();
+    margin-top: 30px;
+
+    header
+    {
+        display: block;
+        width: 100%;
+        height: 0;
+        padding-bottom: 10%;
+        text-indent: -9999px;
+
+        &.team-china
+        {
+            background: url("../img/team_china.png") top center no-repeat;
+            background-size: contain;
+        }
+
+        &.team-other
+        {
+            background: url("../img/team_other.png") top center no-repeat;
+            background-size: contain;
+        }
+    }
+
+    .area-more
+    {
+        .clearfix();
+        text-align: right;
+        display: block;
+        padding-top: 20px;
+        a
+        {
+            font-size: 1.6rem;
+            color: #fff100;
+        }
+    }
+
+}
+
+/**/
+
+.op-oil-dynamic
+{
+    .clearfix();
+    position: relative;
+
+}
+
+.oil-station
+{
+    background: #0081d8;
+    position: relative;
+    color: #fff;
+    font-size: 1.6rem;
+    box-shadow: 0 0 4px rgba(0,0,0,.4);
+
+    &:before
+    {
+        content: "";
+        position: absolute;
+        left: -10px;
+        bottom: -10px;
+        border: 10px dashed transparent;
+        border-right: 20px solid #0a5599;
+        border-top: none;
+        z-index: -1;
+    }
+
+    &:after
+    {
+        content: "";
+        position: absolute;
+        right: 0;
+        bottom: -10px;
+        border: 10px dashed transparent;
+        border-left: 10px solid #0a5599;
+        border-top: none;
+        z-index: -1;
+    }
+
+    strong
+    {
+        color: #fff100;
+        font-weight: normal;
+    }
+
+    .station-header
+    {
+        .clearfix();
+        position: relative;
+
+        > .title
+        {
+            display: inline-block;
+            width: 30%;
+            height: 0;
+            padding-bottom: 8.5%;
+            vertical-align: middle;
+            text-indent: -9999em;
+            background: url("../img/station_title.png") 0 0 no-repeat;
+            background-size: 100%;
+
+        }
+
+        > .share
+        {
+            display: inline-block;
+            vertical-align: middle;
+            position: absolute;
+            right: 20px;
+            padding-top: 2%;
+            font-size: 1.4rem;
+
+            a
+            {
+                color: #fff100;
+                margin-left: 10px;
+            }
+
+            .icon-share
+            {
+                width: 20px;
+                height: 18px;
+                margin-top: -4px;
+            }
+        }
+
+        &:after
+        {
+            content: "";
+            display: inline-block;
+            height: 100%;
+            vertical-align: middle;
+        }
+
+    }
+
+
+    .station-info
+    {
+        .clearfix();
+        font-size: 1.6rem;
+        font-weight: lighter;
+        margin: 15px 20px;
+        text-align: center;
+
+    }
+
+    .station-form
+    {
+        .clearfix();
+
+        position: relative;
+        margin-top: 20px;
+
+        .form-control
+        {
+            float: left;
+            width: 72%;
+            position: relative;
+            height: 0;
+            padding-bottom: 15%;
+
+            &:before
+            {
+                position: absolute;
+                left: 0;
+                right: 0;
+                top: 0;
+                bottom: 0;
+                width: 100%;
+                height: 100%;
+                content: "";
+                background: url("../img/bg_oil_gun.png") left bottom no-repeat;
+                background-size: contain;
+                z-index: 1;
+            }
+
+            .input
+            {
+                position: absolute;
+                top: 8%;
+                left: 7%;
+                bottom: 37%;
+                right: 20px;
+                background: rgba(0,0,0,.1);
+                border-radius: 5px;
+                padding-left: 20%;
+                overflow: hidden;
+
+                input
+                {
+                    position: relative;
+                    outline: none;
+                    border: none;
+                    z-index: 2;
+                    width: 100%;
+                    height: 100%;
+                    line-height: 100%;
+                    padding: 5%;
+                    background: none;
+                    font-size: 1.3rem;
+                    color: #fff;
+
+                    &::-webkit-input-placeholder
+                    {
+                        color: #eee;
+                    }
+                }
+            }
+        }
+
+        .form-btn
+        {
+            float: right;
+            width: 28%;
+            padding-right: 20px;
+            margin-top: 1%;
+
+            .btn{
+                display: block;
+            }
+
+            img
+            {
+                width: 100%;
+                height: auto;
+                vertical-align: middle;
+                cursor: pointer;
+            }
+        }
+
+    }
+
+}
+
+.oil-roll
+{
+    position: relative;
+    margin: 9px 20px;
+    padding: 10px;
+    background: rgba(255,255,255,.2);
+    font-size: 1.4rem;
+
+    &:before
+    {
+        position: absolute;
+        content: "";
+        left: 0;
+        top: -9px;
+        width: 100%;
+        height: 9px;
+        background: url("../img/bg_wave_up.png") 0 0 repeat-x;
+    }
+
+    &:after
+    {
+        position: absolute;
+        content: "";
+        left: 0;
+        bottom: -9px;
+        width: 100%;
+        height: 9px;
+        background: url("../img/bg_wave_down.png") 0 0 repeat-x;
+    }
+
+    .roll-nick
+    {
+        display: inline-block;
+        width: 70%;
+        vertical-align: middle;
+    }
+
+    .roll-num
+    {
+        display: inline-block;
+        width: 30%;
+        vertical-align: middle;
+        margin-left: -1em;
+    }
+
+    header
+    {
+        color: #053f88;
+        border-bottom: 1px solid #053f88;
+        padding: 6px 0 12px;
+
+        .clearfix();
+
+        .roll-nick
+        {
+            padding-left: 10%;
+            .text-overflow();
+        }
+
+        .roll-num
+        {
+
+        }
+    }
+
+    .roll-list-wp
+    {
+        overflow: hidden;
+        max-height: 390px;
+        position: relative;
+    }
+
+    .roll-list
+    {
+        margin: 0;
+        padding: 0 10px;
+        list-style: none;
+        color: #fff;
+        font-size: 1.4rem;
+        position: relative;
+        top: 0;
+        -webkit-animation: anim-top 0s linear  infinite;
+        animation: anim-top 0s linear  infinite;
+
+        > li
+        {
+            .clearfix();
+            margin-top: 5px;
+
+            .roll-avatar
+            {
+                display: inline-block;
+                width: 30%;
+                vertical-align: middle;
+            }
+
+            .text
+            {
+                vertical-align: middle;
+            }
+
+        }
+    }
+
+}
+
+@-webkit-keyframes anim-top {
+    0%   { transform: translate(0, 0); }
+    100% { transform: translate(0, -100%); }
+}
+
+@keyframes anim-top {
+    0%   { transform: translate(0, 0); }
+    100% { transform: translate(0, -100%); }
+}
+
+
+.op-oil-drum
+{
+    .clearfix();
+    margin-top: 20px;
+
+    img
+    {
+        width: 100%;
+    }
+}
+
+.op-oil-rank
+{
+    .clearfix();
+    margin-top: 20px;
+    padding: 0 10px;
+
+    header
+    {
+        display: block;
+        width: 100%;
+        height: 0;
+        padding-bottom: 10%;
+        text-indent: -9999px;
+        background: url("../img/rank_title.png") top center no-repeat;
+        background-size: contain;
+    }
+
+    .rank-list-wp
+    {
+        padding-bottom: 40px;
+    }
+
+    .rank-list
+    {
+        margin: 0;
+        padding: 0 10px;
+        list-style: none;
+        color: #fff;
+        font-size: 1.4rem;
+
+        > li
+        {
+            .clearfix();
+            position: relative;
+            margin-top: 5px;
+            padding-left: 2em;
+            counter-increment: item;
+
+            &:before
+            {
+                display: inline-block;
+                margin-left: -2em;
+                vertical-align: middle;
+                content: counter(item);
+                color: #fff100;
+            }
+
+            .rank-nick
+            {
+                display: inline-block;
+                width: 70%;
+                vertical-align: middle;
+                .text-overflow();
+            }
+
+            .rank-num
+            {
+                display: inline-block;
+                width: 30%;
+                margin-left: -1em;
+                vertical-align: middle;
+                text-align: right;
+            }
+
+            .rank-avatar
+            {
+                display: inline-block;
+                width: 30%;
+                vertical-align: middle;
+            }
+
+            .text
+            {
+                vertical-align: middle;
+            }
+
+            &:nth-child(1),
+            &:nth-child(2),
+            &:nth-child(3)
+            {
+                float: none;
+                display: inline-block;
+                text-align: center;
+                padding: 0 0 10px;
+                vertical-align: bottom;
+
+                &:before
+                {
+                    display: none;
+                    content: none;
+                }
+
+                .rank-nick
+                {
+                    display: block;
+                    width: 100%;
+
+                    .text
+                    {
+                        display: block;
+                    }
+                }
+
+                .rank-num
+                {
+                    display: block;
+                    width: 100%;
+                    margin-left: 0;
+                    font-size: 1.5rem;
+                    color: #fff100;
+                    text-align: center;
+                }
+
+                .rank-avatar
+                {
+                    width: 80%;
+
+                    .qc-avatar
+                    {
+                        &:after
+                        {
+                            position: absolute;
+                            z-index: 2;
+                            content: "";
+                            right: 12%;
+                            bottom: 1%;
+                            width: 20%;
+                            height: 20%;
+                        }
+                    }
+
+                    .avatar-box
+                    {
+                        left: 15%;
+                        right: 15%;
+                        bottom: 1%;
+                        top: 28%;
+                    }
+                }
+            }
+
+            &:nth-child(1)
+            {
+                width: 40%;
+                left: 30%;
+
+                .rank-avatar
+                {
+                    .qc-avatar
+                    {
+                        background: url("../img/rank_gold.png") top center no-repeat;
+                        background-size: contain;
+
+                        &:after
+                        {
+                            background: url("../img/rank_gold_num.png") 0 0 no-repeat;
+                            background-size: contain;
+                        }
+                    }
+                }
+
+            }
+
+            &:nth-child(2)
+            {
+                width: 30%;
+                left: -40%;
+
+                .rank-avatar
+                {
+                    .qc-avatar
+                    {
+                        background: url("../img/rank_silver.png") top center no-repeat;
+                        background-size: contain;
+
+                        &:after
+                        {
+                            background: url("../img/rank_silver_num.png") 0 0 no-repeat;
+                            background-size: contain;
+                        }
+                    }
+                }
+            }
+
+            &:nth-child(3)
+            {
+                width: 30%;
+                margin-left: -1em;
+
+                .rank-avatar
+                {
+                    .qc-avatar
+                    {
+                        background: url("../img/rank_copper.png") top center no-repeat;
+                        background-size: contain;
+
+                        &:after
+                        {
+                            background: url("../img/rank_copper_num.png") 0 0 no-repeat;
+                            background-size: contain;
+                        }
+                    }
+                }
+            }
+
+            &:nth-child(n+4)
+            {
+                clear: both;
+            }
+
+        }
+    }
+}
+
+/*icon*/
+.medal-icon
+{
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin-top: -3px;
+
+    &.icon-gold
+    {
+        background-image: url("../img/medal_gold.png");
+    }
+    &.icon-silver
+    {
+        background-image: url("../img/medal_silver.png");
+    }
+    &.icon-copper
+    {
+        background-image: url("../img/medal_copper.png");
+    }
+}
+
+
+/**/
+.op-footer
+{
+    width: 100%;
+    padding-bottom: 10.5%;
+    position: relative;
+
+    &:after
+    {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        top: 0;
+        z-index: -2;
+        background: url("../img/olympic_bg_footer.png") center bottom no-repeat;
+        background-size: 100%;
+    }
+}
+
+
+.op-back
+{
+    display: inline-block;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 30px;
+    border-radius: 0 5px 5px 0;
+    background: rgba(0,0,0,.6);
+    color: #fff;
+    cursor: pointer;
+    font-size: 2.8rem;
+    font-weight: lighter;
+    line-height: 1;
+    text-align: center;
+    padding: 1px 12px 2px;
+
+}
+
+.share-timeline
+{
+    display: none;
+    position: fixed;
+    z-index: 99999;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: rgba(0,0,0,.8);
+
+    .share-tip
+    {
+        position: relative;
+        height: 100%;
+        background: url("../img/share_img.png") top center no-repeat;
+        background-size: 90%;
+
+    }
+}

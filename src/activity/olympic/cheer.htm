@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="format-detection" content="telephone=no" >
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>#猜奥运#为中国队加油</title>
+    <link rel="stylesheet" href="../../vender/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../../css/app.css">
+    <link rel="stylesheet" href="css/olympic.css">
+    <script src="../../js/lib/requirejs/require.min.js"></script>
+    <script src="../../js/require.config.js"></script>
+    <script>
+        require(['authorize']);
+    </script>
+</head>
+<body class="cover-2">
+
+    <header class="op-header">
+        <img src="img/olymoic_header_2.png">
+    </header>
+    <div class="op-body">
+        <section class="op-oil-dynamic">
+            <div class="oil-station">
+                <section class="station-header">
+                    <span class="title">加油站</span>
+                    <section class="share">
+                        <span>你已加<strong id="cheer_score_num">0</strong>桶油</span>
+                        <a href="javascript:;" id="btnShare"><i class="qc-icon icon-share"></i>分享</a>
+                    </section>
+                </section>
+                <section class="station-info">
+                    已有<span id="cheer_user_sum">0</span>人，为中国队共加<strong id="cheer_score_sum">0</strong>桶油！
+                </section>
+                <section class="station-form">
+                    <div class="form-control">
+                        <div class="input">
+                            <input type="number" title="" placeholder="你能加2000桶油" id="handle_input">
+                        </div>
+                    </div>
+                    <div class="form-btn">
+                        <span class="btn" id="handle_btn">
+                          <img src="img/btn_go_china.png" alt="加油,中国!">
+                        </span>
+                    </div>
+                </section>
+            </div>
+            <div class="oil-roll">
+                <header>
+                    <span class="roll-nick">昵称</span>
+                    <span class="roll-num">为你加油</span>
+                </header>
+                <div class="roll-list-wp">
+                    <ul class="roll-list" id="friendList">
+                        <!--<li>
+                            <div class="roll-nick">
+                            <span class="roll-avatar">
+                                <div class="qc-avatar">
+                                    <div class="avatar-box">
+                                        <img src="../../img/demo/avatar.png">
+                                    </div>
+                                </div>
+                            </span>
+                            <span class="text">
+                                牛魔王
+                            </span>
+                            </div>
+                            <div class="roll-num">
+                                223635桶
+                            </div>
+                        </li>
+                        <li>
+                            <div class="roll-nick">
+                            <span class="roll-avatar">
+                                <div class="qc-avatar">
+                                    <div class="avatar-box">
+                                        <img src="../../img/demo/avatar.png">
+                                    </div>
+                                </div>
+                            </span>
+                            <span class="text">
+                                牛魔王
+                            </span>
+                            </div>
+                            <div class="roll-num">
+                                223635桶
+                            </div>
+                        </li>
+                        <li>
+                            <div class="roll-nick">
+                            <span class="roll-avatar">
+                                <div class="qc-avatar">
+                                    <div class="avatar-box">
+                                        <img src="../../img/demo/avatar.png">
+                                    </div>
+                                </div>
+                            </span>
+                            <span class="text">
+                                牛魔王
+                            </span>
+                            </div>
+                            <div class="roll-num">
+                                223635桶
+                            </div>
+                        </li>
+                        <li>
+                            <div class="roll-nick">
+                            <span class="roll-avatar">
+                                <div class="qc-avatar">
+                                    <div class="avatar-box">
+                                        <img src="../../img/demo/avatar.png">
+                                    </div>
+                                </div>
+                            </span>
+                            <span class="text">
+                                牛魔王
+                            </span>
+                            </div>
+                            <div class="roll-num">
+                                223635桶
+                            </div>
+                        </li>
+                        <li>
+                            <div class="roll-nick">
+                            <span class="roll-avatar">
+                                <div class="qc-avatar">
+                                    <div class="avatar-box">
+                                        <img src="../../img/demo/avatar.png">
+                                    </div>
+                                </div>
+                            </span>
+                            <span class="text">
+                                牛魔王
+                            </span>
+                            </div>
+                            <div class="roll-num">
+                                223635桶
+                            </div>
+                        </li>
+                        <li>
+                            <div class="roll-nick">
+                            <span class="roll-avatar">
+                                <div class="qc-avatar">
+                                    <div class="avatar-box">
+                                        <img src="../../img/demo/avatar.png">
+                                    </div>
+                                </div>
+                            </span>
+                            <span class="text">
+                                牛魔王
+                            </span>
+                            </div>
+                            <div class="roll-num">
+                                223635桶
+                            </div>
+                        </li>-->
+                    </ul>
+                    <div class="qc-tip-wp" id="noFriendTip">
+                        <span style="color: #fff;">暂无好友为你加油！赶快分享~</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="op-oil-drum">
+            <img src="img/drum.png">
+        </section>
+
+        <section class="op-oil-rank">
+            <header>加油排行榜</header>
+
+            <div class="rank-list-wp">
+                <ul class="rank-list" id="rankList">
+                    <!--<li>
+                        <div class="rank-nick">
+                            <span class="rank-avatar">
+                                <div class="qc-avatar">
+                                    <div class="avatar-box">
+                                        <img src="../../img/demo/avatar.png">
+                                    </div>
+                                </div>
+                            </span>
+                            <span class="text">
+                                牛魔王
+                            </span>
+                        </div>
+                        <div class="rank-num">
+                            223635桶
+                        </div>
+                    </li>
+                    <li>
+                        <div class="rank-nick">
+                            <span class="rank-avatar">
+                                <div class="qc-avatar">
+                                    <div class="avatar-box">
+                                        <img src="../../img/demo/avatar.png">
+                                    </div>
+                                </div>
+                            </span>
+                            <span class="text">
+                                牛魔王
+                            </span>
+                        </div>
+                        <div class="rank-num">
+                            223635桶
+                        </div>
+                    </li>
+                    <li>
+                        <div class="rank-nick">
+                            <span class="rank-avatar">
+                                <div class="qc-avatar">
+                                    <div class="avatar-box">
+                                        <img src="../../img/demo/avatar.png">
+                                    </div>
+                                </div>
+                            </span>
+                            <span class="text">
+                                牛魔王
+                            </span>
+                        </div>
+                        <div class="rank-num">
+                            223635桶
+                        </div>
+                    </li>
+                    <li>
+                        <div class="rank-nick">
+                            <span class="rank-avatar">
+                                <div class="qc-avatar">
+                                    <div class="avatar-box">
+                                        <img src="../../img/demo/avatar.png">
+                                    </div>
+                                </div>
+                            </span>
+                            <span class="text">
+                                牛魔王
+                            </span>
+                        </div>
+                        <div class="rank-num">
+                            223635桶
+                        </div>
+                    </li>
+                    <li>
+                        <div class="rank-nick">
+                            <span class="rank-avatar">
+                                <div class="qc-avatar">
+                                    <div class="avatar-box">
+                                        <img src="../../img/demo/avatar.png">
+                                    </div>
+                                </div>
+                            </span>
+                            <span class="text">
+                                牛魔王
+                            </span>
+                        </div>
+                        <div class="rank-num">
+                            223635桶
+                        </div>
+                    </li>
+                    <li>
+                        <div class="rank-nick">
+                            <span class="rank-avatar">
+                                <div class="qc-avatar">
+                                    <div class="avatar-box">
+                                        <img src="../../img/demo/avatar.png">
+                                    </div>
+                                </div>
+                            </span>
+                            <span class="text">
+                                牛魔王
+                            </span>
+                        </div>
+                        <div class="rank-num">
+                            223635桶
+                        </div>
+                    </li>-->
+                </ul>
+            </div>
+
+        </section>
+    </div>
+
+    <a class="op-back" href="./index.htm" id="goIndex" style="display: none;">
+        <span class="fa fa-angle-left"></span>
+    </a>
+
+    <div class="share-timeline" id="shareTimeLine">
+        <div class="share-tip">
+        </div>
+    </div>
+
+    <script>
+        require(['jquery','../activity/olympic/js/cheer'],function($,cheer)
+        {
+            $(function()
+            {
+                cheer.anchorAppend('#goIndex','./index.htm');
+                cheer.getCheerState();
+                cheer.getFriendCheerList('#friendList');
+                cheer.getRankList('#rankList');
+                cheer.handleCheer('#handle_btn','#handle_input');
+                cheer.initShareEvent('#btnShare','#shareTimeLine');
+                cheer.shareTimeLine('#shareTimeLine');
+            });
+        });
+    </script>
+
+</body>
+</html>

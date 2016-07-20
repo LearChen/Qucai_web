@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <title>优猜</title>
+</head>
+<body>
+
+    <script>
+        (function()
+        {
+            window.getQueryString = function(name)
+            {
+                var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+                var r = window.location.search.substr(1).match(reg);
+                if(r!=null)return  unescape(r[2]); return null;
+            };
+
+            window.getCookie = function(name)
+            {
+                var arr = document.cookie.match(new RegExp("(^| )"+name+"=([^;]*)(;|$)"));
+                if(arr != null){
+                    return unescape(arr[2]);
+                }else{
+                    return null;
+                }
+            };
+        })();
+    </script>
+    <script type="text/javascript">
+
+        (function ()
+        {
+            var code = getQueryString("code");
+            if(!code)
+            {
+                alert('授权失败');
+                return;
+            }
+
+            /*
+            * 本页面为微信/微博授权跳转redirect.htm授权成功后获取code返回的页面
+            * 由于需要返回授权前的页面，所以采取2次跳转，授权前cookie记录了来源页(authorize.js)，这里就取出跳回
+            * */
+
+            var source = getCookie('_source');
+            var s = (source.lastIndexOf('?')!=-1)?'&':'?';
+
+            window.location.href = source + '' + s +'code=' +code;
+
+        })();
+
+    </script>
+
+</body>
+</html>

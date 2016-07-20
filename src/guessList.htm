@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="format-detection" content="telephone=no" >
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title></title>
+    <link rel="stylesheet" href="vender/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/app.css">
+    <script src="js/lib/requirejs/require.min.js"></script>
+    <script src="js/require.config.js"></script>
+    <script>
+        require(['authorize']);
+    </script>
+</head>
+<body>
+
+    <header class="qc-header margin shadow">
+        <div class="header-user">
+            <section class="user-avatar">
+                <div class="qc-avatar">
+                    <div class="avatar-box">
+                        <img id="portraitUrl" src="">
+                    </div>
+                </div>
+            </section>
+
+            <section class="user-name">
+                <span id="nickName"></span>
+            </section>
+        </div>
+        <div class="header-asset">
+            <section>
+                <a href="prizeList.htm">
+                    <i class="qc-icon icon-gift"></i>
+                    <span>我的奖品</span>
+                </a>
+            </section>
+            <section>
+                <a href="lotteryChannel.htm">
+                    <i class="qc-icon icon-bean"></i>
+                    <span>
+                        我的猜豆
+                        <small id="scoreBalance">0</small>
+                    </span>
+                </a>
+            </section>
+        </div>
+    </header>
+
+    <div class="qc-guess-list padding no-tip" id="guessListCtx">
+
+        <section class="guess-list" id="guessList">
+
+            <!--<div class="guess-item">
+                <a href="guess.htm">
+                    <div class="guess-item-pic">
+                        <div class="pic-wp video">
+                            <img src="img/demo/largeNature1.jpg" />
+                        </div>
+                    </div>
+                    <div class="guess-item-content">
+                        <span>aaaa</span>
+                    </div>
+                </a>
+            </div>
+
+            <div class="guess-item">
+                <a href="guess.htm">
+                    <div class="guess-item-content">
+                        <span>aaaa</span>
+                    </div>
+                    <div class="guess-item-voice">
+                        <span class="voice-button"></span>
+                        <span></span>
+                    </div>
+                </a>
+            </div>-->
+
+        </section>
+
+        <section class="qc-btn-wp">
+            <span class="qc-btn more-btn">加载更多</span>
+        </section>
+
+        <section class="qc-tip-wp">
+            <span>没有更多猜题</span>
+        </section>
+    </div>
+
+    <script>
+        require(['guessList']);
+    </script>
+
+</body>
+</html>

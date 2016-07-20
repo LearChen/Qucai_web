@@ -1,0 +1,59 @@
+.airport-body {
+  padding: 10px;
+}
+.airport-box {
+  position: relative;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  background: #fff;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+}
+.airport-box .anchor {
+  display: block;
+}
+.airport-box .airport-tag {
+  position: absolute;
+  left: -10px;
+  top: 15px;
+  width: 33%;
+  z-index: 3;
+}
+.airport-box .airport-tag img {
+  vertical-align: top;
+  width: 100%;
+  height: auto;
+}
+.airport-box .airport-bg {
+  position: relative;
+  display: block;
+}
+.airport-box .airport-bg img {
+  width: 100%;
+  height: auto;
+  vertical-align: top;
+}
+.airport-box .airport-bg .btn {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: lighter;
+  border: 1px solid #fff;
+  line-height: 1;
+  padding: 4px 15px;
+  border-radius: 20px;
+  background: rgba(247, 88, 66, 0.65);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
+}
+.airport-box .airport-bg .btn i {
+  font-weight: lighter;
+  padding-left: 6px;
+}
+.airport-box .airport-text {
+  padding: 10px;
+  background: #fff;
+  color: #666;
+  font-size: 1.4rem;
+  display: block;
+}

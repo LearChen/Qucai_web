@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="format-detection" content="telephone=no" >
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>优猜</title>
+    <link rel="stylesheet" href="vender/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/app.css">
+    <script src="js/lib/requirejs/require.min.js"></script>
+    <script src="js/require.config.js"></script>
+    <script>
+        require(['authorize']);
+    </script>
+</head>
+<body class="guess-page">
+
+    <div class="qc-guess-box">
+        <header class="guess-box-header">
+            <section class="header-avatar">
+                <div class="qc-avatar">
+                    <div class="avatar-box">
+                        <img id="authorAvatar" src="">
+                    </div>
+                    <div id="authorGrade" class="avatar-sign">
+                    </div>
+                </div>
+            </section>
+
+            <section class="header-info">
+                <div class="author-info">
+                    <span class="name" id="authorName"></span>
+                    <span class="gender" id="authorGender">
+                        <i class="fa"></i>
+                    </span>
+                </div>
+                <aside class="aside-info">
+                    <span class="date" id="publishTime"></span>
+                    <span class="total"><span id="participantNum">0</span>人参与</span>
+                </aside>
+            </section>
+        </header>
+
+        <section class="guess-box-type" id="prizeType">
+            <!--<div class="type-0">
+                <span>奖池已累积<strong>20000</strong>豆</span>
+            </div>-->
+            <!--<div class="type-1">
+               <span>随机红包<strong>1000</strong>个</span>
+           </div>-->
+            <!--<div class="type-2">
+              <span>奖励<strong>1000</strong>个</span>
+           </div>-->
+            <!--<div class="type-3">
+                <section class="win">
+                    <div class="content">
+                        <span>奖励:猜对送</span>
+                    </div>
+                </section>
+                <section class="lose">
+                    <div class="content">
+                        <span>惩罚:暂无</span>
+                    </div>
+                </section>
+            </div>-->
+        </section>
+
+        <section class="guess-box-article">
+            <article id="guessContent">
+
+            </article>
+            <footer>
+                <span id="deadline"></span>
+            </footer>
+        </section>
+
+        <section class="guess-box-res swiper-container" id="swiperGuess">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <ul class="res-list" id="resList">
+                       <!-- <li class="nothing">
+                            <div class="res-box">
+                            </div>
+                        </li>-->
+                        <!--<li>
+                            <div class="res-box">
+                                <img src="img/demo/prise_detail_01.jpg">
+                            </div>
+                        </li>-->
+                        <!--<li class="video">
+                            <div class="res-box">
+                                <video poster="img/demo/prise_detail_01.jpg" controls>
+                                    <source src="" />
+                                </video>
+                            </div>
+                        </li>-->
+                        <!--<li class="audio">
+                            <div class="res-box">
+                                <audio controls>
+                                    <source src="" />
+                                </audio>
+                            </div>
+                        </li>-->
+                        <!--<li class="game">
+                            <div class="res-box">
+                                <a><img src="img/game_download.png"></a>
+                            </div>
+                        </li>-->
+                    </ul>
+                </div>
+                <div class="swiper-slide">
+                    <div class="res-answer qc-answer">
+                        <div id="answerType">
+                            <!--<div class="answer-type-1">
+                                <ol>
+                                    <li class="choose">
+                                        <div class="main">
+                                            <span class="code">B</span>
+                                            <span class="answer">aaaa</span>
+                                        </div>
+                                        <div class="aside">
+                                            <span>3.72</span>
+                                            <aside>投豆</aside>
+                                        </div>
+                                    </li>
+                                    <li class="active">
+                                        <div class="main">
+                                            <span class="code">B</span>
+                                            <span class="answer">aaaa</span>
+                                        </div>
+                                        <div class="aside">
+                                            <i class="fa fa-check-circle-o"></i>
+                                        </div>
+                                    </li>
+                                </ol>
+                            </div>-->
+                            <!--<div class="answer-type-0">
+                                <div class="answer-input-area">
+                                    <textarea placeholder="输入答案..."></textarea>
+                                </div>
+                            </div>-->
+                        </div>
+                        <div class="qc-btn-wp">
+                            <div class="qc-btn btn-answer" id="answerOK">确定</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="guess-box-comment">
+            <div class="qc-tip-wp">
+                <a target="_blank" href="http://a.app.qq.com/o/simple.jsp?pkgname=com.qucai.guess&g_f=991653">
+                    <span>下载App，查看评论！</span>
+                </a>
+            </div>
+        </section>
+    </div>
+
+    <!-- pic swiper -->
+    <div class="qc-guess-pic-wp" id="swiperPicWp">
+        <div class="swiper-container" id="swiperPic">
+            <div class="swiper-wrapper">
+                <!--<div class="swiper-slide">
+                    <img data-src="http://www.swiper.com.cn/demo/img/largeNature1.jpg" class="swiper-lazy">
+                    <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
+                </div>
+                <div class="swiper-slide">
+                    <img data-src="http://www.swiper.com.cn/demo/img/largeNature2.jpg" class="swiper-lazy">
+                    <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
+                </div>-->
+            </div>
+            <div class="swiper-pagination swiper-pagination-white"></div>
+        </div>
+    </div>
+
+
+    <footer class="qc-guess-footer">
+        <div class="guess-footer-wp">
+            <div class="guess-btn-wp">
+                <section class="guess-btn guess-btn-ask hide" data-index="0"><i class="fa fa-commenting"></i>去看题目</section>
+                <section class="guess-btn guess-btn-answer" data-index="1"><i class="fa fa-commenting"></i>马上去猜</section>
+            </div>
+            <div class="guess-app">
+                <a target="_blank" href="http://a.app.qq.com/o/simple.jsp?pkgname=com.qucai.guess&g_f=991653">
+                    <p>优猜App</p>
+                    <p>新玩法更精彩！</p>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        require(['guess']);
+    </script>
+
+</body>
+</html>

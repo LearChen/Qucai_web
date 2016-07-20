@@ -1,0 +1,620 @@
+@import "mixins";
+/*猜题页面*/
+.qc-guess-box
+{
+    margin: 10px;
+    background: #fff;
+    box-shadow: 1px 1px 3px rgba(0,0,0,.3);
+    border-radius: 15px;
+    overflow: hidden;
+    margin-bottom: 60px;
+
+    .guess-box-header
+    {
+        .clearfix();
+
+        padding: 10px;
+
+        .header-avatar
+        {
+            float: left;
+            width: 70px;
+
+        }
+
+        .header-info
+        {
+            margin-left: 80px;
+
+            .author-info
+            {
+                font-size: 1.6rem;
+                padding: 8px 0;
+
+                .name
+                {
+                    display: inline-block;
+                    max-width: 80%;
+                    vertical-align: middle;
+                    .text-overflow();
+                }
+
+                .gender
+                {
+                    display: inline-block;
+                    vertical-align: middle;
+                    font-family: "FontAwesome";
+                    padding: 0 5px;
+
+                    &.male
+                    {
+                        color: #86c9f2;
+
+                        &:before
+                        {
+                            content: "\f222";
+                        }
+                    }
+
+                    &.female
+                    {
+                        color: #ed4125;
+
+                        &:before
+                        {
+                            content: "\f221";
+                        }
+                    }
+                }
+            }
+
+            .aside-info
+            {
+                font-size: 1rem;
+                color: #999;
+                padding-top: 10px;
+
+                .date
+                {
+
+                }
+
+                .total
+                {
+                    float: right;
+                }
+            }
+        }
+
+    }
+
+
+    .guess-box-type
+    {
+        .type-0
+        {
+            padding: 8px 10px;
+            text-align: center;
+            color: @theme-color;
+            font-size: 1.6rem;
+            #gradient .radial(@inner-color: #fcd35d, @outer-color: #fcc449);
+            strong
+            {
+                font-weight: 400;
+            }
+        }
+
+        .type-1
+        {
+            padding: 8px 10px;
+            text-align: center;
+            color: #fffab7;
+            font-size: 1.6rem;
+            #gradient .radial(@inner-color: #fa4526, @outer-color: #ed4125);
+            strong
+            {
+                font-weight: 400;
+            }
+        }
+
+        .type-2
+        {
+            padding: 8px 10px;
+            text-align: center;
+            color: #fffab7;
+            font-size: 1.6rem;
+            #gradient .radial(@inner-color: #fa4526, @outer-color: #ed4125);
+            strong
+            {
+                font-weight: 400;
+            }
+        }
+
+        .type-3
+        {
+            overflow: hidden;
+            display: -webkit-flex;
+            display: flex;
+
+            > section
+            {
+                position: relative;
+                color: #fff;
+                display: flex;
+                flex: 1;
+                justify-content: center;
+                align-items: center;
+
+                background: #bebebe;
+
+                .content
+                {
+                    position: relative;
+                    z-index: 1;
+                    padding: 8px;
+
+                    span
+                    {
+                        display: inline-block;
+                        vertical-align: middle;
+                    }
+                }
+
+                &.win
+                {
+                    &:before
+                    {
+                        position: absolute;
+                        left: 0;
+                        right: 0;
+                        top: 0;
+                        bottom: 0;
+                        z-index: 0;
+                        content: "";
+
+                        background: #fb9084;
+                        border-right: 1px solid #fff;
+                        transform:skewX(-20deg);
+                        transform-origin: top left;
+
+                    }
+
+                }
+
+                &.lose
+                {
+
+                }
+            }
+        }
+
+    }
+
+    .guess-box-article
+    {
+        padding: 15px;
+        .clearfix();
+
+        article
+        {
+            font-size: 1.4rem;
+            word-break: break-all;
+        }
+
+        footer
+        {
+            margin: 12px 0;
+            text-align: center;
+            font-size: 1rem;
+            color: #999;
+        }
+    }
+
+    .guess-box-res
+    {
+        .clearfix();
+
+
+        .res-list
+        {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            background: #fff;
+
+            .clearfix();
+
+            > li
+            {
+                float: left;
+                overflow: hidden;
+                position: relative;
+                width: 100%;
+                height: 0;
+                padding-bottom: 1px;
+
+                &.nothing
+                {
+                    padding-bottom: 1px;
+                }
+
+                &.img
+                {
+                    padding-bottom: 100%;
+                }
+
+                &.video
+                {
+                    padding-bottom: 70%;
+                }
+                &.audio
+                {
+                    padding-bottom: 50px;
+                }
+
+                &.game
+                {
+                    padding-bottom: 100%;
+                }
+
+                .res-box
+                {
+                    position: absolute;
+                    left: 0;
+                    right: 0;
+                    top: 0;
+                    bottom: 0;
+                    padding: 2px;
+                    text-align: center;
+                    vertical-align: middle;
+
+                    img
+                    {
+                        width: 98%;
+                        height: auto;
+                        vertical-align: middle;
+                    }
+
+                    video
+                    {
+                        width: 98%;
+                        height: 98%;
+                        vertical-align: middle;
+                    }
+
+                    audio
+                    {
+                        width: 98%;
+                        vertical-align: middle;
+                    }
+
+                    &:after
+                    {
+                        display: inline-block;
+                        content: " ";
+                        height: 100%;
+                        vertical-align: middle;
+                    }
+                }
+
+            }
+
+            &.list-2
+            {
+                > li
+                {
+                    &.img
+                    {
+                        width: 50%;
+                        padding-bottom: 50%;
+                    }
+
+                }
+            }
+
+            &.list-3
+            {
+                > li
+                {
+                    &.img
+                    {
+                        width: 33.333%;
+                        padding-bottom: 33.333%;
+                    }
+
+                }
+            }
+
+        }
+
+        .res-answer
+        {
+            padding-top: 10px;
+            background: #fff;
+
+            .answer-type-0
+            {
+                .answer-input-area
+                {
+                    padding: 10px;
+
+                    textarea
+                    {
+                        display: block;
+                        width: 100%;
+                        resize: none;
+                        min-height: 5em;
+                        border: 1px solid #ddd;
+
+                        &:active,
+                        &:focus
+                        {
+                            border:1px solid @theme-color;
+                            outline: none;
+                        }
+                    }
+                }
+            }
+
+            .answer-type-1
+            {
+                > ol
+                {
+                    padding: 0;
+                    margin: 0;
+                    list-style:none;
+
+                    > li
+                    {
+                        position: relative;
+                        display: block;
+                        padding: 10px 15px;
+                        border-top: 1px solid #ddd;
+                        .clearfix();
+
+                        > .main,
+                        > .aside
+                        {
+                            display: inline-block;
+                            vertical-align: middle;
+                        }
+
+                        .main
+                        {
+                            font-size: 1.4rem;
+                            width: 80%;
+                            line-height: 2.5em;
+
+                            .code
+                            {
+                                padding-right: 5px;
+                            }
+
+                            .answer
+                            {
+
+                            }
+                        }
+
+                        .aside
+                        {
+                            position: absolute;
+                            right: 15px;
+                            top: 15px;
+                            color: #333;
+                            font-size: 1rem;
+
+                            aside
+                            {
+                                display: inline-block;
+                                width: 2.5em;
+                                height: 2.5em;
+                                line-height: 2.5em;
+                                border-radius: 50%;
+                                text-align: center;
+                                color: #fff;
+                                background: #fad288;
+                                margin-left: 5px;
+                            }
+
+                            i
+                            {
+                                font-size: 2.5em;
+                                color: #999;
+                                padding-right: 5px;
+                                font-weight: normal;
+                            }
+                        }
+
+                        &:after
+                        {
+                            display: inline-block;
+                            content: "";
+                            height: 100%;
+                            vertical-align: middle;
+                        }
+
+                        &:last-child
+                        {
+                            border-bottom: 1px solid #ddd;
+                        }
+
+                        &.active,
+                        &.choose
+                        {
+                            background: #fad288;
+                            color: #fff;
+
+                            .aside
+                            {
+                                aside
+                                {
+                                    background: #999;
+                                }
+
+                                i
+                                {
+                                    color: #fff;
+                                }
+                            }
+                        }
+
+                        &.choose
+                        {
+                            .main
+                            {
+                                .answer
+                                {
+                                    &:after
+                                    {
+                                        content: '(我的)';
+                                        padding-left: 4px;
+                                        display: inline;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+        }
+    }
+
+    .guess-box-comment
+    {
+        background: #ededed;
+        padding: 15px 10px;
+        .clearfix();
+
+    }
+
+}
+
+.qc-guess-footer
+{
+    background: #fff;
+    height: 50px;
+    width: 100%;
+    position: fixed;
+    z-index: 99;
+    bottom: 0;
+    left: 0;
+    vertical-align: middle;
+    border-top: 1px solid #ddd;
+
+    .guess-footer-wp
+    {
+        position: relative;
+    }
+
+    .guess-btn-wp
+    {
+        position: relative;
+
+        .guess-btn
+        {
+            display: inline-block;
+            padding: 5px 10px 5px 14px;
+            vertical-align: middle;
+            color: #fff;
+            background: #f07a6e;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 1.4rem;
+            font-weight: 600;
+            letter-spacing: 4px;
+            position: absolute;
+            right: 15px;
+            top: 10px;
+
+            &.guess-btn-ask
+            {
+                background: #fad288;
+            }
+
+            &.guess-btn-answer
+            {
+                background: #f07a6e;
+            }
+
+            &.hide
+            {
+                display: none;
+            }
+        }
+
+    }
+
+    .guess-app
+    {
+        position: absolute;
+        left: 10px;
+        top: 10px;
+        line-height: 1.3;
+
+        a
+        {
+            display: block;
+            text-decoration: none;
+            color: #333;
+            padding-left: 36px;
+            background: url("../img/uguess_logo.png") 0 0 no-repeat;
+            background-size: contain;
+        }
+
+        p
+        {
+            padding: 0;
+            margin: 0;
+        }
+
+
+    }
+
+}
+
+.qc-guess-pic-wp
+{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+    display: none;
+
+    .swiper-container
+    {
+        width: 100%;
+        height: 100%;
+
+        .swiper-slide
+        {
+            text-align: center;
+            font-size: 18px;
+            background: #000;
+
+            img
+            {
+                width: auto;
+                height: auto;
+                max-width: 100%;
+                max-height: 100%;
+                -ms-transform: translate(-50%, -50%);
+                -moz-transform: translate(-50%, -50%);
+                -webkit-transform: translate(-50%, -50%);
+                transform: translate(-50%, -50%);
+                position: absolute;
+                left: 50%;
+                top: 50%;
+            }
+        }
+
+        .swiper-pagination
+        {
+            bottom: 20px;
+        }
+    }
+}
+

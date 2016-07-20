@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <title>优猜</title>
+</head>
+<body>
+
+    <script>
+        (function()
+        {
+            window.getQueryString=function(name)
+            {
+                var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+                var r = window.location.search.substr(1).match(reg);
+                if(r!=null)return  unescape(r[2]); return null;
+            }
+
+        })();
+    </script>
+    <script type="text/javascript">
+
+        (function ()
+        {
+            var code = getQueryString("code");
+            if(!code)
+            {
+                alert('授权失败');
+                return;
+            }
+
+            /*由于需要跳回验证授权前的页面, 如果来源url放在state里面直接获取跳转，
+            * 会失败如果来源很长，因为get请求有长度限制，并且state也有长度限制
+            * 所以采取方式为：来源页授权时在cookie中记录url，授权成功后进入本页面，再跳回指定的空白页面，
+            * 空白页面中获取cookie，再跳转到来源页
+            * */
+
+            var state = getQueryString("state"); /*自定义的服务器地址 值为test=true 或其他值*/
+            if(state=="test=true") /*转到测试服*/
+            {
+                window.location.href = "http://test.qucai8.com/web/qucai_web/src/oauth2/return.htm?code="+code;
+            }
+            else
+            {
+                window.location.href = "http://www.uguess.me:8080/web/qucai_web/src/oauth2/return.htm?code="+code;
+            }
+        })();
+
+    </script>
+
+</body>
+</html>

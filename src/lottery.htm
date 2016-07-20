@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="format-detection" content="telephone=no" >
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>祝你好运</title>
+    <link rel="stylesheet" href="vender/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/app.css">
+    <script src="js/lib/requirejs/require.min.js"></script>
+    <script src="js/require.config.js"></script>
+    <script>
+        require(['authorize']);
+    </script>
+</head>
+<body>
+
+    <div class="qc-lottery">
+        <div class="qc-lottery-header">
+            <div class="qc-lottery-header-img">
+                <img src="img/lottery/lottery_header.png">
+            </div>
+            <div class="qc-lottery-asset">
+                <span class="asset-text">抽一次消耗<strong class="color-red" id="beanConsume">0</strong>猜豆</span>
+                <span class="asset-bean color-red" id="scoreBalance">0</span>
+            </div>
+        </div>
+        <div class="qc-lottery-body">
+            <div class="qc-lottery-box-wp">
+                <div class="qc-lottery-box">
+                    <div class="qc-lottery-list-wp">
+                        <ul class="qc-lottery-list">
+                            <li data-index="0" class="active">
+                                <div class="lottery-li-item">
+                                    <img class="lottery-img" src="img/demo/testReward.png">
+                                </div>
+                            </li>
+                            <li data-index="1">
+                                <div class="lottery-li-item">
+                                    <img class="lottery-img" src="img/demo/testReward.png">
+                                </div>
+                            </li>
+                            <li data-index="2">
+                                <div class="lottery-li-item">
+                                    <img class="lottery-img" src="img/demo/testReward.png">
+                                </div>
+                            </li>
+                            <li data-index="7">
+                                <div class="lottery-li-item">
+                                    <img class="lottery-img" src="img/demo/testReward.png">
+                                </div>
+                            </li>
+                            <li class="lottery-btn">
+                                <div class="lottery-li-item">
+                                    <img class="lottery-img" src="img/lottery/lottery_btn_start.png">
+                                </div>
+                            </li>
+                            <li data-index="3">
+                                <div class="lottery-li-item">
+                                    <img class="lottery-img" src="img/demo/testReward.png">
+                                </div>
+                            </li>
+                            <li data-index="6">
+                                <div class="lottery-li-item">
+                                    <img class="lottery-img" src="img/demo/testReward.png">
+                                </div>
+                            </li>
+                            <li data-index="5">
+                                <div class="lottery-li-item">
+                                    <img class="lottery-img" src="img/demo/testReward.png">
+                                </div>
+                            </li>
+                            <li data-index="4">
+                                <div class="lottery-li-item">
+                                    <img class="lottery-img" src="img/demo/testReward.png">
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="qc-lottery-footer">
+
+        </div>
+    </div>
+
+    <script>
+        require(['lottery']);
+    </script>
+
+</body>
+</html>

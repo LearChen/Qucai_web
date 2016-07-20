@@ -1,0 +1,218 @@
+/*guess list*/
+.qc-guess-list:before,
+.qc-guess-list:after {
+  content: " ";
+  display: table;
+}
+.qc-guess-list:after {
+  clear: both;
+}
+.guess-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.guess-list .guess-item {
+  border-bottom: 1px solid #ddd;
+  padding: 0;
+  background: #fff;
+  -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+  margin-bottom: 20px;
+}
+.guess-list .guess-item a {
+  text-decoration: none;
+}
+.guess-list .guess-item .guess-item-pic {
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-bottom: 40%;
+  overflow: hidden;
+}
+.guess-list .guess-item .guess-item-pic .pic-wp {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  overflow: hidden;
+}
+.guess-list .guess-item .guess-item-pic .pic-wp img {
+  width: 100%;
+  height: auto;
+  vertical-align: top;
+}
+.guess-list .guess-item .guess-item-pic .pic-wp.video:after {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  left: 50%;
+  top: 50%;
+  margin-left: -50px;
+  margin-top: -50px;
+  content: "";
+  background: url("../img/bofang.png") 0 0 no-repeat;
+  background-size: contain;
+}
+.guess-list .guess-item .guess-item-content {
+  color: #333;
+  word-wrap: break-word;
+  font-size: 1.3rem;
+  padding: 10px;
+}
+.guess-list .guess-item .guess-item-voice {
+  padding: 10px;
+}
+.guess-list .guess-item .guess-item-voice:before,
+.guess-list .guess-item .guess-item-voice:after {
+  content: " ";
+  display: table;
+}
+.guess-list .guess-item .guess-item-voice:after {
+  clear: both;
+}
+.guess-list .guess-item .guess-item-voice span {
+  vertical-align: middle;
+}
+.guess-list .guess-item .guess-item-voice .voice-button {
+  display: inline-block;
+  position: relative;
+  padding: 10px 15px;
+  background: #fff;
+  width: 150px;
+  height: 36px;
+  border-radius: 10px;
+  border: 1px solid #eee;
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  margin-right: 10px;
+}
+.guess-list .guess-item .guess-item-voice .voice-button:before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  margin-top: -10px;
+  left: 15px;
+  width: 0;
+  height: 0;
+  line-height: 0;
+  border: 10px solid transparent;
+  border-left: 14px solid #fc6656;
+  z-index: 1;
+}
+.guess-list .guess-item .guess-item-voice .voice-button:after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  margin-top: -8px;
+  left: 16px;
+  width: 0;
+  height: 0;
+  line-height: 0;
+  border: 8px solid transparent;
+  border-left: 12px solid #fff;
+  z-index: 2;
+}
+/*guess list2*/
+.guess-list-flex {
+  list-style: none;
+  padding: 0;
+  margin: 0 -10px;
+}
+.guess-list-flex:before,
+.guess-list-flex:after {
+  content: " ";
+  display: table;
+}
+.guess-list-flex:after {
+  clear: both;
+}
+.guess-list-flex > li {
+  position: relative;
+  margin-top: 10px;
+  padding: 0 5px 0 10px;
+  float: left;
+  width: 50%;
+}
+.guess-list-flex > li:nth-child(2n) {
+  padding: 0 10px 0 5px;
+}
+.guess-list-flex > li .anchor {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border-radius: 5px;
+}
+.guess-list-flex > li .item-content {
+  position: relative;
+  width: 100%;
+  padding-bottom: 70%;
+}
+.guess-list-flex > li .item-content .img-wp {
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.guess-list-flex > li .item-content .img-wp img {
+  width: 100%;
+}
+.guess-list-flex > li .item-content .img-wp.video:after {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  left: 50%;
+  top: 20%;
+  margin-left: -40px;
+  margin-top: 0;
+  content: "";
+  background: url("../img/bofang.png") 0 0 no-repeat;
+  background-size: contain;
+}
+.guess-list-flex > li .item-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  background: rgba(0, 0, 0, 0.2);
+}
+.guess-list-flex > li .item-info .info-box {
+  position: relative;
+}
+.guess-list-flex > li .item-info .info-box:before,
+.guess-list-flex > li .item-info .info-box:after {
+  content: " ";
+  display: table;
+}
+.guess-list-flex > li .item-info .info-box:after {
+  clear: both;
+}
+.guess-list-flex > li .item-info .info-box > aside {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 60px;
+  height: 60px;
+}
+.guess-list-flex > li .item-info .info-box > section {
+  color: #fff;
+  font-size: 1.2rem;
+}
+.guess-list-flex > li .item-info .info-box > section p {
+  margin: 0;
+  padding-left: 60px;
+  height: 2.5rem;
+  line-height: 2.5rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.guess-list-flex > li .item-info .info-box > section p.nick {
+  background: #fff;
+  color: #333;
+}

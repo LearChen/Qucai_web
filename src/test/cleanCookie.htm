@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="../js/lib/requirejs/require.min.js"></script>
+    <script src="../js/require.config.js"></script>
+</head>
+<body>
+
+<script>
+    require(['cookie'],function(cookie)
+    {
+        cookie.remove('union_id');
+        cookie.remove('weixin_code');
+    });
+
+</script>
+
+</body>
+</html>
