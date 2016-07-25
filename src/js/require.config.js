@@ -11,6 +11,7 @@
             'cookie': 'plugin/js.cookie/js.cookie',
             'dialog': 'plugin/dialog.js/js/dialog',
             'swiper': 'plugin/swiper/js/swiper.jquery.umd.min',
+            'nano'  : 'plugin/nano/nano',
             'wxsdk' : 'wxsdk' /*微信sdk*/
         },
         map: {

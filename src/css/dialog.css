@@ -196,3 +196,66 @@
   text-indent: 0;
   color: #729aff;
 }
+.dialog-phone-form {
+  font-size: 1.4rem;
+  display: inline-block;
+  margin: 0 auto;
+  text-align: left;
+}
+.dialog-phone-form .form-control {
+  margin-top: 10px;
+}
+.dialog-phone-form .form-control .error-info {
+  display: none;
+  color: #fc6656;
+  padding-left: 4em;
+}
+.dialog-phone-form .form-control label {
+  display: inline-block;
+  vertical-align: middle;
+  width: 3em;
+}
+.dialog-phone-form .form-control input {
+  display: inline-block;
+  vertical-align: middle;
+  width: 184px;
+  outline: none;
+  padding: 2px 5px;
+  height: 30px;
+  line-height: 30px;
+  border-radius: 5px;
+  background: #fff;
+  box-shadow: none;
+  -webkit-appearance: none;
+  border: 1px solid #ccc;
+  margin-left: 5px;
+}
+.dialog-phone-form .form-control input:active,
+.dialog-phone-form .form-control input:focus {
+  border-color: #93dad1;
+}
+.dialog-phone-form .form-control input.input-code {
+  width: 60px;
+}
+.dialog-phone-form .form-control .btn-code {
+  display: inline-block;
+  width: auto;
+  padding: 0 10px;
+  text-align: center;
+  background: #93dad1;
+  height: 30px;
+  line-height: 30px;
+  vertical-align: middle;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-left: 5px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  color: #fff;
+}
+.dialog-phone-form .form-control .btn-code:disabled,
+.dialog-phone-form .form-control .btn-code.disabled {
+  background: #ccc;
+}
+.dialog-phone-form .form-control.error .error-info {
+  display: block;
+}

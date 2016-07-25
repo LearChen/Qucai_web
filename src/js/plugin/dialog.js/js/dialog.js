@@ -98,6 +98,11 @@
 
         touchEvent.tap($(okBtn), function(){
             settings.onClickOk();
+            if($(okBtn).hasClass('no-close'))
+            {
+               return;
+            };
+
             $.dialog.close();
             return false;
         });

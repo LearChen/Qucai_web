@@ -23,18 +23,18 @@
         </div>
         <div class="header-asset">
             <section>
-                <a href="../../prizeList.htm">
+                <a href="./prizeList.htm">
                     <i class="qc-icon icon-gift"></i>
                     <span>我的奖品</span>
                 </a>
             </section>
             <section>
-                <a href="../../lotteryChannel.htm">
+                <a href="./lotteryChannel.htm">
                     <i class="qc-icon icon-bean"></i>
-                        <span>
-                            我的猜豆
-                            <small id="scoreBalance">0</small>
-                        </span>
+                    <span>
+                        我的猜豆
+                        <small id="scoreBalance">0</small>
+                    </span>
                 </a>
             </section>
         </div>
@@ -42,7 +42,7 @@
 
     <div class="airport-body">
         <div class="airport-box">
-            <a class="anchor" href="../../guessList.htm?topic_id=571db29c0cf22aba6084ad17">
+            <a class="anchor" href="./guessList.htm?topic_id=571db29c0cf22aba6084ad17">
                 <section class="airport-tag">
                     <img src="img/airportTopicTip01.png">
                 </section>
@@ -59,7 +59,7 @@
         </div>
 
         <div class="airport-box">
-            <a class="anchor" href="../../guessList.htm?topic_id=571db2cf0cf22aba6084ad1f">
+            <a class="anchor" href="./guessList.htm?topic_id=571db2cf0cf22aba6084ad1f">
                 <section class="airport-tag">
                     <img src="img/airportTopicTip02.png">
                 </section>
@@ -76,7 +76,7 @@
         </div>
 
         <div class="airport-box">
-            <a class="anchor" href="../../guessList.htm?topic_id=571db2f40cf22aba6084ad21">
+            <a class="anchor" href="./guessList.htm?topic_id=571db2f40cf22aba6084ad21">
                 <section class="airport-tag">
                     <img src="img/airportTopicTip03.png">
                 </section>
@@ -94,6 +94,12 @@
 
     </div>
 
+    <script>
+        require(['user'],function(user)
+        {
+            user.setAsset();
+        });
+    </script>
 
 </body>
 </html>

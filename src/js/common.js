@@ -18,7 +18,7 @@ define(function(require) {
     /*服务器*/
     var hostName = {
         'test':'test.qucai8.com',
-        'public':'www.uguess.me:8080'
+        'public':'www.uguess.me'
     };
 
     /*微信appkey*/
@@ -509,6 +509,35 @@ define(function(require) {
         }
     };
 
+    var getPublicKey = function()
+    {
+        var publicKey = {};
+
+        $.ajax({
+            url: "/common/get_public_key-w.html",
+            type: "post",
+            dataType: "json",
+            data: "",
+            async: false,
+            success:function(response)
+            {
+                if(response.result_code == 0)
+                {
+                    publicKey = {
+                        exponent : response.body.exponent,
+                        modulus : response.body.modulus
+                    };
+
+                    return publicKey;
+                }
+
+            }
+        });
+
+        return publicKey;
+
+    };
+
     $(function()
     {
        $(document).on('tap','.nav-back',function(e)
@@ -528,7 +557,8 @@ define(function(require) {
         getSourceImageUrl:getSourceImageUrl,
         showInfo:showInfo,
         showDialog:showDialog,
-        showErrorCodeInfo:showErrorCodeInfo
+        showErrorCodeInfo:showErrorCodeInfo,
+        getPublicKey:getPublicKey
     };
 
 });

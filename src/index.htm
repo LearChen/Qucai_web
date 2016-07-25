@@ -50,7 +50,11 @@
     </header>
 
     <script>
-
+        require(['user'],function(user)
+        {
+            user.setBaseInfo();
+            user.setAsset();
+        });
     </script>
 
 

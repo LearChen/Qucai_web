@@ -9,12 +9,10 @@
 define(function(require)
 {
     var $ = require('jquery');
-    var tap = require('tap');
     var common = require('common');
     var cookie = require('cookie');
 
     var isTest = common.isTestServer();
-    //var host = 'http://'+(isTest?common.hostName.test : common.hostName.public);
 
     var agent = navigator.userAgent;
 
@@ -125,15 +123,21 @@ define(function(require)
             async: false,
             success: function (response)
             {
-                var tokenId = response.body.token,
-                    unionId = response.body.union_id,
-                    userId  = response.body.user_id;
+                if(response.result_code == 0)
+                {
+                    var body = response.body;
+                    cookie.set("union_id", body.union_id, { expires: 365 });
+                    cookie.set("token_id", body.token);
+                    cookie.set("user_id", body.user_id);
+                    cookie.set("nick_name", body.nickname);
+                    cookie.set("portrait_url", body.portrait_url);
+                    cookie.set("cell_num", body.cell_num);
 
-                cookie.set("token_id", tokenId);
-                cookie.set("union_id", unionId, { expires: 365 });
-                cookie.set("user_id", userId);
-
-                setUserInfo(tokenId, response.body);
+                }
+                else
+                {
+                    alert('登录失败');
+                }
 
             },
             error:function()
@@ -154,15 +158,20 @@ define(function(require)
             async: false,
             success: function (response)
             {
-                var tokenId = response.body.token,
-                    weiboUid = response.body.weibo_uid,
-                    userId  = response.body.user_id;
-
-                cookie.set("token_id", tokenId);
-                cookie.set("weibo_uid", weiboUid, { expires: 365 });
-                cookie.set("user_id", userId);
-
-                setUserInfo(tokenId, response.body);
+                if(response.result_code == 0)
+                {
+                    var body = response.body;
+                    cookie.set("weibo_uid", body.weibo_uid, { expires: 365 });
+                    cookie.set("token_id", body.token);
+                    cookie.set("user_id", body.user_id);
+                    cookie.set("nick_name", body.nickname);
+                    cookie.set("portrait_url", body.portrait_url);
+                    cookie.set("cell_num", body.cell_num);
+                }
+                else
+                {
+                    alert('登录失败');
+                }
 
             },
             error:function()
@@ -170,39 +179,6 @@ define(function(require)
                 alert('登录失败');
             }
         });
-    }
-
-
-    /*填充用户信息*/
-    function setUserInfo(tooken, body)
-    {
-        var nickName = body.nickname;
-        $("#nickName").text(nickName);
-        var portraitUrl = body.portrait_url;
-        $("#portraitUrl").attr("src",portraitUrl);
-
-        getAsset(tooken);
-    }
-
-    /*获取用户资产*/
-    function getAsset(tokenId)
-    {
-        $.ajax({
-            url: "/user/get_asset.html?t=" + tokenId,
-            type:"post",
-            dataType:"json",
-            success: function (response)
-            {
-                /*成功*/
-                if(response.result_code==0)
-                {
-                    var scoreBalance = response.body.score_balance;
-                    $("#scoreBalance").text(scoreBalance);
-
-                }
-
-            }
-        })
     }
 
 });
