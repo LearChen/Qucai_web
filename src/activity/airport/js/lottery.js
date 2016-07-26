@@ -6,6 +6,7 @@ define(function(require)
     var cookie = require('cookie');
     var dialog = require('dialog');
 
+
     var Lottery =
     {
         defaults:
@@ -121,10 +122,114 @@ define(function(require)
 
     };
 
-    $(function()
+
+    /*设置抽奖信息*/
+    var getLotteryDetail = function(area, id, $priseList)
+    {
+        var para = {id:id};
+
+        $.ajax({
+            url: "/activity/get_activity_detail.html",
+            type:"post",
+            dataType:"json",
+            data:JSON.stringify(para),
+            async:false,
+            success: function (response)
+            {
+                if(response.result_code == 0)
+                {
+                    var body = response.body;
+                    var neededScore = body.needed_score_num || 0;
+                    $('#beanConsume').text(neededScore);
+                    Lottery.needScore = neededScore;
+
+                    var lotteryOptions = body.lottery_options || [];
+
+                    for(var i=0; i<lotteryOptions.length; i++)
+                    {
+                        var l = lotteryOptions[i];
+
+                        var $prise = $priseList.filter('[data-index='+ i+']');
+                        $prise.attr('data-id', l.option_id);
+                        $prise.find('img.lottery-img').attr('src', l.option_image_url);
+                    }
+
+                }
+                else
+                {
+                    common.showErrorCodeInfo(response.result_code);
+                }
+
+            },
+            error:function()
+            {
+                common.showInfo('暂时无法抽奖!')
+            }
+        });
+    };
+
+    var runLottery = function(id, $priseList)
+    {
+        var para = {id:id};
+
+        $.ajax({
+            url: "/activity/lucky_lottery.html?t=" + cookie.get('token_id'),
+            type: "post",
+            dataType: "json",
+            data:JSON.stringify(para),
+            async: false,
+            success:function(response)
+            {
+                if(response.result_code == 0)
+                {
+                    var score = $('#scoreBalance').text();
+                    $('#scoreBalance').text(parseInt(score)-Lottery.needScore);
+
+                    Lottery.start();
+                    var body = response.body;
+
+                    var isWinned = body.is_winned;
+                    var optionId = body.option_id;
+
+                    var $target = $priseList.filter('[data-id='+ optionId +']');
+
+                    setTimeout(function()
+                    {
+                        Lottery.stop($target.data('index'));
+
+                        if(isWinned)
+                        {
+                            common.showDialog('系统提示','恭喜您中奖了！');
+
+
+                        }
+                        else
+                        {
+                           common.showDialog('系统提示','差一点就抽中了！');
+                        }
+
+                    },14000);
+
+                }
+                else if (response.result_code == 20)
+                {
+                    alert("猜豆余额不足!");
+                }
+
+            },
+            error:function()
+            {
+                common.showInfo('暂时无法抽奖!')
+            }
+        })
+    };
+
+    var init =function(area, id)
     {
         var $btn = $('.lottery-btn');
         var $priseList = $('.qc-lottery-list > li:not(".lottery-btn")');
+
+        getLotteryDetail(area, id, $priseList);
 
         Lottery.init({
             $priseList: $priseList,
@@ -133,102 +238,102 @@ define(function(require)
             btnImgWait:'img/lottery/lottery_btn_wait.png'
         });
 
-        $btn.on('start',function()
-        {
-            Lottery.start();
-        });
-        $btn.on('stop',function(e,target)
-        {
-
-            Lottery.stop(target);
-        });
 
         $btn.tap(function(e)
         {
-            var $this = $(this);
-            $this.trigger('start');
-            setTimeout(function()
+            if(Lottery.options.running)
             {
-                $btn.trigger('stop',[6]);
-            },3000);
+                return;
+            }
 
-            /*if(!$this.data("active"))
-             {
-             $this.trigger('start');
-             $this.data("active", true);
-             }
-             else
-             {
-             $this.trigger('stop');
-             $this.data("active", false);
-             }*/
+            runLottery(id,$priseList);
 
             e.preventDefault();
         });
 
+    };
 
-        /*弹出窗*/
-        var $chooseAreaDialog = $.dialog({
+
+    var showPriseDialog = function(index)
+    {
+        var $priseDialog = $.dialog({
+            dialogClass:'qc-dialog qc-dialog-no-button qc-dialog-header-bg',
+            showTitle:true,
+            titleText:'奖品<span class="fa fa-close btn-close"></span>',
+
+            contentHtml:'<div class="qc-dialog-prise-detail">' +
+            '<div class="qc-dialog-prise-img">'+
+            '<img src="img/demo/prise_detail_01.jpg">' +
+            '</div>' +
+            '<div class="qc-dialog-prise-info">' +
+            '<h4 class="prise-info-name">优衣库大礼包</h4>' +
+            '<div class="prise-info-detail">' +
+            '详情介绍详情介绍详情介绍详情介绍详情介绍详情介绍详情介绍详情介绍详情介绍详情绍详情介商品 ' +
+            '<a>商品外链 <i class="fa fa-angle-right"></i></a>' +
+            '</div>' +
+            '</div>' +
+            '</div>',
+            onShow:function()
+            {
+                var $btnClose = $($priseDialog.find('.qc-dialog .btn-close'));
+                $btnClose.on('tap',function(e)
+                {
+                    $priseDialog.dialog.close();
+                    e.preventDefault();
+
+                });
+
+            }
+
+        });
+
+        return $priseDialog;
+
+    };
+
+    var showAreaDialog = function()
+    {
+        var chooseAreaDialog = $.dialog({
             dialogClass:'qc-dialog qc-dialog-no-button',
             showTitle:true,
             titleText:'请选择您所在的区域',
             contentHtml:'<ul class="qc-dialog-area-list">' +
             '<li data-area="0">出发区</li>' +
             '<li data-area="1">到达区</li>' +
-            '</ul>'
+            '</ul>',
+            onShow:function()
+            {
+                var $areaList = $(chooseAreaDialog.find('.qc-dialog-area-list > li'));
+                $areaList.on('tap',function(e)
+                {
+                    var area = $(this).data('area');
+                    chooseAreaDialog.dialog.close();
+                    e.preventDefault();
+                });
+
+            }
         });
+    };
 
-        $(document).on('tap','.qc-dialog-area-list > li',function(e)
-        {
-            $chooseAreaDialog.dialog.close();
-            e.preventDefault();
-        });
-
-        var priseDialog;
-
+    var showPrizeDialog = function()
+    {
         $(document).on('tap', '.qc-lottery-list > li:not(".lottery-btn")' ,function(e)
         {
             var index = $(this).data('index');
 
-            priseDialog = showPriseDialog(index);
+            showPriseDialog(index);
             e.preventDefault();
         });
+    };
 
-        $(document).on('tap', '.qc-dialog .btn-close',function(e)
-        {
-            if(priseDialog)
-            {
-                priseDialog.dialog.close();
-            }
+    $(function()
+    {
+        /*弹出窗*/
+        //showAreaDialog();
+        //showPrizeDialog();
 
-            e.preventDefault();
-        });
-
-        function showPriseDialog(index)
-        {
-            var $priseDialog = $.dialog({
-                dialogClass:'qc-dialog qc-dialog-no-button qc-dialog-header-bg',
-                showTitle:true,
-                titleText:'奖品<span class="fa fa-close btn-close"></span>',
-
-                contentHtml:'<div class="qc-dialog-prise-detail">' +
-                '<div class="qc-dialog-prise-img">'+
-                '<img src="img/demo/prise_detail_01.jpg">' +
-                '</div>' +
-                '<div class="qc-dialog-prise-info">' +
-                '<h4 class="prise-info-name">优衣库大礼包</h4>' +
-                '<div class="prise-info-detail">' +
-                '详情介绍详情介绍详情介绍详情介绍详情介绍详情介绍详情介绍详情介绍详情介绍详情绍详情介商品 ' +
-                '<a>商品外链 <i class="fa fa-angle-right"></i></a>' +
-                '</div>' +
-                '</div>' +
-                '</div>'
-
-            });
-
-            return $priseDialog;
-
-        }
+        //init(0);
+        common.showInfo('暂时无法抽奖!');
 
     });
 

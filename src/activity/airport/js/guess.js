@@ -802,7 +802,7 @@ define(function(require)
                             alert("操作成功!感谢您的参与!");
                             cookie.set('cell_num',phoneVal);
                             hasPhone = true;
-                            $.dialog.close();
+                            p.dialog.close();
 
                         }
                         else if(response.result_code == 1)
