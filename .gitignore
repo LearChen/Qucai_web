@@ -1,5 +1,7 @@
 # IntelliJ project files
+.DS_Store
 .idea
 *.iml
 out
 gen
+node_modules

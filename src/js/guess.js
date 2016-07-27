@@ -376,7 +376,6 @@ define(function(require)
                 '</div>';
 
             $('#answerType').html(html);
-
         }
         /*选择题*/
         else if(answerType == 1)
@@ -402,6 +401,8 @@ define(function(require)
                             '</div>' +
                         '</li>'
                 }
+
+                $('#answerOKWP').hide();
             }
             else/*0普通猜 1即开猜*/
             {

@@ -407,6 +407,8 @@ define(function(require)
                             '</div>' +
                         '</li>'
                 }
+
+                $('#answerOKWP').hide();
             }
             else/*0普通猜 1即开猜*/
             {
