@@ -605,7 +605,7 @@ define(function(require)
             /*client 0 app, 1:wechat 2:weibo*/
             if(clientId=="0")
             {
-                window.location.href="htttp://www.uguess.me:8080/event.htm?request_type=5";
+                window.location.href="htttp://"+ server + ":8080" + "/event.htm?request_type=5";
                 return;
             }
             /*微信客户端，弹出层引导点击菜单分享*/

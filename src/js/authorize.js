@@ -119,7 +119,7 @@ define(function(require)
     /*其他浏览器*/
     else
     {
-        alert('请用微信或微博客户端打开！');
+        //alert('请用微信或微博客户端打开！');
     }
 
     /*微信登录*/
