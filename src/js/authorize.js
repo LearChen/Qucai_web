@@ -119,7 +119,7 @@ define(function(require)
     /*其他浏览器*/
     else
     {
-
+        alert('请用微信或微博客户端打开！');
     }
 
     /*微信登录*/
@@ -147,13 +147,16 @@ define(function(require)
                 }
                 else
                 {
-                    alert('登录失败');
+                    cookie.remove('union_id');
+                    cookie.remove('weixin_code');
+                    alert('登录失败,请刷新重试');
+
                 }
 
             },
             error:function()
             {
-                alert('登录失败');
+                alert('登录失败,无法连接服务器');
             }
         });
     }
@@ -183,13 +186,15 @@ define(function(require)
                 }
                 else
                 {
-                    alert('登录失败');
+                    cookie.remove('weibo_uid');
+                    cookie.remove('weibo_code');
+                    alert('登录失败,请刷新重试');
                 }
 
             },
             error:function()
             {
-                alert('登录失败');
+                alert('登录失败,无法连接服务器');
             }
         });
     }
