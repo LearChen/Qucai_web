@@ -1,4 +1,5 @@
 @import "../../../css/mixins";
+@import "../../../css/common";
 html,
 body
 {
@@ -47,12 +48,50 @@ body
 {
     .clearfix();
     position: relative;
+    padding-top: 10px;
 
     img
     {
         width: 100%;
         height: auto;
         vertical-align: top;
+    }
+
+    .op-text
+    {
+        color: #fff;
+        border:1px dashed #fff;
+        padding: 10px;
+        margin: 10px;
+        border-radius: 8px;
+        font-size: 1.3rem;
+
+        .op-control
+        {
+            line-height: 1.4;
+            .clearfix();
+
+            .key
+            {
+                float: left;
+                width: 5em;
+            }
+
+            .value
+            {
+                display: block;
+                margin-left: 5em;
+                font-weight: lighter;
+
+                strong
+                {
+                    font-weight: bold;
+                }
+            }
+
+
+        }
+
     }
 
 }
@@ -73,6 +112,7 @@ body
     border-radius: 5px;
     background: rgba(255,255,255,.2);
     overflow: hidden;
+    margin-top: 20px;
 
     .clearfix();
     .medals-header
@@ -273,7 +313,7 @@ body
     position: relative;
     border-radius: 5px;
     background: rgba(0,0,0,.2);
-    margin-top: 40px;
+    margin-top: 30px;
 
     .title
     {
@@ -378,7 +418,7 @@ body
 
         &.team-other
         {
-            background: url("../img/team_other.png") top center no-repeat;
+            background: url("../img/team_cheer.png") top center no-repeat;
             background-size: contain;
         }
     }
@@ -392,7 +432,7 @@ body
         a
         {
             font-size: 1.6rem;
-            color: #fff100;
+            color: #fff;
         }
     }
 
@@ -414,6 +454,7 @@ body
     color: #fff;
     font-size: 1.6rem;
     box-shadow: 0 0 4px rgba(0,0,0,.4);
+    margin-top: 10px;
 
     &:before
     {
@@ -463,6 +504,29 @@ body
 
         }
 
+        > .data
+        {
+            display: inline-block;
+            vertical-align: middle;
+            font-weight: lighter;
+            font-size: 1.3rem;
+            position: absolute;
+            right: 0;
+            padding-top: 1.5%;
+
+            span
+            {
+                padding-right: 10px;
+            }
+
+            strong
+            {
+                font-weight: normal;
+                color: #fff100;
+            }
+
+        }
+
         > .share
         {
             display: inline-block;
@@ -489,9 +553,13 @@ body
         &:after
         {
             content: "";
-            display: inline-block;
-            height: 100%;
-            vertical-align: middle;
+            position: absolute;
+            width: 70%;
+            left: 30%;
+            right: 0;
+            bottom: 1px;
+            z-index: 0;
+            border-bottom: 1px dashed rgba(0,0,0,.3);
         }
 
     }
@@ -501,7 +569,7 @@ body
     {
         .clearfix();
         font-size: 1.6rem;
-        font-weight: lighter;
+        font-weight: normal;
         margin: 15px 20px;
         text-align: center;
 
@@ -512,15 +580,14 @@ body
         .clearfix();
 
         position: relative;
-        margin-top: 20px;
+        margin-top: 10px;
 
         .form-control
         {
-            float: left;
-            width: 72%;
+            width: 100%;
             position: relative;
             height: 0;
-            padding-bottom: 15%;
+            padding-bottom: 20%;
 
             &:before
             {
@@ -544,7 +611,7 @@ body
                 left: 7%;
                 bottom: 37%;
                 right: 20px;
-                background: rgba(0,0,0,.1);
+                background: rgba(0,0,0,.3);
                 border-radius: 5px;
                 padding-left: 20%;
                 overflow: hidden;
@@ -558,36 +625,98 @@ body
                     width: 100%;
                     height: 100%;
                     line-height: 100%;
-                    padding: 5%;
+                    padding: 4px 0;
                     background: none;
-                    font-size: 1.3rem;
+                    font-size: 1.4rem;
                     color: #fff;
+                    z-index: 2;
 
                     &::-webkit-input-placeholder
                     {
-                        color: #eee;
+                        color: #ccc;
                     }
                 }
             }
         }
 
-        .form-btn
+        .form-btns
         {
-            float: right;
-            width: 28%;
-            padding-right: 20px;
-            margin-top: 1%;
+            .clearfix();
 
-            .btn{
-                display: block;
+            width: 70%;
+            margin: -15px auto 0 auto;
+            text-align: center;
+
+            .form-btn
+            {
+                display: inline-block;
+                padding: 0 4%;
+                width: 31%;
+                position: relative;
+                text-align: center;
+
+                img
+                {
+                    width: 100%;
+                    vertical-align: top;
+                }
+
+                &:active
+                {
+
+                }
+
+                &:nth-child(2)
+                {
+                    &:before,
+                    &:after
+                    {
+                        content: '';
+                        position: absolute;
+                        height: 50%;
+                        top: 15%;
+                    }
+
+                    &:before
+                    {
+                        left: 0;
+                        border-left: 1px solid rgba(0,0,0,.4);
+                    }
+
+                    &:after
+                    {
+                        right: 0;
+                        border-right: 1px solid rgba(0,0,0,.6);
+                    }
+                }
+
             }
 
-            img
+        }
+
+
+        .form-submit
+        {
+            margin: 15px 0;
+            text-align: center;
+
+            .btn
             {
-                width: 100%;
-                height: auto;
-                vertical-align: middle;
-                cursor: pointer;
+                display: block;
+                width: 40%;
+                margin: 0 auto;
+                opacity: 0.6;
+
+                img
+                {
+                    width: 100%;
+                    vertical-align: top;
+                }
+
+                &.active
+                {
+                    opacity: 1;
+                }
             }
         }
 
@@ -712,14 +841,82 @@ body
 }
 
 
-.op-oil-drum
+.oil-share
+{
+    width: 70%;
+    margin: 15px auto;
+    img
+    {
+        width: 100%;
+    }
+}
+
+
+.op-prize-wp
 {
     .clearfix();
     margin-top: 20px;
+    padding: 0 10px;
 
     img
     {
         width: 100%;
+    }
+
+    header {
+        display: block;
+        width: 100%;
+        height: 0;
+        padding-bottom: 10%;
+        text-indent: -9999px;
+        background: url("../img/prize_title.png") top center no-repeat;
+        background-size: contain;
+    }
+}
+
+.op-guess-wp
+{
+    .clearfix();
+    margin-top: 20px;
+    padding: 0 10px;
+
+    img
+    {
+        width: 100%;
+    }
+
+    header {
+        display: block;
+        width: 100%;
+        height: 0;
+        padding-bottom: 10%;
+        text-indent: -9999px;
+        background: url("../img/guess_title.png") top center no-repeat;
+        background-size: contain;
+    }
+}
+
+.guess-done
+{
+    display: none;
+    margin-top: 10px;
+
+    img
+    {
+        width: 100%;
+    }
+}
+
+body.done
+{
+    .guess-done
+    {
+        display: block;
+    }
+
+    .guess-todo
+    {
+        display: none;
     }
 }
 
@@ -742,7 +939,8 @@ body
 
     .rank-list-wp
     {
-        padding-bottom: 40px;
+        max-height: 640px;
+        overflow-y: auto;
     }
 
     .rank-list
@@ -768,6 +966,7 @@ body
                 vertical-align: middle;
                 content: counter(item);
                 color: #fff100;
+                width: 1.2em;
             }
 
             .rank-nick
@@ -966,22 +1165,31 @@ body
 /**/
 .op-footer
 {
-    width: 100%;
-    padding-bottom: 10.5%;
     position: relative;
+    margin-top: 40px;
 
-    &:after
+    .img
     {
-        content: "";
-        position: absolute;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        top: 0;
-        z-index: -2;
-        background: url("../img/olympic_bg_footer.png") center bottom no-repeat;
-        background-size: 100%;
+        padding: 8px 10px;
+        text-align: center;
+        background: rgba(255,255,255,.6);
+
+        img
+        {
+            width: 70%;
+            vertical-align: middle;
+        }
     }
+
+    aside
+    {
+        color: #333;
+        font-size: 1rem;
+        padding: 10px;
+        margin-top: 5px;
+        text-align: center;
+    }
+
 }
 
 
@@ -1004,7 +1212,7 @@ body
 
 }
 
-.share-timeline
+.pop-window
 {
     display: none;
     position: fixed;
@@ -1014,13 +1222,161 @@ body
     top: 0;
     bottom: 0;
     background: rgba(0,0,0,.8);
+    padding-top: 10px;
 
     .share-tip
     {
         position: relative;
         height: 100%;
-        background: url("../img/share_img.png") top center no-repeat;
-        background-size: 90%;
+        background: url("../img/share_img3.png") top center no-repeat;
+        background-size: 95%;
+    }
+
+    .first-window
+    {
+        position: relative;
+        width: 80%;
+        margin: 0 auto;
+
+        img
+        {
+            width: 100%;
+            vertical-align: middle;
+            margin-top: 10%;
+        }
+
+        a
+        {
+            position: absolute;
+            width: 44%;
+            padding-bottom: 9%;
+            background: transparent;
+            text-align: center;
+            color: transparent;
+            text-indent: -9999px;
+            bottom: 5%;
+            left: 50%;
+            margin-left: -22%;
+            opacity: .8;
+            z-index: 3;
+        }
+    }
+
+    .download-window
+    {
+        position: relative;
+        width: 80%;
+        margin: 0 auto;
+
+        a
+        {
+            display: block;
+        }
+
+        img
+        {
+            width: 100%;
+            vertical-align: middle;
+            margin-top: 30%;
+        }
+
+    }
+
+}
+
+
+.op-guess-list
+{
+    list-style: none;
+    padding: 0;
+    margin: 0 -10px;
+
+    .clearfix();
+
+    > li
+    {
+        position: relative;
+        margin-top: 10px;
+        padding: 0 5px 0 10px;
+        float: left;
+        width: 50%;
+
+        &:nth-child(2n)
+        {
+            padding: 0 10px 0 5px;
+        }
+
+        .anchor
+        {
+            position: relative;
+            display: block;
+            overflow: hidden;
+            border-radius: 5px;
+        }
+
+        .item-content
+        {
+            position: relative;
+            width: 100%;
+            padding-bottom: 70%;
+
+            .img-wp
+            {
+                display: block;
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                overflow: hidden;
+
+                img
+                {
+                    width: 100%;
+                }
+
+                &.video
+                {
+                    &:after
+                    {
+                        position: absolute;
+                        width: 80px;
+                        height: 80px;
+                        left: 50%;
+                        top: 20%;
+                        margin-left: -40px;
+                        margin-top: 0;
+                        content: "";
+                        background: url("../img/bofang.png") 0 0 no-repeat;
+                        background-size: contain;
+                    }
+                }
+            }
+        }
+
+        .item-info
+        {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 2;
+            background: rgba(0,0,0, .3);
+
+            .info-box
+            {
+                position: relative;
+                padding: 8px;
+                .content
+                {
+                    margin: 0;
+                    height: 3em;
+                    line-height: 1.5;
+                    font-size: 1.4rem;
+                    overflow: hidden;
+                    color: #fff;
+                }
+
+            }
+        }
 
     }
 }

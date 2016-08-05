@@ -7,7 +7,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>#猜奥运#为中国队加油</title>
     <link rel="stylesheet" href="../../vender/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="../../css/app.css">
     <link rel="stylesheet" href="css/olympic.css">
     <script src="../../js/lib/requirejs/require.min.js"></script>
     <script src="../../js/require.config.js"></script>
@@ -18,9 +17,38 @@
 <body>
 
     <header class="op-header">
-        <img src="img/olymoic_header_1.png">
+        <img src="img/olympic_header_a.png">
+
+        <div class="op-text">
+            <div class="op-control">
+                <span class="key">活动时间:</span>
+                <span class="value">
+                    2016.8.6-2016.8.22
+                </span>
+            </div>
+            <div class="op-control">
+                <span class="key">参与方式:</span>
+                <span class="value">
+                    初始资金2000猜豆<strong>(1猜豆=1桶油)</strong>用于为中国队加油。将活动页面转发给自己的好友，每成功邀请一位朋友来加油，同时也会增加你的加油量。力争进入加油榜TOP10赢取优猜豪礼！并且我们将会在加油榜前100名的用户中抽取20位幸运用户赠送奥运会同款套套！
+                </span>
+            </div>
+        </div>
+
     </header>
     <div class="op-body op-padding">
+
+        <section class="op-to-cheer">
+            <div class="title">
+                <span>已有 <strong id="cheer_user_sum">0</strong> 人为中国队加油!</span>
+            </div>
+            <div class="go-go-go">
+                <a class="go-btn" href="javascript:;" id="cheerBtn">
+                    <span class="anim"></span>
+                    <img src="img/btn_go.png">
+                </a>
+            </div>
+        </section>
+
         <section class="op-medals">
             <div class="medals-header">
                 <section>
@@ -41,28 +69,28 @@
                         <span class="list-item copper"><i class="medal-icon icon-copper"></i>铜牌</span>
                         <span class="list-item count">总数</span>
                     </header>
-                   <!-- <ol>
-                        <li>
-                            <span class="list-item rank">1</span>
-                            <span class="list-item country">
-                                <img src="img/flags/cn.png">中国
-                            </span>
-                            <span class="list-item gold">1</span>
-                            <span class="list-item silver">0</span>
-                            <span class="list-item copper">0</span>
-                            <span class="list-item count">1</span>
-                        </li>
-                        <li>
-                            <span class="list-item rank">2</span>
-                            <span class="list-item country">
-                                <img src="img/flags/au.png">澳大利亚
-                            </span>
-                            <span class="list-item gold">1</span>
-                            <span class="list-item silver">0</span>
-                            <span class="list-item copper">0</span>
-                            <span class="list-item count">1</span>
-                        </li>
-                    </ol>-->
+                    <!-- <ol>
+                         <li>
+                             <span class="list-item rank">1</span>
+                             <span class="list-item country">
+                                 <img src="img/flags/cn.png">中国
+                             </span>
+                             <span class="list-item gold">1</span>
+                             <span class="list-item silver">0</span>
+                             <span class="list-item copper">0</span>
+                             <span class="list-item count">1</span>
+                         </li>
+                         <li>
+                             <span class="list-item rank">2</span>
+                             <span class="list-item country">
+                                 <img src="img/flags/au.png">澳大利亚
+                             </span>
+                             <span class="list-item gold">1</span>
+                             <span class="list-item silver">0</span>
+                             <span class="list-item copper">0</span>
+                             <span class="list-item count">1</span>
+                         </li>
+                     </ol>-->
                     <div class="qc-tip-wp">
                         <span style="color: #fff;">暂无排行榜信息</span>
                     </div>
@@ -70,42 +98,20 @@
             </div>
         </section>
 
-        <section class="op-to-cheer">
-            <div class="title">
-                <span>已有 <strong id="cheer_user_sum">0</strong> 人为中国队加油!</span>
-            </div>
-            <div class="go-go-go">
-                <a class="go-btn" href="javascript:;" id="cheerBtn">
-                    <span class="anim"></span>
-                    <img src="img/btn_go.png">
-                </a>
-            </div>
-        </section>
-
-        <section class="op-guess-area">
+        <!--<section class="op-guess-area">
             <header class="team-china">中国队专区</header>
 
-            <ul class="guess-list-flex" id="topic_china">
-                <!--<li>
+            <ul class="op-guess-list" id="topic_china">
+                &lt;!&ndash;<li>
                     <a class="anchor" href="../../guess.htm?quiz_id=">
                         <div class="item-content">
                             <span class="img-wp">
-                                <img src="../../img/demo/largeNature1.jpg">
+                                <img src="./img/demo03.jpg">
                             </span>
                         </div>
                         <div class="item-info">
                             <div class="info-box">
-                                <aside>
-                                    <div class="qc-avatar">
-                                        <div class="avatar-box">
-                                            <img src="../../img/demo/avatar.png">
-                                        </div>
-                                    </div>
-                                </aside>
-                                <section>
-                                    <p class="content">猜题内容</p>
-                                    <p class="nick">用户名</p>
-                                </section>
+                                <p class="content">你猜今晚的10米跳水比赛是哪位选手可以夺冠？</p>
                             </div>
                         </div>
                     </a>
@@ -114,23 +120,13 @@
                 <li>
                     <a class="anchor" href="../../guess.htm?quiz_id=">
                         <div class="item-content">
-                        <span class="img-wp">
-                            <img src="../../img/demo/largeNature1.jpg">
-                        </span>
+                            <span class="img-wp">
+                                <img src="./img/demo03.jpg">
+                            </span>
                         </div>
                         <div class="item-info">
                             <div class="info-box">
-                                <aside>
-                                    <div class="qc-avatar">
-                                        <div class="avatar-box">
-                                            <img src="../../img/demo/avatar.png">
-                                        </div>
-                                    </div>
-                                </aside>
-                                <section>
-                                    <p class="content">猜题内容</p>
-                                    <p class="nick">用户名</p>
-                                </section>
+                                <p class="content">你猜今晚的10米跳水比赛是哪位选手可以夺冠？</p>
                             </div>
                         </div>
                     </a>
@@ -139,22 +135,12 @@
                     <a class="anchor" href="../../guess.htm?quiz_id=">
                         <div class="item-content">
                             <span class="img-wp">
-                                <img src="../../img/demo/largeNature1.jpg">
+                                <img src="./img/demo03.jpg">
                             </span>
                         </div>
                         <div class="item-info">
                             <div class="info-box">
-                                <aside>
-                                    <div class="qc-avatar">
-                                        <div class="avatar-box">
-                                            <img src="../../img/demo/avatar.png">
-                                        </div>
-                                    </div>
-                                </aside>
-                                <section>
-                                    <p class="content">猜题内容</p>
-                                    <p class="nick">用户名</p>
-                                </section>
+                                <p class="content">你猜今晚的10米跳水比赛是哪位选手可以夺冠？</p>
                             </div>
                         </div>
                     </a>
@@ -163,57 +149,37 @@
                 <li>
                     <a class="anchor" href="../../guess.htm?quiz_id=">
                         <div class="item-content">
-                        <span class="img-wp">
-                            <img src="../../img/demo/largeNature1.jpg">
-                        </span>
+                            <span class="img-wp">
+                                <img src="./img/demo03.jpg">
+                            </span>
                         </div>
                         <div class="item-info">
                             <div class="info-box">
-                                <aside>
-                                    <div class="qc-avatar">
-                                        <div class="avatar-box">
-                                            <img src="../../img/demo/avatar.png">
-                                        </div>
-                                    </div>
-                                </aside>
-                                <section>
-                                    <p class="content">猜题内容</p>
-                                    <p class="nick">用户名</p>
-                                </section>
+                                <p class="content">你猜今晚的10米跳水比赛是哪位选手可以夺冠？</p>
                             </div>
                         </div>
                     </a>
-                </li>-->
+                </li>&ndash;&gt;
             </ul>
 
             <div class="area-more">
                 <a href="" id="more_china">更多<i class="fa fa-angle-double-right"></i></a>
             </div>
-        </section>
+        </section>-->
 
         <section class="op-guess-area">
-            <header class="team-other">其他内容区</header>
-            <ul class="guess-list-flex" id="topic_other">
+            <header class="team-other">为奥运加油</header>
+            <ul class="op-guess-list" id="topic_other">
                 <!--<li>
                     <a class="anchor" href="../../guess.htm?quiz_id=">
                         <div class="item-content">
                             <span class="img-wp">
-                                <img src="../../img/demo/largeNature1.jpg">
+                                <img src="./img/demo03.jpg">
                             </span>
                         </div>
                         <div class="item-info">
                             <div class="info-box">
-                                <aside>
-                                    <div class="qc-avatar">
-                                        <div class="avatar-box">
-                                            <img src="../../img/demo/avatar.png">
-                                        </div>
-                                    </div>
-                                </aside>
-                                <section>
-                                    <p class="content">猜题内容</p>
-                                    <p class="nick">用户名</p>
-                                </section>
+                                <p class="content">你猜今晚的10米跳水比赛是哪位选手可以夺冠？</p>
                             </div>
                         </div>
                     </a>
@@ -222,23 +188,42 @@
                 <li>
                     <a class="anchor" href="../../guess.htm?quiz_id=">
                         <div class="item-content">
-                        <span class="img-wp video">
-                            <img src="../../img/demo/largeNature1.jpg">
-                        </span>
+                            <span class="img-wp">
+                                <img src="./img/demo03.jpg">
+                            </span>
                         </div>
                         <div class="item-info">
                             <div class="info-box">
-                                <aside>
-                                    <div class="qc-avatar">
-                                        <div class="avatar-box">
-                                            <img src="../../img/demo/avatar.png">
-                                        </div>
-                                    </div>
-                                </aside>
-                                <section>
-                                    <p class="content">猜题内容</p>
-                                    <p class="nick">用户名</p>
-                                </section>
+                                <p class="content">你猜今晚的10米跳水比赛是哪位选手可以夺冠？</p>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a class="anchor" href="../../guess.htm?quiz_id=">
+                        <div class="item-content">
+                            <span class="img-wp">
+                                <img src="./img/demo03.jpg">
+                            </span>
+                        </div>
+                        <div class="item-info">
+                            <div class="info-box">
+                                <p class="content">你猜今晚的10米跳水比赛是哪位选手可以夺冠？</p>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+
+                <li>
+                    <a class="anchor" href="../../guess.htm?quiz_id=">
+                        <div class="item-content">
+                            <span class="img-wp">
+                                <img src="./img/demo03.jpg">
+                            </span>
+                        </div>
+                        <div class="item-info">
+                            <div class="info-box">
+                                <p class="content">你猜今晚的10米跳水比赛是哪位选手可以夺冠？</p>
                             </div>
                         </div>
                     </a>
@@ -251,7 +236,12 @@
         </section>
     </div>
 
-    <footer class="op-footer"></footer>
+    <footer class="op-footer">
+        <div class="img">
+            <img src="img/footer_bar.png">
+        </div>
+        <aside>本活动最终解释权归杭州趣猜网络科技有限公司所有</aside>
+    </footer>
 
     <script>
         require(['jquery','../activity/olympic/js/cheer'],function($,cheer)
@@ -261,8 +251,7 @@
                 cheer.showMedals();
                 cheer.anchorAppend('#cheerBtn','./cheer.htm');
                 cheer.getCheerState();
-                cheer.getTopicList('#topic_china','#more_china','56fcb8300cf2ae2660e76151',"1",0);
-                cheer.getTopicList('#topic_other','#more_other','56fcb8300cf2ae2660e76151',"1",0);
+                cheer.getTopicList('#topic_other','#more_other','57a323350cf2556b3804799d',"1",0);
             });
         });
     </script>

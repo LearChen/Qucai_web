@@ -15,10 +15,13 @@ define(function(require)
     var answerType;
     var quizType;
     var answer, answerId, scoreNum;
+    var rightAnswer;
+    var prizeValue;
 
     var isFinished = false; /*是否已经结束*/
     var isJoin = false;     /*当前用户是否已经参与过*/
-    var userAnswer;
+    var userAnswer; /*用户已参与过的答案*/
+    var chooseItem;
 
     /*分享参数*/
     var pageUrl = window.location.href.split('?')[0];
@@ -26,6 +29,10 @@ define(function(require)
     var shareDesc;
     var shareLink;
     var shareImg = pageUrl.substring(0, pageUrl.lastIndexOf("/")+1) + 'img/uguess_logo.png';
+
+
+    /*页面来源*/
+    var guess_from = common.getQueryString('guess_from') || 'null';
 
 
     function getGuessDetail(quiz_id)
@@ -275,7 +282,7 @@ define(function(require)
         /*0猜豆*/
         if(prizeType == 0)
         {
-            var prizeValue = body.prize_value;
+            prizeValue = body.prize_value;
 
             var quizType = body.quiz_type;
             if(quizType == 2)/*赔率猜*/
@@ -391,7 +398,7 @@ define(function(require)
                 for(var i=0; i< answers.length; i++)
                 {
                     html+=
-                        '<li data-answerid="'+answers[i].answer_id+'" data-bean="true">' +
+                        '<li data-answerid="'+answers[i].answer_id+'" data-bean="true" data-correct="'+answers[i].is_correct_answer+'">' +
                             '<div class="main">' +
                                 '<span class="code">'+String.fromCharCode(i+65)+ '</span>' +
                                 '<span class="answer">'+answers[i].answer+'</span>' +
@@ -409,7 +416,7 @@ define(function(require)
                 for(var i=0; i< answers.length; i++)
                 {
                     html+=
-                        '<li data-answerid="'+answers[i].answer_id+'">' +
+                        '<li data-answerid="'+answers[i].answer_id+'" data-correct="'+answers[i].is_correct_answer+'">' +
                             '<div class="main">' +
                                 '<span class="code">'+String.fromCharCode(i+65)+ '</span>' +
                                 '<span class="answer">'+answers[i].answer+'</span>' +
@@ -422,7 +429,17 @@ define(function(require)
             }
 
             html+='</ol></div>';
+
             $('#answerType').html(html);
+
+            var list = $('#answerType').find('li');
+            list.each(function()
+            {
+                var $li = $(this);
+
+                $li.data('correct',$li.attr('data-correct'));
+                $li.removeAttr('data-correct');
+            });
 
             if(isJoin && userAnswer)
             {
@@ -457,6 +474,15 @@ define(function(require)
             var $this = $(this);
             answerId = $this.data('answerid');
             $this.addClass('active').siblings('li').removeClass('active');
+
+            /*如果是活动送猜豆题目，则不显示投豆直接提交答案*/
+            if(guess_from=='olympic')
+            {
+                chooseItem = $this;
+                $('#answerOK').trigger('tap');
+
+                return;
+            }
 
             if($this.data('bean'))
             {
@@ -508,6 +534,88 @@ define(function(require)
         /*提交答案*/
         $(document).on('tap','#answerOK',function(e)
         {
+            /*如果是活动送猜豆题目，则直接提交答案*/
+            if(guess_from=='olympic')
+            {
+                /*设置计数器，参与过+1*/
+                var olympic_join = cookie.get('olympic_join');
+                if(!olympic_join || isNaN(olympic_join) || olympic_join < 0)
+                {
+                    olympic_join = 0;
+                }
+                cookie.set("olympic_join", parseInt(olympic_join)+1, { expires: 365 });
+
+                /*来源页面，操作后返回*/
+                var source = cookie.get('activity_from');
+
+                /*猜对加豆*/
+                if(chooseItem.data('correct')=='1')
+                {
+                    var data = {'activity_id':common.getQueryString('activity_id'), 'quiz_id':common.getQueryString('quiz_id')};
+
+                    $.ajax({
+                        url: "/activity/give_score_for_join.html?t=" + cookie.get('token_id'),
+                        type: "post",
+                        dataType: "json",
+                        data: JSON.stringify(data),
+                        success: function (response)
+                        {
+                            if(response.result_code==0)
+                            {
+                                isJoin = true;
+                                $.dialog({
+                                    dialogClass: 'qc-dialog qc-info-content qc-dialog-header-bg',
+                                    type: 'alert',
+                                    showTitle: true,
+                                    titleText: '系统提示',
+                                    contentHtml: '恭喜您答对了！获得了' + prizeValue + '猜豆奖励！',
+                                    autoClose: 0,
+                                    onClickOk: function ()
+                                    {
+                                        if (source)
+                                        {
+                                            window.location.href = source;
+                                        }
+                                    }
+                                });
+                            }
+
+                            else
+                            {
+                                common.showErrorCodeInfo(response.result_code);
+                            }
+                        },
+                        error:function()
+                        {
+                            common.showInfo('无法连接服务器!');
+                        }
+                    });
+
+                }
+                /*猜错不加豆*/
+                else
+                {
+                    $.dialog({
+                        dialogClass: 'qc-dialog qc-info-content qc-dialog-header-bg',
+                        type : 'alert',
+                        showTitle: true,
+                        titleText: '系统提示',
+                        contentHtml: '很遗憾猜错了~再接再厉继续猜吧！',
+                        autoClose : 0,
+                        onClickOk:function()
+                        {
+                            if(source)
+                            {
+                                window.location.href = source;
+                            }
+                        }
+                    });
+                }
+
+                return;
+            }
+
+
             if(isFinished)
             {
                 common.showInfo('已经结束!');
@@ -614,6 +722,8 @@ define(function(require)
         /*填空题*/
         if(answerType==0)
         {
+            answer = $('.qc-answer textarea').val();
+
             if(!answer || answer.trim()=="")
             {
                 common.showDialog('系统提示','还没输入答案哦!');
@@ -656,6 +766,7 @@ define(function(require)
     function submitAnswer()
     {
         var answer = getUserAnswer();
+
         if(!answer)
         {
             return;
@@ -671,7 +782,6 @@ define(function(require)
                 if(response.result_code==0)
                 {
                     isJoin = true;
-
                     common.showDialog('系统提示','参与成功!下载App获取更多精彩内容!');
                 }
                 else

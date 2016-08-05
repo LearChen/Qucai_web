@@ -35,7 +35,7 @@ define(function(require)
                 if(!code)
                 {
                     var wechatKey = isTest? common.wechatKey.test:common.wechatKey.public;
-                    var state = "test=" + isTest; /*state 带去服务器是哪台*/
+                    var state = isTest?'test':'_'; /*state 带去服务器是哪台*/
                     cookie.set('_source',window.location.href); /*来源地址存在cookie里面,验证成功后在redirect的页面跳转到指定数据页，再从cookie里面取出跳转*/
 
                     var wechatOauth2Url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid='+wechatKey+'&redirect_uri=http%3a%2f%2fwww.qucai8.com%2foauth2%2fredirect.htm&response_type=code&scope=snsapi_userinfo&state='+state+'#wechat_redirect';
@@ -79,7 +79,7 @@ define(function(require)
                 if(!code)
                 {
                     var weiboKey = isTest? common.weiboKey.test:common.weiboKey.public;
-                    var state = "test=" + isTest; /*state 带去服务器是哪台*/
+                    var state = isTest?'test':'_'; /*state 带去服务器是哪台*/
                     cookie.set('_source',window.location.href); /*来源地址存在cookie里面,验证成功后在redirect的页面跳转到指定数据页，再从cookie里面取出跳转*/
 
                     var weiboOauth2Url = 'https://api.weibo.com/oauth2/authorize?client_id='+weiboKey+'&response_type=code&redirect_uri=http://www.qucai8.com/oauth2/redirect.htm&state=' + state;
@@ -132,7 +132,7 @@ define(function(require)
                     cookie.set("nick_name", body.nickname);
                     cookie.set("portrait_url", body.portrait_url);
                     cookie.set("cell_num", body.cell_num);
-
+                    cookie.set("is_new_user", body.is_new_user);
                 }
                 else
                 {
@@ -167,6 +167,7 @@ define(function(require)
                     cookie.set("nick_name", body.nickname);
                     cookie.set("portrait_url", body.portrait_url);
                     cookie.set("cell_num", body.cell_num);
+                    cookie.set("is_new_user", body.is_new_user);
                 }
                 else
                 {

@@ -7,7 +7,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>#猜奥运#为中国队加油</title>
     <link rel="stylesheet" href="../../vender/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="../../css/app.css">
     <link rel="stylesheet" href="css/olympic.css">
     <script src="../../js/lib/requirejs/require.min.js"></script>
     <script src="../../js/require.config.js"></script>
@@ -18,32 +17,62 @@
 <body class="cover-2">
 
     <header class="op-header">
-        <img src="img/olymoic_header_2.png">
+        <img src="img/olymoic_header_b.png">
+
+        <div class="op-text">
+            <div class="op-control">
+                <span class="key">活动时间:</span>
+                <span class="value">
+                    2016.8.6-2016.8.22
+                </span>
+            </div>
+            <div class="op-control">
+                <span class="key">参与方式:</span>
+                <span class="value">
+                    初始资金2000猜豆<strong>(1猜豆=1桶油)</strong>用于为中国队加油。将活动页面转发给自己的好友，每成功邀请一位朋友来加油，同时也会增加你的加油量。力争进入加油榜TOP10赢取优猜豪礼！并且我们将会在加油榜前100名的用户中抽取20位幸运用户赠送奥运会同款套套！
+                </span>
+            </div>
+        </div>
+
     </header>
     <div class="op-body">
         <section class="op-oil-dynamic">
             <div class="oil-station">
                 <section class="station-header">
                     <span class="title">加油站</span>
-                    <section class="share">
-                        <span>你已加<strong id="cheer_score_num">0</strong>桶油</span>
-                        <a href="javascript:;" id="btnShare"><i class="qc-icon icon-share"></i>分享</a>
+                    <section class="data">
+                        <span>我的猜豆:<strong id="my_score">0</strong></span>
+                        <span>你已加油:<strong id="cheer_score_num">0</strong>桶</span>
                     </section>
                 </section>
                 <section class="station-info">
-                    已有<span id="cheer_user_sum">0</span>人，为中国队共加<strong id="cheer_score_sum">0</strong>桶油！
+                    已有<span id="cheer_user_sum">0</span>人，为中国队加<strong id="cheer_score_sum">0</strong>桶油！
                 </section>
                 <section class="station-form">
                     <div class="form-control">
                         <div class="input">
-                            <input type="number" title="" placeholder="你能加2000桶油" id="handle_input">
+                            <input type="number" title="" placeholder="为中国队加油吧!你能加2000桶油" id="handle_input">
                         </div>
                     </div>
-                    <div class="form-btn">
-                        <span class="btn" id="handle_btn">
-                          <img src="img/btn_go_china.png" alt="加油,中国!">
+
+                    <div class="form-btns">
+                        <span class="form-btn" data-value="500">
+                            <img src="img/btn_500.png">
+                        </span>
+                        <span class="form-btn" data-value="1000">
+                            <img src="img/btn_1000.png">
+                        </span>
+                        <span class="form-btn" data-value="2000">
+                            <img src="img/btn_2000.png">
                         </span>
                     </div>
+
+                    <div class="form-submit">
+                        <span class="btn" id="handle_btn">
+                          <img src="img/btn_cheer_submit.png" alt="加油,中国!">
+                        </span>
+                    </div>
+
                 </section>
             </div>
             <div class="oil-roll">
@@ -156,22 +185,106 @@
                             </div>
                         </li>-->
                     </ul>
-                    <div class="qc-tip-wp" id="noFriendTip">
-                        <span style="color: #fff;">暂无好友为你加油！赶快分享~</span>
+                    <div class="qc-tip-wp" style="margin-bottom: 0;" id="noFriendTip">
+                        <span style="color: #fff;">还没有人为你加油哟~</span>
                     </div>
+                </div>
+
+                <div class="oil-share" id="btnShare">
+                    <img src="img/btn_oil_share.png">
                 </div>
 
             </div>
         </section>
 
-        <section class="op-oil-drum">
-            <img src="img/drum.png">
+        <section class="op-prize-wp">
+            <header>奖品区</header>
+            <img src="img/prize.png">
         </section>
 
+
+        <section class="op-guess-area op-guess-wp" id="guessQuestions" style="display: none;">
+            <header>猜题赢猜豆，加油拿大奖</header>
+
+            <div class="guess-todo">
+                <ul class="op-guess-list" id="topic_guess">
+           <!--         <li>
+                        <a class="anchor" href="../../guess.htm?quiz_id=">
+                            <div class="item-content">
+                            <span class="img-wp">
+                                <img src="./img/demo03.jpg">
+                            </span>
+                            </div>
+                            <div class="item-info">
+                                <div class="info-box">
+                                    <p class="content">你猜今晚的10米跳水比赛是哪位选手可以夺冠？</p>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a class="anchor" href="../../guess.htm?quiz_id=">
+                            <div class="item-content">
+                            <span class="img-wp">
+                                <img src="./img/demo03.jpg">
+                            </span>
+                            </div>
+                            <div class="item-info">
+                                <div class="info-box">
+                                    <p class="content">你猜今晚的10米跳水比赛是哪位选手可以夺冠？</p>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="anchor" href="../../guess.htm?quiz_id=">
+                            <div class="item-content">
+                            <span class="img-wp">
+                                <img src="./img/demo03.jpg">
+                            </span>
+                            </div>
+                            <div class="item-info">
+                                <div class="info-box">
+                                    <p class="content">你猜今晚的10米跳水比赛是哪位选手可以夺冠？</p>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a class="anchor" href="../../guess.htm?quiz_id=">
+                            <div class="item-content">
+                            <span class="img-wp">
+                                <img src="./img/demo03.jpg">
+                            </span>
+                            </div>
+                            <div class="item-info">
+                                <div class="info-box">
+                                    <p class="content">你猜今晚的10米跳水比赛是哪位选手可以夺冠？</p>
+                                </div>
+                            </div>
+                        </a>
+                    </li>-->
+                </ul>
+
+                <div class="area-more">
+                    <a href="http://a.app.qq.com/o/simple.jsp?pkgname=com.qucai.guess&g_f=991653" id="more_other">更多<i class="fa fa-angle-double-right"></i></a>
+                </div>
+            </div>
+
+            <div class="guess-done">
+                <a target="_blank" href="http://a.app.qq.com/o/simple.jsp?pkgname=com.qucai.guess&g_f=991653">
+                    <img src="img/guess_done.png">
+                </a>
+            </div>
+
+
+        </section>
         <section class="op-oil-rank">
             <header>加油排行榜</header>
 
-            <div class="rank-list-wp">
+            <div class="rank-list-wp" id="rankListWp">
                 <ul class="rank-list" id="rankList">
                     <!--<li>
                         <div class="rank-nick">
@@ -279,14 +392,39 @@
             </div>
 
         </section>
+
     </div>
+
+    <footer class="op-footer">
+        <a target="_blank" href="http://a.app.qq.com/o/simple.jsp?pkgname=com.qucai.guess&g_f=991653">
+            <div class="img">
+                <img src="img/footer_bar.png">
+            </div>
+        </a>
+        <aside>本活动最终解释权归杭州趣猜网络科技有限公司所有</aside>
+    </footer>
 
     <a class="op-back" href="./index.htm" id="goIndex" style="display: none;">
         <span class="fa fa-angle-left"></span>
     </a>
 
-    <div class="share-timeline" id="shareTimeLine">
+    <div class="pop-window" id="shareTimeLine" style="display: none;">
         <div class="share-tip">
+        </div>
+    </div>
+
+    <div class="pop-window" id="firstTime" style="display: none;">
+        <div class="first-window">
+            <img src="img/first_time.png">
+            <a>领取</a>
+        </div>
+    </div>
+
+    <div class="pop-window" id="showDownload" style="display: none;">
+        <div class="download-window">
+            <a href="http://a.app.qq.com/o/simple.jsp?pkgname=com.qucai.guess&g_f=991653" target="_blank">
+                <img src="img/download.png">
+            </a>
         </div>
     </div>
 
@@ -295,13 +433,17 @@
         {
             $(function()
             {
-                cheer.anchorAppend('#goIndex','./index.htm');
+                cheer.firstTime('#firstTime');
                 cheer.getCheerState();
+
+                cheer.handleCheer('#handle_btn','#handle_input');
+
                 cheer.getFriendCheerList('#friendList');
                 cheer.getRankList('#rankList');
-                cheer.handleCheer('#handle_btn','#handle_input');
                 cheer.initShareEvent('#btnShare','#shareTimeLine');
-                cheer.shareTimeLine('#shareTimeLine');
+                cheer.getActivityTopic('#topic_guess','577a45330cf28bf1c1e884b2',"1",0);
+
+                cheer.anchorAppend('#goIndex','./index.htm');
             });
         });
     </script>
