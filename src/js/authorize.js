@@ -16,6 +16,16 @@ define(function(require)
 
     var agent = navigator.userAgent;
 
+    var haveKey = cookie.get('uguess_key');
+    if(!haveKey || haveKey != 'uguess_web')
+    {
+        cookie.remove('union_id');
+        cookie.remove('weixin_code');
+        cookie.remove('weibo_uid');
+        cookie.remove('weibo_code');
+    }
+
+
     /*微信浏览器*/
     if(agent.indexOf('MicroMessenger') != -1)
     {
@@ -133,6 +143,7 @@ define(function(require)
                     cookie.set("portrait_url", body.portrait_url);
                     cookie.set("cell_num", body.cell_num);
                     cookie.set("is_new_user", body.is_new_user);
+                    cookie.set("uguess_key", "uguess_web", { expires: 365 });
                 }
                 else
                 {
@@ -168,6 +179,7 @@ define(function(require)
                     cookie.set("portrait_url", body.portrait_url);
                     cookie.set("cell_num", body.cell_num);
                     cookie.set("is_new_user", body.is_new_user);
+                    cookie.set("uguess_key", "uguess_web", { expires: 365 });
                 }
                 else
                 {
