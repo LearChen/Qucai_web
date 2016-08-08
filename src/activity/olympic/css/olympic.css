@@ -897,9 +897,9 @@ body.cover-2:before {
 }
 .op-medals .medals-header aside {
   position: absolute;
-  right: 10px;
+  right: 0;
   display: inline-block;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
 }
 .op-medals .medals-content .medals-list {
   font-size: 1.4rem;
@@ -920,6 +920,25 @@ body.cover-2:before {
 }
 .op-medals .medals-content .medals-list > header:after {
   clear: both;
+}
+.op-medals .medals-content .medals-list > header .list-item.rank {
+  width: 12%;
+  text-align: center;
+}
+.op-medals .medals-content .medals-list > header .list-item.country {
+  width: 22%;
+}
+.op-medals .medals-content .medals-list > header .list-item.gold {
+  width: 16.6666%;
+}
+.op-medals .medals-content .medals-list > header .list-item.silver {
+  width: 16.6666%;
+}
+.op-medals .medals-content .medals-list > header .list-item.copper {
+  width: 16.6666%;
+}
+.op-medals .medals-content .medals-list > header .list-item.count {
+  width: 16%;
 }
 .op-medals .medals-content .medals-list > ol {
   list-style: none;
@@ -954,16 +973,17 @@ body.cover-2:before {
     width: 10%;
   }
   .op-medals .medals-content .medals-list > ol > li .list-item.country {
-    width: 30%;
+    width: 33%;
   }
   .op-medals .medals-content .medals-list > ol > li .list-item.gold {
-    width: 15%;
+    text-align: left;
+    width: 12%;
   }
   .op-medals .medals-content .medals-list > ol > li .list-item.silver {
-    width: 15%;
+    width: 14%;
   }
   .op-medals .medals-content .medals-list > ol > li .list-item.copper {
-    width: 15%;
+    width: 14%;
   }
   .op-medals .medals-content .medals-list > ol > li .list-item.count {
     width: 15%;
@@ -979,7 +999,19 @@ body.cover-2:before {
 }
 .op-medals .medals-content .medals-list .list-item.country {
   text-align: left;
-  width: 21.2222%;
+  width: 28%;
+}
+.op-medals .medals-content .medals-list .list-item.gold {
+  width: 12%;
+}
+.op-medals .medals-content .medals-list .list-item.silver {
+  width: 16%;
+}
+.op-medals .medals-content .medals-list .list-item.copper {
+  width: 16%;
+}
+.op-medals .medals-content .medals-list .list-item.count {
+  width: 16%;
 }
 .op-to-cheer {
   position: relative;
@@ -1040,8 +1072,8 @@ body.cover-2:before {
   padding-bottom: 28%;
   background: url("../img/btn_go_anim.png") top center no-repeat;
   background-size: contain;
-  -webkit-animation: go-jump 0.6s linear infinite;
-  animation: go-jump 0.6s linear infinite;
+  -webkit-animation: go-jump 0.9s linear infinite;
+  animation: go-jump 0.9s linear infinite;
 }
 @-webkit-keyframes go-jump {
   0% {
@@ -1552,8 +1584,7 @@ body.done .guess-todo {
   background-size: contain;
 }
 .op-oil-rank .rank-list-wp {
-  max-height: 640px;
-  overflow-y: auto;
+  height: auto;
 }
 .op-oil-rank .rank-list {
   margin: 0;
@@ -1582,7 +1613,7 @@ body.done .guess-todo {
   vertical-align: middle;
   content: counter(item);
   color: #fff100;
-  width: 1.2em;
+  width: 1.8em;
 }
 .op-oil-rank .rank-list > li .rank-nick {
   display: inline-block;

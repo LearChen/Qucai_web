@@ -149,7 +149,7 @@ define(function(require)
                 {
                     cookie.remove('union_id');
                     cookie.remove('weixin_code');
-                    alert('登录失败,请刷新重试');
+                    alert('登录失败,code:'+response.result_code+',请刷新重试');
 
                 }
 
@@ -188,7 +188,7 @@ define(function(require)
                 {
                     cookie.remove('weibo_uid');
                     cookie.remove('weibo_code');
-                    alert('登录失败,请刷新重试');
+                    alert('登录失败,code:'+response.result_code+',请刷新重试');
                 }
 
             },

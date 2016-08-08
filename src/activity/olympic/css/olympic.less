@@ -168,9 +168,9 @@ body
         aside
         {
             position: absolute;
-            right: 10px;
+            right: 0;
             display: inline-block;
-            font-size: 1.4rem;
+            font-size: 1.2rem;
 
         }
 
@@ -188,6 +188,40 @@ body
                 background: #fff;
                 padding: 5px 0;
                 #gradient.vertical(@start-color: #fff,@end-color: #e4f8ff);
+
+                .list-item
+                {
+                    &.rank
+                    {
+                        width: 12%;
+                        text-align: center;
+                    }
+
+                    &.country
+                    {
+                        width: 22%;
+                    }
+
+                    &.gold
+                    {
+                        width: 16.6666%;
+                    }
+
+                    &.silver
+                    {
+                        width: 16.6666%;
+                    }
+
+                    &.copper
+                    {
+                        width: 16.6666%;
+                    }
+
+                    &.count
+                    {
+                        width: 16%;
+                    }
+                }
 
             }
 
@@ -232,22 +266,23 @@ body
 
                             &.country
                             {
-                                width: 30%;
+                                width: 33%;
                             }
 
                             &.gold
                             {
-                                width: 15%;
+                                text-align: left;
+                                width: 12%;
                             }
 
                             &.silver
                             {
-                                width: 15%;
+                                width: 14%;
                             }
 
                             &.copper
                             {
-                                width: 15%;
+                                width: 14%;
                             }
 
                             &.count
@@ -275,26 +310,28 @@ body
                 &.country
                 {
                     text-align: left;
-                    width: 21.2222%;
+                    width: 28%;
                 }
 
                 &.gold
                 {
-
+                    width: 12%;
                 }
 
                 &.silver
                 {
-
+                    width: 16%;
                 }
 
                 &.copper
                 {
+                    width: 16%;
 
                 }
 
                 &.count
                 {
+                    width: 16%;
 
                 }
             }
@@ -375,8 +412,8 @@ body
             background: url("../img/btn_go_anim.png") top center no-repeat;
             background-size: contain;
 
-            -webkit-animation: go-jump .6s linear  infinite;
-            animation: go-jump .6s linear  infinite;
+            -webkit-animation: go-jump .9s linear  infinite;
+            animation: go-jump .9s linear  infinite;
         }
     }
 }
@@ -939,8 +976,7 @@ body.done
 
     .rank-list-wp
     {
-        max-height: 640px;
-        overflow-y: auto;
+        height: auto;
     }
 
     .rank-list
@@ -966,7 +1002,7 @@ body.done
                 vertical-align: middle;
                 content: counter(item);
                 color: #fff100;
-                width: 1.2em;
+                width: 1.8em;
             }
 
             .rank-nick

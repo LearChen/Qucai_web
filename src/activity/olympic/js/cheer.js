@@ -5,6 +5,7 @@ define(function(require)
     var cookie = require('cookie');
     var tap = require('tap');
     var dialog = require('dialog');
+    require('nano');
 
     var userId = common.getQueryString('user_id') || '';
     var tokenId = common.getQueryString('t') || '';
@@ -143,8 +144,8 @@ define(function(require)
                 {
                     /*每个速度为1s*/
                     $(elementId).css({
-                        "-webkit-animation-duration":size+'s',
-                        "animation-duration":size+'s'
+                        "-webkit-animation-duration":size*1.5 +'s',
+                        "animation-duration":size*1.5+'s'
                     });
                 }
             },
@@ -204,8 +205,7 @@ define(function(require)
                     var height = h1 + h2*7;
 
                     $('#rankListWp').css({
-                        'max-height':height,
-                        'overflow-y':'auto'
+                        //'max-height':height
                     });
 
                 }
@@ -600,7 +600,6 @@ define(function(require)
     {
         $(elementId).on('tap',function(e)
         {
-            e.preventDefault();
 
             /*client 0 app, 1:wechat 2:weibo*/
             if(clientId=="0")
@@ -647,7 +646,107 @@ define(function(require)
     /*奥运奖牌榜*/
     var showMedals = function ()
     {
+        var params = '{"page_url":"http://match.2016.sina.com.cn/medals/"}';
 
+        $.ajax({
+            url: "/common/get_page_source.html",
+            type:"post",
+            data:params,
+            dataType:"json",
+            headers: {
+                "Content-Type":"application/json"
+            },
+            success: function (response)
+            {
+                if(response.result_code==0)
+                {
+                    var pageSource = response.body.page_source;
+
+                    var data = setMedalsData(pageSource);
+
+                    var body = data.body;
+
+                    if(body && body.length)
+                    {
+
+                        var li = '<li>' +
+                            '<span class="list-item rank">{rank}</span>' +
+                            '<span class="list-item country">' +
+                            '<img src="{flag}">{country}</span>' +
+                            '<span class="list-item gold">{gold}</span>' +
+                            '<span class="list-item silver">{silver}</span>' +
+                            '<span class="list-item copper">{copper}</span>' +
+                            '<span class="list-item count">{total}</span></li>';
+
+                        var html='';
+
+                        for(var i=0; i<body.length; i++)
+                        {
+                            var d = body[i];
+                            html += nano(li, d);
+
+                        }
+
+                        var updateTime = $('#updateTime');
+                        var medalsList = $('#medalsList');
+
+                        updateTime.text(data.update);
+                        medalsList.find('ol').html(html);
+                        medalsList.addClass('no-tip');
+
+                    }
+                }
+                else
+                {
+
+                }
+            },
+            error:function()
+            {
+
+            }
+        });
+
+    };
+
+    var setMedalsData = function (page)
+    {
+        var data = {
+            update:'',
+            body:[]
+        };
+
+        var tbody = $(page).find('.part_03 table > tbody:not(".sub_show")');
+        var time = $(page).find('.part_03 .tit_no b');
+
+        data.update=time.text();
+
+        var size = tbody.length -1;
+        size = size<10? size:10;
+
+        for(var i=0; i<size; i++)
+        {
+            var _this = $(tbody[i]).find('tr.sub');
+            var rank = i+1 || _this.find('.w01').text();
+            var country = _this.find('.w02 > a').text();
+            var flag = _this.find('.w02 > img').attr('src');
+            var gold = _this.find('.w03 > a').text();
+            var silver = _this.find('.w04 > a').text();
+            var copper = _this.find('.w05 > a').text();
+            var total = _this.find('.w06 > a').text();
+
+            data.body.push({
+                rank:rank,
+                country:country,
+                flag:flag,
+                gold:gold,
+                silver:silver,
+                copper:copper,
+                total:total
+            });
+        }
+
+        return data;
     };
 
     var firstTime = function(elementId)
