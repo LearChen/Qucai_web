@@ -8,7 +8,8 @@ define(function(require) {
     };
 
     var assetElements = {
-        bean:'#scoreBalance'
+        bean:'#scoreBalance',
+        playtime:'#playTime'
     };
 
     var setBaseInfo = function(elements)
@@ -42,8 +43,11 @@ define(function(require) {
                     if(response.result_code==0)
                     {
                         var body = response.body;
-                        $(elements.bean).text(body.score_balance)
+                        $(elements.bean).text(body.score_balance);
 
+                        /*抽几次*/
+                        var time = Math.ceil(parseInt(body.score_balance)/2000);
+                        $(elements.playtime).text(time);
                     }
 
                 }

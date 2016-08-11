@@ -538,6 +538,17 @@ define(function(require) {
 
     };
 
+    var replaceUrl = function(str)
+    {
+        var reg = /((http:\/\/)|(https:\/\/))?(((\w)+[.]){1,}(net|com|cn|org|cc|tv|[0-9]{1,3}))/g;
+        return str.replace(reg,function(m)
+        {
+            var start = m.substring(0,4) == "http"?"":"http://";
+            return '<a target="_blank" href="'+ start + m +'">'+m+'</a>';
+        })
+    };
+
+
     $(function()
     {
        $(document).on('tap','.nav-back',function(e)
@@ -558,7 +569,8 @@ define(function(require) {
         showInfo:showInfo,
         showDialog:showDialog,
         showErrorCodeInfo:showErrorCodeInfo,
-        getPublicKey:getPublicKey
+        getPublicKey:getPublicKey,
+        replaceUrl:replaceUrl
     };
 
 });

@@ -614,7 +614,8 @@ define(function(require)
             }
             else if(userAgent == "Weibo")
             {
-                common.showInfo("暂时不支持微博客户端分享!",null, 1500);
+                //common.showInfo("暂时不支持微博客户端分享!",null, 1500);
+                $(maskId).show();
             }
             else
             {

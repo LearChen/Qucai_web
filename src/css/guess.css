@@ -353,6 +353,25 @@
 .qc-guess-box .guess-box-comment:after {
   clear: both;
 }
+.qc-guess-box .guess-box-btn {
+  padding: 15px 10px;
+}
+.qc-guess-box .guess-box-btn:before,
+.qc-guess-box .guess-box-btn:after {
+  content: " ";
+  display: table;
+}
+.qc-guess-box .guess-box-btn:after {
+  clear: both;
+}
+.qc-guess-box .guess-box-btn .guess-btn {
+  width: 50%;
+  margin: 0 auto;
+  cursor: pointer;
+}
+.qc-guess-box .guess-box-btn .guess-btn img {
+  width: 100%;
+}
 .qc-guess-footer {
   background: #fff;
   height: 50px;
@@ -445,4 +464,162 @@
 }
 .qc-guess-pic-wp .swiper-container .swiper-pagination {
   bottom: 20px;
+}
+.guess-footer-type {
+  margin-top: -10px;
+}
+.guess-footer-type:before,
+.guess-footer-type:after {
+  content: " ";
+  display: table;
+}
+.guess-footer-type:after {
+  clear: both;
+}
+.guess-footer-type .footer-u {
+  float: left;
+  width: 25%;
+  padding-left: 20px;
+  padding-bottom: 10px;
+}
+.guess-footer-type .footer-u img {
+  width: 100%;
+}
+.guess-footer-type .footer-text {
+  position: relative;
+  margin-left: 35%;
+  margin-right: 30px;
+  margin-top: 35px;
+  color: #fff;
+  font-size: 1.4rem;
+  border: 1px solid #fff;
+  padding: 12px;
+  border-radius: 10px;
+  line-height: 1.5;
+}
+.guess-footer-type .footer-text:before {
+  position: absolute;
+  left: -24px;
+  top: 40%;
+  content: "";
+  height: 0;
+  line-height: 0;
+  border: 8px dashed transparent;
+  border-right: 16px solid #fff;
+}
+.guess-footer-type .footer-text:after {
+  position: absolute;
+  left: -22px;
+  top: 40%;
+  content: "";
+  height: 0;
+  line-height: 0;
+  border: 8px dashed transparent;
+  border-right: 16px solid #140a3b;
+}
+.guess-footer-type .footer-text p {
+  margin: 0;
+}
+@media (max-width: 360px) {
+  .guess-footer-type .footer-text {
+    font-size: 1.2rem;
+    padding: 10px;
+  }
+}
+.guess-zx {
+  width: 75%;
+  margin: 0 auto;
+  display: inline-block;
+  -ms-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  position: absolute;
+  left: 50%;
+  top: 50%;
+}
+.guess-zx .zx-close {
+  position: absolute;
+  width: 15%;
+  padding-bottom: 15%;
+  top: -5%;
+  right: -5%;
+  background: url("../img/zx_close.png") 0 0 no-repeat;
+  background-size: 100%;
+}
+.guess-zx .zx-bg {
+  padding-top: 50%;
+}
+.guess-zx .zx-bg.zx-right {
+  background: url("../img/guess_right.png") 0 0 no-repeat;
+  background-size: 100%;
+}
+.guess-zx .zx-bg.zx-wrong {
+  background: url("../img/guess_wrong.png") 0 0 no-repeat;
+  background-size: 100%;
+}
+.guess-zx .zx-content {
+  margin-top: -1px;
+  background: #fff;
+  padding: 15px;
+  margin-left: 4.5%;
+  border-radius: 0 0 10px 10px;
+}
+.guess-zx .zx-content .zx-text {
+  margin-top: 10px;
+  color: #666;
+  font-size: 1.3rem;
+  word-break: break-all;
+}
+.guess-zx .zx-content .zx-media {
+  margin-top: 10px;
+  text-align: center;
+}
+.guess-zx .zx-content .zx-media img {
+  width: 100%;
+}
+.guess-zx .zx-content .zx-media audio {
+  display: inline-block;
+  width: 80%;
+}
+.guess-zx .zx-content .zx-media video {
+  position: relative;
+  display: block;
+  width: 100%;
+  vertical-align: middle;
+}
+.guess-zx .zx-content .zx-media video:before {
+  position: absolute;
+  content: " ";
+  width: 25%;
+  padding-bottom: 25%;
+  background: url("../img/bofang.png");
+  background-size: 100%;
+  left: 50%;
+  top: 50%;
+  -ms-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+.guess-zx .zx-type {
+  padding-bottom: 12%;
+  background: url("../img/zx_imgtext.png") top center no-repeat;
+  background-size: 45%;
+}
+.guess-zx .video .zx-type {
+  background: url("../img/zx_video.png") top center no-repeat;
+  background-size: 45%;
+}
+.guess-zx .img .zx-type {
+  background: url("../img/zx_img.png") top center no-repeat;
+  background-size: 45%;
+}
+.guess-zx .text .zx-type {
+  background: url("../img/zx_text.png") top center no-repeat;
+  background-size: 45%;
+}
+.guess-zx .audio .zx-type {
+  background: url("../img/zx_audio.png") top center no-repeat;
+  background-size: 45%;
 }

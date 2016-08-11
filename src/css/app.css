@@ -199,7 +199,7 @@ body {
   background: #fff url("../img/bg_page.png") 0 0 repeat;
 }
 body.guess-page {
-  background: rgba(20, 42, 95, 0.5) url("../img/bg_page_guess.jpg") 0 0 no-repeat fixed;
+  background: rgba(20, 42, 95, 0.5) url("../img/cai_bg.jpg") 0 0 no-repeat fixed;
   background-size: cover;
 }
 a {
@@ -479,6 +479,22 @@ textarea:active {
 .margin {
   margin: 10px;
 }
+.pop-window {
+  display: none;
+  position: fixed;
+  z-index: 99999;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+}
+.pop-window .pop-content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  z-index: 99999;
+}
 /*dialog*/
 .qc-dialog .dialog-overlay {
   opacity: 0.4;
@@ -581,7 +597,7 @@ textarea:active {
 }
 .qc-info-content .dialog-content .dialog-content-bd {
   text-align: center;
-  padding: 15px;
+  padding: 15px 5px;
   font-size: 1.4rem;
 }
 .qc-info-content .dialog-content .qc-bean-input-wp {
@@ -739,6 +755,28 @@ textarea:active {
 }
 .dialog-phone-form .form-control.error .error-info {
   display: block;
+}
+.dialog-betting .dialog-content-title {
+  text-align: right;
+  padding-right: 20px;
+  font-weight: lighter;
+}
+.dialog-betting .qc-bean-input-wp input {
+  width: 70% !important;
+}
+.dialog-betting .qc-bean-plus .bean-btn {
+  font-size: 1.3rem !important;
+  padding: 3px 8px !important;
+  margin: 0 2% !important;
+}
+@media (max-width: 360px) {
+  .dialog-betting .qc-bean-plus .bean-btn {
+    margin: 0 1% !important;
+  }
+}
+.dialog-betting .qc-bean-plus .bean-btn .qc-icon {
+  width: 20px !important;
+  height: 19px !important;
 }
 /*guess list*/
 .qc-guess-list:before,
@@ -1313,6 +1351,25 @@ textarea:active {
 .qc-guess-box .guess-box-comment:after {
   clear: both;
 }
+.qc-guess-box .guess-box-btn {
+  padding: 15px 10px;
+}
+.qc-guess-box .guess-box-btn:before,
+.qc-guess-box .guess-box-btn:after {
+  content: " ";
+  display: table;
+}
+.qc-guess-box .guess-box-btn:after {
+  clear: both;
+}
+.qc-guess-box .guess-box-btn .guess-btn {
+  width: 50%;
+  margin: 0 auto;
+  cursor: pointer;
+}
+.qc-guess-box .guess-box-btn .guess-btn img {
+  width: 100%;
+}
 .qc-guess-footer {
   background: #fff;
   height: 50px;
@@ -1378,7 +1435,7 @@ textarea:active {
   bottom: 0;
   left: 0;
   right: 0;
-  z-index: 9999;
+  z-index: 9999999;
   display: none;
 }
 .qc-guess-pic-wp .swiper-container {
@@ -1405,6 +1462,258 @@ textarea:active {
 }
 .qc-guess-pic-wp .swiper-container .swiper-pagination {
   bottom: 20px;
+}
+.guess-footer-type {
+  margin-top: -10px;
+}
+.guess-footer-type:before,
+.guess-footer-type:after {
+  content: " ";
+  display: table;
+}
+.guess-footer-type:after {
+  clear: both;
+}
+.guess-footer-type .footer-u {
+  float: left;
+  width: 25%;
+  padding-left: 20px;
+  padding-bottom: 10px;
+}
+.guess-footer-type .footer-u img {
+  width: 100%;
+}
+.guess-footer-type .footer-text {
+  position: relative;
+  margin-left: 35%;
+  margin-right: 30px;
+  margin-top: 35px;
+  color: #fff;
+  font-size: 1.4rem;
+  border: 1px solid #fff;
+  padding: 12px;
+  border-radius: 10px;
+  line-height: 1.5;
+}
+.guess-footer-type .footer-text:before {
+  position: absolute;
+  left: -24px;
+  top: 40%;
+  content: "";
+  height: 0;
+  line-height: 0;
+  border: 8px dashed transparent;
+  border-right: 16px solid #fff;
+}
+.guess-footer-type .footer-text:after {
+  position: absolute;
+  left: -22px;
+  top: 40%;
+  content: "";
+  height: 0;
+  line-height: 0;
+  border: 8px dashed transparent;
+  border-right: 16px solid #140a3b;
+}
+.guess-footer-type .footer-text p {
+  margin: 0;
+}
+@media (max-width: 360px) {
+  .guess-footer-type .footer-text {
+    font-size: 1.2rem;
+    padding: 10px;
+  }
+}
+.guess-zx {
+  width: 75%;
+  margin: 0 auto;
+  display: inline-block;
+  -ms-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  position: absolute;
+  left: 50%;
+  top: 50%;
+}
+.guess-zx .zx-close {
+  position: absolute;
+  width: 15%;
+  padding-bottom: 15%;
+  top: -5%;
+  right: -5%;
+  background: url("../img/zx_close.png") 0 0 no-repeat;
+  background-size: 100%;
+}
+.guess-zx .zx-bg {
+  padding-top: 50%;
+}
+.guess-zx .zx-bg.zx-right {
+  background: url("../img/guess_right.png") 0 0 no-repeat;
+  background-size: 100%;
+}
+.guess-zx .zx-bg.zx-wrong {
+  background: url("../img/guess_wrong.png") 0 0 no-repeat;
+  background-size: 100%;
+}
+.guess-zx .zx-content {
+  margin-top: -1px;
+  background: #fff;
+  padding: 15px;
+  margin-left: 4.5%;
+  border-radius: 0 0 10px 10px;
+}
+.guess-zx .zx-content .zx-text {
+  margin-top: 10px;
+  color: #666;
+  font-size: 1.3rem;
+  word-break: break-all;
+}
+.guess-zx .zx-content .zx-media {
+  margin-top: 10px;
+  text-align: center;
+}
+.guess-zx .zx-content .zx-media img {
+  width: 100%;
+}
+.guess-zx .zx-content .zx-media audio {
+  display: inline-block;
+  width: 80%;
+}
+.guess-zx .zx-content .zx-media video {
+  position: relative;
+  display: block;
+  width: 100%;
+  vertical-align: middle;
+}
+.guess-zx .zx-content .zx-media video:before {
+  position: absolute;
+  content: " ";
+  width: 25%;
+  padding-bottom: 25%;
+  background: url("../img/bofang.png");
+  background-size: 100%;
+  left: 50%;
+  top: 50%;
+  -ms-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+.guess-zx .zx-type {
+  padding-bottom: 12%;
+  background: url("../img/zx_imgtext.png") top center no-repeat;
+  background-size: 45%;
+}
+.guess-zx .video .zx-type {
+  background: url("../img/zx_video.png") top center no-repeat;
+  background-size: 45%;
+}
+.guess-zx .img .zx-type {
+  background: url("../img/zx_img.png") top center no-repeat;
+  background-size: 45%;
+}
+.guess-zx .text .zx-type {
+  background: url("../img/zx_text.png") top center no-repeat;
+  background-size: 45%;
+}
+.guess-zx .audio .zx-type {
+  background: url("../img/zx_audio.png") top center no-repeat;
+  background-size: 45%;
+}
+.page-finish {
+  position: relative;
+  width: 100%;
+  padding-bottom: 178%;
+  background: url("../img/guess_finish.png") 0 0 no-repeat;
+  background-size: cover;
+}
+.finish-content {
+  position: absolute;
+  top: 49%;
+  left: 10%;
+  right: 10%;
+}
+.finish-content .fc-header:before,
+.finish-content .fc-header:after {
+  content: " ";
+  display: table;
+}
+.finish-content .fc-header:after {
+  clear: both;
+}
+.finish-content .fc-header .avatar {
+  float: left;
+  width: 80px;
+  margin-left: 10px;
+}
+@media (max-width: 360px) {
+  .finish-content .fc-header .avatar {
+    width: 60px;
+  }
+}
+.finish-content .fc-header .info {
+  margin-left: 100px;
+  color: #666;
+}
+.finish-content .fc-header .info p {
+  margin: 5px 0;
+}
+.finish-content .fc-header .info .nick {
+  font-size: 1.2rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.finish-content .fc-header .info .score {
+  font-size: 1.6rem;
+}
+.finish-content .fc-header .info .score strong {
+  color: #fc6656;
+}
+.finish-content .fc-header .info .play {
+  font-size: 1.4rem;
+}
+.finish-content .fc-header .info .play span {
+  color: #fc6656;
+}
+@media (max-width: 360px) {
+  .finish-content .fc-header .info {
+    margin-left: 75px;
+  }
+  .finish-content .fc-header .info p {
+    margin: 2px 0;
+  }
+  .finish-content .fc-header .info .nick {
+    font-size: 1.1rem;
+  }
+  .finish-content .fc-header .info .score {
+    font-size: 1.4rem;
+  }
+  .finish-content .fc-header .info .play {
+    font-size: 1.2rem;
+  }
+}
+.finish-content .fc-content {
+  width: 85%;
+  margin: 10px auto;
+}
+.finish-content .fc-content img {
+  width: 100%;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4);
+}
+.finish-content .fc-footer {
+  padding-top: 12%;
+  background: url("../img/finish_text.png") top center no-repeat;
+  background-size: 90%;
+}
+.finish-content .fc-footer a {
+  display: block;
+  width: 60%;
+  margin: 10px auto 0 auto;
+}
+.finish-content .fc-footer img {
+  width: 100%;
 }
 /*guess list*/
 .qc-prize-list:before,

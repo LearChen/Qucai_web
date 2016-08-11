@@ -199,7 +199,7 @@ body {
   background: #fff url("../img/bg_page.png") 0 0 repeat;
 }
 body.guess-page {
-  background: rgba(20, 42, 95, 0.5) url("../img/bg_page_guess.jpg") 0 0 no-repeat fixed;
+  background: rgba(20, 42, 95, 0.5) url("../img/cai_bg.jpg") 0 0 no-repeat fixed;
   background-size: cover;
 }
 a {
@@ -479,6 +479,22 @@ textarea:active {
 .margin {
   margin: 10px;
 }
+.pop-window {
+  display: none;
+  position: fixed;
+  z-index: 99999;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+}
+.pop-window .pop-content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  z-index: 99999;
+}
 /*dialog*/
 .qc-dialog .dialog-overlay {
   opacity: 0.4;
@@ -581,7 +597,7 @@ textarea:active {
 }
 .qc-info-content .dialog-content .dialog-content-bd {
   text-align: center;
-  padding: 15px;
+  padding: 15px 5px;
   font-size: 1.4rem;
 }
 .qc-info-content .dialog-content .qc-bean-input-wp {
@@ -739,6 +755,28 @@ textarea:active {
 }
 .dialog-phone-form .form-control.error .error-info {
   display: block;
+}
+.dialog-betting .dialog-content-title {
+  text-align: right;
+  padding-right: 20px;
+  font-weight: lighter;
+}
+.dialog-betting .qc-bean-input-wp input {
+  width: 70% !important;
+}
+.dialog-betting .qc-bean-plus .bean-btn {
+  font-size: 1.3rem !important;
+  padding: 3px 8px !important;
+  margin: 0 2% !important;
+}
+@media (max-width: 360px) {
+  .dialog-betting .qc-bean-plus .bean-btn {
+    margin: 0 1% !important;
+  }
+}
+.dialog-betting .qc-bean-plus .bean-btn .qc-icon {
+  width: 20px !important;
+  height: 19px !important;
 }
 html,
 body {
