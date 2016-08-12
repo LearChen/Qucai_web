@@ -84,8 +84,8 @@ define(function(require)
                     var cheer_score_sum = response.body.cheer_score_sum; /*加油猜豆总量*/
                     var cheer_score_num = response.body.cheer_score_num; /*当前用户加油猜豆数量*/
 
-                    $('#cheer_user_sum').text(cheer_user_sum);
-                    $('#cheer_score_sum').text(cheer_score_sum);
+                    $('#cheer_user_sum').text(parseInt(cheer_user_sum)*12);
+                    $('#cheer_score_sum').text(parseInt(cheer_score_sum)*12);
                     $('#cheer_score_num').text(cheer_score_num);
                 }
                 else

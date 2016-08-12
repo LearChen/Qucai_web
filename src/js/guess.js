@@ -812,7 +812,7 @@ define(function(require)
 
                         }
 
-                        $zx.find('.zx-text').text(content);
+                        $zx.find('.zx-text').html(common.replaceUrl(content));
 
                         if(evidence_type==0) /*文字*/
                         {
