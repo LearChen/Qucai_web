@@ -17,6 +17,7 @@ define(function(require)
     var answer, answerId, scoreNum;
     var rightAnswer;
     var prizeValue;
+    var is_open_result;
 
     var myScore=0;
 
@@ -47,11 +48,15 @@ define(function(require)
             type: "post",
             dataType: "json",
             data: data,
+            async: false,
             success: function (response)
             {
                 if(response.result_code ==0)
                 {
                     authorId = response.body.user_id;
+                    quizType = response.body.quiz_type;
+                    is_open_result = response.body.is_open_result;
+
                     setGuessDetail(response.body);
 
                     if(window.navigator.userAgent.indexOf('MicroMessenger') !=-1)
@@ -287,7 +292,6 @@ define(function(require)
         {
             prizeValue = body.prize_value;
 
-            var quizType = body.quiz_type;
             if(quizType == 2)/*赔率猜*/
             {
                 var html =
@@ -296,7 +300,7 @@ define(function(require)
                     '</div>';
 
                 $('#prizeType').html(html);
-                $('#u-text').html('<p>用猜都做赌注，一秒变赌神</p><p>快来猜题，靠你的智慧来博弈</p>')
+                $('#u-text').html('<p>用猜豆做赌注，一秒变赌神</p><p>快来猜题，靠你的智慧来博弈</p>')
             }
             else if(quizType == 3)/*pk猜*/
             {
@@ -397,7 +401,6 @@ define(function(require)
 
             var html='<div class="answer-type-1"><ol>';
 
-            quizType = body.quiz_type;
 
             if(quizType == 2 || quizType == 3)/*2赔率猜, 3pk猜*/
             {
@@ -783,6 +786,7 @@ define(function(require)
             type: "post",
             dataType: "json",
             data: answer,
+            async: false,
             success: function (response)
             {
                 if(response.result_code==0)
@@ -790,14 +794,21 @@ define(function(require)
                     isJoin = true;
                     //common.showDialog('系统提示','参与成功!下载App获取更多精彩内容!');
 
-                    if(quizType == 1)/*即开猜*/
+                    if(is_open_result && is_open_result == 1)/*即开猜*/
                     {
                         var result = response.body.result_type;
-                        var evidence = response.body.evidences[0] || {};
+                        var evidences = response.body.evidences || [{}];
+
+                        var evidence = evidences[0] || {};
                         var evidence_type = evidence.evidence_type || -1;
                         var content = evidence.evidence || '';
+
                         var file = evidence.file_url ||'';
                         var thumbnail = evidence.thumbnail_url || '';
+
+                        var clipSize = Math.floor($(window).width()/2);
+                        var clip = "?imageView2/1/w/" + clipSize + "/h/" + Math.floor(clipSize/1.6) + "/interlace/1/q/95";
+                        thumbnail = common.getSourceImageUrl(thumbnail+clip);
 
                         var $zx = $('#zx');
 
@@ -806,10 +817,13 @@ define(function(require)
                             $zx.find('.zx-bg').removeClass('zx-right').addClass('zx-wrong');
 
                         }
-                        else if(result && result==2 || result == 3) /*猜对了*/
+                        else if(result && result==2) /*猜对了*/
                         {
                             $zx.find('.zx-bg').removeClass('zx-wrong').addClass('zx-right');
-
+                        }
+                        else if(result || result == 3)/*中奖的*/
+                        {
+                            $zx.find('.zx-bg').removeClass('zx-wrong').addClass('zx-right');
                         }
 
                         $zx.find('.zx-text').html(common.replaceUrl(content));
@@ -822,6 +836,8 @@ define(function(require)
                         {
                             $zx.find('.zx-content').addClass('img');
                             $zx.find('.zx-media').html('<img src="'+thumbnail+'">');
+
+                            $zx.find('.zx-media img').css('max-height', Math.floor(Math.floor($(window).width()/2.5)));
 
                             var html = '<div class="swiper-wrapper">' +
                                 '<div class="swiper-slide">' +
@@ -870,6 +886,7 @@ define(function(require)
                         }
 
                         $zx.show();
+
                     }
                     else
                     {
@@ -924,6 +941,11 @@ define(function(require)
 
         getGuessDetail(quizId);
 
+        $('#zx').on('tap','.zx-close',function()
+        {
+            $('#zx').hide();
+            window.location.href = "./guess_finish.htm";
+        });
 
     });
 

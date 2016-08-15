@@ -1435,7 +1435,7 @@ textarea:active {
   bottom: 0;
   left: 0;
   right: 0;
-  z-index: 9999999;
+  z-index: 9999;
   display: none;
 }
 .qc-guess-pic-wp .swiper-container {
@@ -1575,6 +1575,7 @@ textarea:active {
 }
 .guess-zx .zx-content .zx-media img {
   width: 100%;
+  max-height: 160px;
 }
 .guess-zx .zx-content .zx-media audio {
   display: inline-block;

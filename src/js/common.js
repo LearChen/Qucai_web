@@ -86,25 +86,32 @@ define(function(require) {
     {
         if(!icon_type)
         {
-            $.dialog({
-                dialogClass:'qc-dialog qc-dialog-info no-info-pic',
-                type : 'info',
-                infoText : msg || '',
-                infoIcon : '',
-                autoClose : time || 2000
-            });
+            setTimeout(function()
+            {
+                $.dialog({
+                    dialogClass:'qc-dialog qc-dialog-info no-info-pic',
+                    type : 'info',
+                    infoText : msg || '',
+                    infoIcon : '',
+                    autoClose : time || 2000
+                });
+            },300);
+
         }
         else
         {
             var iconType = (icon_type=='success')? 'icon-success':'icon-fail';
 
-            $.dialog({
-                dialogClass:'qc-dialog qc-dialog-info ' + iconType,
-                type : 'info',
-                infoText : msg || '',
-                infoIcon : '',
-                autoClose : time || 2000
-            });
+            setTimeout(function()
+            {
+                $.dialog({
+                    dialogClass:'qc-dialog qc-dialog-info ' + iconType,
+                    type : 'info',
+                    infoText : msg || '',
+                    infoIcon : '',
+                    autoClose : time || 2000
+                });
+            },300);
 
         }
 
@@ -112,14 +119,17 @@ define(function(require) {
 
     var showDialog = function(title, content)
     {
-        $.dialog({
-            dialogClass: 'qc-dialog qc-info-content qc-dialog-header-bg',
-            type : 'alert',
-            showTitle: true,
-            titleText: title ||'',
-            contentHtml: content||'',
-            autoClose : 0
-        });
+        setTimeout(function()
+        {
+            $.dialog({
+                dialogClass: 'qc-dialog qc-info-content qc-dialog-header-bg',
+                type : 'alert',
+                showTitle: true,
+                titleText: title ||'',
+                contentHtml: content||''
+            });
+        },300);
+
     };
 
     var showTips = function(text)

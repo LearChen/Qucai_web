@@ -577,6 +577,7 @@
 }
 .guess-zx .zx-content .zx-media img {
   width: 100%;
+  max-height: 160px;
 }
 .guess-zx .zx-content .zx-media audio {
   display: inline-block;
