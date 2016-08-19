@@ -854,7 +854,8 @@ define(function(require)
                                     pagination: '.swiper-pagination',
                                     paginationClickable: true,
                                     preloadImages: false,
-                                    lazyLoading: true
+                                    lazyLoading: true,
+                                    virtualTranslate:true //禁止滑动
                                 });
 
                             $(document).on('tap', '#zx .zx-media img', function(e)
@@ -886,7 +887,10 @@ define(function(require)
                         }
 
                         $zx.show();
-
+                        $('body').on('touchmove',function(e)
+                        {
+                            e.preventDefault();
+                        });
                     }
                     else
                     {
@@ -939,11 +943,17 @@ define(function(require)
 
         quizId = common.getQueryString("quiz_id");
 
+        if(quizId=='57b569870cf245468d97b7bc')
+        {
+            quizId = '57b698e60cf245468d97b8bc';
+        }
+
         getGuessDetail(quizId);
 
         $('#zx').on('tap','.zx-close',function()
         {
             $('#zx').hide();
+            $('body').off('touchmove');
             window.location.href = "./guess_finish.htm";
         });
 
