@@ -727,7 +727,7 @@ define(function(require)
                 var $phone = $(p.find('#phone'));
                 var $btnCode = $(p.find('#btnCode'));
                 var t;
-                var time=30;
+                var time=60;
 
                 $btnCode.on('tap',function(e)
                 {
@@ -758,7 +758,7 @@ define(function(require)
                         {
                             clearInterval(t);
                             $btnCode.text('获 取').removeClass('disabled').data('run',false);
-                            time = 30;
+                            time = 60;
                         }
                         else
                         {

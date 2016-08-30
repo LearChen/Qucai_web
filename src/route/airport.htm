@@ -25,6 +25,13 @@
 	(function ()
 	{
 		var desc = "/web/qucai_web/src/activity/airport/index.htm";
+
+		var parm = getQueryString('parm');
+		if(parm=="prizes")
+		{
+			desc = "/web/qucai_web/src/activity/airport/prizeList.htm";
+		}
+
 		window.location.href = window.location.protocol+'//'+window.location.hostname + '' +desc + ''+window.location.search;
 	})();
 

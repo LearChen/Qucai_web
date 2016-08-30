@@ -331,3 +331,135 @@
     }
 
 }
+
+.address-window
+{
+    display: none;
+    position: fixed;
+    z-index: 999;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+
+    .add-content
+    {
+        position: relative;
+        width: 80%;
+        margin: 20% auto 0;
+        border-radius: 15px;
+        background: #fff;
+
+        .add-header
+        {
+            background: @theme-color;
+            font-size: 16px;
+            text-align: center;
+            color: white;
+            padding: 10px 20px;
+            font-weight: bold;
+            border-radius: 15px 15px 0 0;
+            .clearfix();
+
+        }
+
+        .add-body
+        {
+            font-size: 14px;
+            padding: 20px;
+
+            .form-block
+            {
+                margin-bottom: 10px;
+                .clearfix();
+
+                label
+                {
+                    display: inline-block;
+                    width: 20%;
+                    min-width: 4em;
+                    vertical-align: middle;
+                }
+
+                input,
+                textarea
+                {
+                    display: inline-block;
+                    width: 70%;
+                    min-width: 10em;
+                    margin-left: -0.5em;
+                    padding: 2px 4px;
+                }
+                textarea
+                {
+                    vertical-align: top;
+                    max-height: 5em;
+                }
+
+                input.radio
+                {
+                    float: left;
+                    display: inline-block;
+                    width: 2em;
+                    min-width: 2em;
+                    margin: 5px 0 0 0;
+                }
+
+                .add-radio
+                {
+                    margin-left: 2em;
+                    width: auto;
+                    display: block;
+
+                    .name
+                    {
+
+                    }
+
+                    .phone
+                    {
+
+                    }
+
+                    .address
+                    {
+
+                    }
+                }
+
+
+                .btn
+                {
+                    display: block;
+                    background: @theme-color;
+                    border-radius: 10px;
+                    width: 40%;
+                    margin: 0 auto;
+                    color: #fff;
+                    padding: 8px;
+                    text-align: center;
+                }
+
+                &.form-block-submit
+                {
+                    text-align: center;
+                    margin-top: 20px;
+                }
+
+            }
+
+        }
+
+        .add-footer
+        {
+            text-align: center;
+            border-top: 1px solid #c5c5c5;
+            font-size: 14px;
+            line-height: 40px;
+            color: @theme-color;
+        }
+    }
+
+
+}

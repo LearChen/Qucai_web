@@ -170,7 +170,7 @@
 }
 .qc-dialog-prise-detail .qc-dialog-prise-img img {
   width: 100%;
-  height: auto;
+  max-height: 230px;
   vertical-align: top;
 }
 .qc-dialog-prise-detail .qc-dialog-prise-info {

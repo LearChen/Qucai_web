@@ -6,15 +6,36 @@
     <meta name="format-detection" content="telephone=no" >
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>优猜</title>
-    <link rel="stylesheet" href="css/download.css">
+    <!--<link rel="stylesheet" href="css/download.css">-->
+    <script src="//cdn.bootcss.com/jquery/1.12.3/jquery.min.js"></script>
 </head>
 <body>
 
-    <div class="page-download">
+    <!--<div class="page-download">
         <a href="http://a.app.qq.com/o/simple.jsp?pkgname=com.qucai.guess&g_f=991653" target="_blank" >
             <img src="img/download.jpg">
         </a>
-    </div>
+    </div>-->
+
+    <script>
+        $.ajax({
+            url: "/resource/increase_channel_download_num.html",
+            type:"post",
+            data: "{'code':'highing'}",
+            success:function(response)
+            {
+
+            },
+            error:function()
+            {
+
+            },
+            complete:function()
+            {
+                window.location.href="http://a.app.qq.com/o/simple.jsp?pkgname=com.qucai.guess&g_f=991653";
+            }
+        });
+    </script>
 
 </body>
 </html>

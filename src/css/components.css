@@ -263,3 +263,103 @@
   height: 100%;
   z-index: 99999;
 }
+.address-window {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+}
+.address-window .add-content {
+  position: relative;
+  width: 80%;
+  margin: 20% auto 0;
+  border-radius: 15px;
+  background: #fff;
+}
+.address-window .add-content .add-header {
+  background: #fc6656;
+  font-size: 16px;
+  text-align: center;
+  color: white;
+  padding: 10px 20px;
+  font-weight: bold;
+  border-radius: 15px 15px 0 0;
+}
+.address-window .add-content .add-header:before,
+.address-window .add-content .add-header:after {
+  content: " ";
+  display: table;
+}
+.address-window .add-content .add-header:after {
+  clear: both;
+}
+.address-window .add-content .add-body {
+  font-size: 14px;
+  padding: 20px;
+}
+.address-window .add-content .add-body .form-block {
+  margin-bottom: 10px;
+}
+.address-window .add-content .add-body .form-block:before,
+.address-window .add-content .add-body .form-block:after {
+  content: " ";
+  display: table;
+}
+.address-window .add-content .add-body .form-block:after {
+  clear: both;
+}
+.address-window .add-content .add-body .form-block label {
+  display: inline-block;
+  width: 20%;
+  min-width: 4em;
+  vertical-align: middle;
+}
+.address-window .add-content .add-body .form-block input,
+.address-window .add-content .add-body .form-block textarea {
+  display: inline-block;
+  width: 70%;
+  min-width: 10em;
+  margin-left: -0.5em;
+  padding: 2px 4px;
+}
+.address-window .add-content .add-body .form-block textarea {
+  vertical-align: top;
+  max-height: 5em;
+}
+.address-window .add-content .add-body .form-block input.radio {
+  float: left;
+  display: inline-block;
+  width: 2em;
+  min-width: 2em;
+  margin: 5px 0 0 0;
+}
+.address-window .add-content .add-body .form-block .add-radio {
+  margin-left: 2em;
+  width: auto;
+  display: block;
+}
+.address-window .add-content .add-body .form-block .btn {
+  display: block;
+  background: #fc6656;
+  border-radius: 10px;
+  width: 40%;
+  margin: 0 auto;
+  color: #fff;
+  padding: 8px;
+  text-align: center;
+}
+.address-window .add-content .add-body .form-block.form-block-submit {
+  text-align: center;
+  margin-top: 20px;
+}
+.address-window .add-content .add-footer {
+  text-align: center;
+  border-top: 1px solid #c5c5c5;
+  font-size: 14px;
+  line-height: 40px;
+  color: #fc6656;
+}

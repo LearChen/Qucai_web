@@ -87,6 +87,49 @@
         </div>
     </div>
 
+    <div class="address-window" id="address-window-new" style="display: none;">
+        <div class="add-content">
+            <div class="add-header">
+                <span>填写地址信息</span>
+            </div>
+            <div class="add-body">
+                <div class="form-block">
+                    <label>姓名</label>
+                    <input type="text" name="name" />
+                </div>
+                <div class="form-block">
+                    <label>电话</label>
+                    <input type="text" name="phone" />
+                </div>
+                <div class="form-block">
+                    <label>地址</label>
+                    <textarea name="address"></textarea>
+                </div>
+                <div class="form-block form-block-submit">
+                    <span class="btn btn-submit">确定</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="address-window" id="address-window-exist" style="display: none;">
+        <div class="add-content">
+            <div class="add-header">
+                <span>选择地址</span>
+            </div>
+            <div class="add-body">
+                <div id="addressList" style="max-height: 300px;overflow-y: auto;">
+
+                </div>
+                <div class="form-block form-block-submit">
+                    <span class="btn btn-submit">确定</span>
+                </div>
+            </div>
+            <div class="add-footer">
+                <span id="address-new">新地址</span>
+            </div>
+        </div>
+    </div>
+
     <script>
         require(['user','../activity/airport/js/lottery'],function(user)
         {

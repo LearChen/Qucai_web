@@ -5,7 +5,7 @@ define(function(require)
     var common = require('common');
     var cookie = require('cookie');
     var dialog = require('dialog');
-
+    require('nano');
 
     var Lottery =
     {
@@ -122,9 +122,35 @@ define(function(require)
 
     };
 
+    /*转动转盘抽奖*/
+    var initGame =function(id)
+    {
+        var $btn = $('.lottery-btn');
+        var $priseList = $('.qc-lottery-list > li:not(".lottery-btn")');
+
+        Lottery.init({
+            $priseList: $priseList,
+            $btn: $btn,
+            btnImgStart:'img/lottery/lottery_btn_start.png',
+            btnImgWait:'img/lottery/lottery_btn_wait.png'
+        });
+
+        $btn.tap(function(e)
+        {
+            if(Lottery.options.running)
+            {
+                return;
+            }
+
+            runLottery(id,$priseList);
+
+            e.preventDefault();
+        });
+
+    };
 
     /*设置抽奖信息*/
-    var getLotteryDetail = function(area, id, $priseList)
+    var initLottery = function(id)
     {
         var para = {id:id};
 
@@ -145,14 +171,25 @@ define(function(require)
 
                     var lotteryOptions = body.lottery_options || [];
 
+                    var $priseList = $('.qc-lottery-list > li:not(".lottery-btn")');
+
                     for(var i=0; i<lotteryOptions.length; i++)
                     {
                         var l = lotteryOptions[i];
 
                         var $prise = $priseList.filter('[data-index='+ i+']');
                         $prise.attr('data-id', l.option_id);
+                        $prise.attr('data-imageurl', l.option_image_url);
+                        $prise.attr('data-name', l.option_name);
+                        $prise.attr('data-prize', l.prize_id);
                         $prise.find('img.lottery-img').attr('src', l.option_image_url);
                     }
+
+                    /*绑定奖品详细弹窗*/
+                    showPrizeDialog($priseList);
+
+                    /*初始化转盘*/
+                    initGame(id);
 
                 }
                 else
@@ -168,6 +205,7 @@ define(function(require)
         });
     };
 
+    /*执行抽奖结果*/
     var runLottery = function(id, $priseList)
     {
         var para = {id:id};
@@ -193,27 +231,54 @@ define(function(require)
 
                     var $target = $priseList.filter('[data-id='+ optionId +']');
 
+                    var joinId = body.join_id;
+
                     setTimeout(function()
                     {
                         Lottery.stop($target.data('index'));
 
                         if(isWinned)
                         {
-                            common.showDialog('系统提示','恭喜您中奖了！');
+                            setTimeout(function()
+                            {
+
+                                setTimeout(function()
+                                {
+                                    var $winDialog = $.dialog({
+                                        dialogClass: 'qc-dialog qc-info-content qc-dialog-header-bg',
+                                        type : 'alert',
+                                        showTitle: true,
+                                        titleText: '系统提示',
+                                        contentHtml: '<div>恭喜您中奖了！<p>'+$target.data('name')+'</p></div>',
+                                        onClickOk:function()
+                                        {
+                                            $winDialog.dialog.close();
+
+                                            showAddress(joinId, id);
+
+                                        }
+                                    });
+
+                                },300);
 
 
+                            },5000);
                         }
                         else
                         {
-                           common.showDialog('系统提示','差一点就抽中了！');
+                            setTimeout(function()
+                            {
+                                common.showDialog('系统提示','差一点就抽中了！');
+
+                            },5000);
                         }
 
-                    },14000);
+                    },8000);
 
                 }
-                else if (response.result_code == 20)
+                else
                 {
-                    alert("猜豆余额不足!");
+                    common.showErrorCodeInfo(response.result_code);
                 }
 
             },
@@ -224,38 +289,69 @@ define(function(require)
         })
     };
 
-    var init =function(area, id)
+    var showAddress = function(joinId, activityId)
     {
-        var $btn = $('.lottery-btn');
-        var $priseList = $('.qc-lottery-list > li:not(".lottery-btn")');
-
-        getLotteryDetail(area, id, $priseList);
-
-        Lottery.init({
-            $priseList: $priseList,
-            $btn: $btn,
-            btnImgStart:'img/lottery/lottery_btn_start.png',
-            btnImgWait:'img/lottery/lottery_btn_wait.png'
-        });
-
-
-        $btn.tap(function(e)
-        {
-            if(Lottery.options.running)
+        $.ajax({
+            url: "/user/address_list.html?t=" + cookie.get('token_id'),
+            type: "post",
+            dataType: "json",
+            async: false,
+            success: function (response)
             {
-                return;
+                var body = response.body;
+
+                /*缓存提交参数*/
+                $('#address-window-new, #address-window-exist').data({
+                    joinId:joinId,
+                    activityId:activityId
+                });
+
+                //TODO 目前没有提交确认地址接口，所以都弹出新地址
+                body=null;
+
+
+                /*没有地址*/
+                if(!body)
+                {
+                    $('#address-window-new').show();
+                }
+                else
+                {
+                    var temp = '<div class="form-block">' +
+                        '<input class="radio" id="{addId}" type="radio" name="add-exist" value="{addId}" {isChecked} />' +
+                        '<label class="add-radio" for="{addId}">' +
+                        '<span class="name">{name}</span>' +
+                        '<span class="phone">{phone}</span>' +
+                        '<div class="address">{address}</div>' +
+                        '</label></div>';
+
+                    $('#addressList').empty();
+
+                    for(var i=0; i<body.length;i++)
+                    {
+                        var address = body[i] || {};
+
+                        var data={
+                            addId: address.id || addressId+''+i,
+                            name: address.receiver || '',
+                            phone: address.cell_num || '',
+                            address:address.detail_address || '',
+                            isChecked: address.is_default?'checked':''
+                        };
+                        $('#addressList').append(nano(temp,data));
+                    }
+
+                    $('#address-window-exist').show();
+                }
+
             }
-
-            runLottery(id,$priseList);
-
-            e.preventDefault();
-        });
-
+        })
     };
 
-
-    var showPriseDialog = function(index)
+    var showPriseDialog = function(id, $priseList)
     {
+        var $target = $priseList.filter('[data-id='+ id +']');
+
         var $priseDialog = $.dialog({
             dialogClass:'qc-dialog qc-dialog-no-button qc-dialog-header-bg',
             showTitle:true,
@@ -263,13 +359,12 @@ define(function(require)
 
             contentHtml:'<div class="qc-dialog-prise-detail">' +
             '<div class="qc-dialog-prise-img">'+
-            '<img src="img/demo/prise_detail_01.jpg">' +
+            '<img src="'+$target.data('imageurl')+'">' +
             '</div>' +
             '<div class="qc-dialog-prise-info">' +
-            '<h4 class="prise-info-name">优衣库大礼包</h4>' +
+            '<h4 class="prise-info-name">奖品名称：'+$target.data('name')+'</h4>' +
             '<div class="prise-info-detail">' +
-            '详情介绍详情介绍详情介绍详情介绍详情介绍详情介绍详情介绍详情介绍详情介绍详情绍详情介商品 ' +
-            '<a>商品外链 <i class="fa fa-angle-right"></i></a>' +
+            ' ' +
             '</div>' +
             '</div>' +
             '</div>',
@@ -291,7 +386,7 @@ define(function(require)
 
     };
 
-    var showAreaDialog = function()
+    var showAreaDialog = function(type)
     {
         var chooseAreaDialog = $.dialog({
             dialogClass:'qc-dialog qc-dialog-no-button',
@@ -307,7 +402,50 @@ define(function(require)
                 $areaList.on('tap',function(e)
                 {
                     var area = $(this).data('area');
+
+                    //TODO id
+
+                    var id = '57bd69f90cf2a72740307cb0';
+
+                    /*出发区*/
+                    if(area == '0')
+                    {
+                        if(type=='t1')
+                        {
+                            id = '57bd69f90cf2a72740307cb0'; /*服务类*/
+                        }
+                        else if(type=='t2')
+                        {
+                            id = '57bd69f90cf2a72740307cb0'; /*购物类*/
+                        }
+                        else if(type=='t3')
+                        {
+                            id = '57bd69f90cf2a72740307cb0'; /*美食类*/
+                        }
+                    }
+                    else /*到达区*/
+                    {
+                        if(type=='t1')
+                        {
+                            id = '57bd69f90cf2a72740307cb0'; /*服务类*/
+                        }
+                        else if(type=='t2')
+                        {
+                            id = '57bd69f90cf2a72740307cb0'; /*购物类*/
+                        }
+                        else if(type=='t3')
+                        {
+                            id = '57bd69f90cf2a72740307cb0'; /*美食类*/
+                        }
+                    }
+
+                    //TODO ceshi
+                    //id = '57563a200cf2ef16f1b7cca5';
+
+                    initLottery(id);
+
                     chooseAreaDialog.dialog.close();
+
                     e.preventDefault();
                 });
 
@@ -315,25 +453,148 @@ define(function(require)
         });
     };
 
-    var showPrizeDialog = function()
+    var showPrizeDialog = function($priseList)
     {
         $(document).on('tap', '.qc-lottery-list > li:not(".lottery-btn")' ,function(e)
         {
-            var index = $(this).data('index');
+            var id = $(this).data('id');
 
-            showPriseDialog(index);
+            showPriseDialog(id, $priseList);
             e.preventDefault();
         });
     };
 
+    /*新收货地址确认*/
+    $('#address-window-new .btn-submit').on('tap',function(e)
+    {
+        e.preventDefault();
+
+        var $form = $('#address-window-new');
+
+        var name = $form.find('input[name="name"]').val().trim();
+        var phone = $form.find('input[name="phone"]').val().trim();
+        var address = $form.find('textarea[name="address"]').val().trim();
+
+        var joinId = $form.data('joinId');
+        var activityId = $form.data('activityId');
+
+        if(!name || !phone || isNaN(phone) || !address)
+        {
+            alert("请填写正确信息再提交！");
+            return null;
+        }
+
+        var params = {join_id:joinId, activity_id:activityId, receiver:name, cell_num: phone, detail_address: address};
+        $.ajax({
+            url: "/activity/add_winner_address.html?t=" + cookie.get('token_id'),
+            type:"post",
+            dataType:"json",
+            data: JSON.stringify(params),
+            async:false,
+            success:function(response)
+            {
+                if(response.result_code== 0)
+                {
+                    common.showDialog("系统消息","用户信息提交成功,等待接收奖品!");
+
+                }
+                else
+                {
+                    common.showErrorCodeInfo(response.result_code);
+                }
+
+                $('#address-window-new').hide();
+
+            },
+            error:function()
+            {
+                common.showInfo('暂时无法提交数据!')
+            }
+        });
+
+    });
+
+    /*已有地址确认*/
+    $('#address-window-exist .btn-submit').on('tap',function(e)
+    {
+        e.preventDefault();
+
+        var $form = $('#address-window-exist');
+        var choose = $form.find('input[type="radio"]:checked');
+
+        if(!choose.length)
+        {
+            alert("请选择地址");
+            return null;
+        }
+        else
+        {
+            var $address = choose.closest('.form-block');
+
+            var name = $address.find('.name').text().trim();
+            var phone = $address.find('.phone').text().trim();
+            var address = $address.find('.address').text().trim();
+
+            var joinId = $form.data('joinId');
+            var activityId = $form.data('activityId');
+
+            var params = {join_id:joinId, activity_id:activityId, receiver:name, cell_num: phone, detail_address: address};
+
+            $.ajax({
+                url: "/user/address_list.html?t=" + cookie.get('token_id'),
+                type:"post",
+                dataType:"json",
+                data: JSON.stringify(params),
+                async:false,
+                success:function(response)
+                {
+                    if(response.result_code== 0)
+                    {
+                        common.showDialog("系统消息","用户信息提交成功,等待接收奖品!");
+                    }
+                    else
+                    {
+                        common.showErrorCodeInfo(response.result_code);
+                    }
+
+                    $('#address-window-exist').hide();
+
+                },
+                error:function()
+                {
+                    common.showInfo('暂时无法提交数据!')
+                }
+            });
+
+        }
+
+    });
+
+
+    /*打开新收货地址*/
+    $('#address-window-exist #address-new').on('tap',function(e)
+    {
+        e.preventDefault();
+
+        $('#address-window-exist').hide();
+
+        $('#address-window-new').show();
+
+    });
+
+
+
     $(function()
     {
-        /*弹出窗*/
-        //showAreaDialog();
-        //showPrizeDialog();
+        /*
+        * 1.弹出窗选择区域
+        * 2.初始化奖品信息，绑定奖品详情弹窗
+        * 3.初始化转盘，可以抽奖
+        *
+        * */
 
-        //init(0);
-        common.showInfo('暂时无法抽奖!');
+        var type = common.getQueryString('type');
+        showAreaDialog(type);
 
     });
 
