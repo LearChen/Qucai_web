@@ -527,7 +527,7 @@
   }
 }
 .guess-zx {
-  width: 75%;
+  width: 90%;
   margin: 0 auto;
   display: inline-block;
   -ms-transform: translate(-50%, -50%);
@@ -535,15 +535,15 @@
   -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
   position: absolute;
-  left: 50%;
+  left: 48%;
   top: 50%;
 }
 .guess-zx .zx-close {
   position: absolute;
-  width: 15%;
-  padding-bottom: 15%;
-  top: -5%;
-  right: -5%;
+  width: 12%;
+  padding-bottom: 12%;
+  top: -3%;
+  right: -4%;
   background: url("../img/zx_close.png") 0 0 no-repeat;
   background-size: 100%;
 }

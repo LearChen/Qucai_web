@@ -807,8 +807,8 @@ define(function(require)
                         var thumbnail = evidence.thumbnail_url || '';
 
                         var clipSize = Math.floor($(window).width()/2);
-                        var clip = "?imageView2/1/w/" + clipSize + "/h/" + Math.floor(clipSize/1.6) + "/interlace/1/q/95";
-                        thumbnail = common.getSourceImageUrl(thumbnail+clip);
+                        var clip = "?imageView2/1/w/" + clipSize + "/h/" + Math.floor(clipSize/1.5) + "/interlace/1/q/95";
+                        thumbnail = common.getSourceImageUrl(thumbnail) + clip;
 
                         var $zx = $('#zx');
 
@@ -835,7 +835,7 @@ define(function(require)
                         else if(evidence_type == 1) /*图片*/
                         {
                             $zx.find('.zx-content').addClass('img');
-                            $zx.find('.zx-media').html('<img src="'+thumbnail+'">');
+                            $zx.find('.zx-media').html('<img src="'+ common.getSourceImageUrl(file) + clip +'">');
 
                             $zx.find('.zx-media img').css('max-height', Math.floor(Math.floor($(window).width()/2.5)));
 
@@ -855,7 +855,7 @@ define(function(require)
                                     paginationClickable: true,
                                     preloadImages: false,
                                     lazyLoading: true,
-                                    virtualTranslate:true //禁止滑动
+                                    virtualTranslate:false //禁止滑动
                                 });
 
                             $(document).on('tap', '#zx .zx-media img', function(e)
