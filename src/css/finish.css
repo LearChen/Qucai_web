@@ -92,3 +92,98 @@
 .finish-content .fc-footer img {
   width: 100%;
 }
+/*finish null*/
+.page-finish-null {
+  position: relative;
+  width: 100%;
+  padding-bottom: 178%;
+  background: url("../img/guess_finish_null.png") 0 0 no-repeat;
+  background-size: cover;
+}
+.page-finish-phone {
+  position: relative;
+  width: 100%;
+  padding-bottom: 178%;
+  background: url("../img/guess_finish_phone.jpg") 0 0 no-repeat;
+  background-size: cover;
+}
+.finish-phone-content {
+  position: absolute;
+  top: 67%;
+  left: 10%;
+  right: 10%;
+}
+.finish-phone-content .finish-phone-content-relative {
+  position: relative;
+}
+.finish-phone-content .form-input {
+  display: block;
+  position: relative;
+  width: 59%;
+  padding-bottom: 12%;
+  margin-top: 4%;
+  margin-left: 28%;
+  border-radius: 20px;
+  background: transparent;
+}
+.finish-phone-content .form-input input {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  padding: 0 15px;
+  border: none;
+  outline: none;
+  background: none;
+  -webkit-appearance: none;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  font-size: 15px;
+}
+.finish-phone-content .form-input.input-code {
+  margin-top: 10%;
+  width: 36%;
+}
+.finish-phone-content .form-code-btn {
+  position: absolute;
+  right: 5%;
+  width: 27%;
+  top: 36%;
+  padding-bottom: 13%;
+  z-index: 9;
+  background: transparent;
+  text-align: left;
+  font-size: 10px;
+  color: #333;
+}
+@media (min-width: 375px) {
+  .finish-phone-content .form-code-btn {
+    font-size: 12px;
+  }
+}
+@media (min-width: 500px) {
+  .finish-phone-content .form-code-btn {
+    font-size: 15px;
+  }
+}
+.finish-phone-content .form-code-btn span {
+  display: none;
+  position: absolute;
+  padding-top: 12%;
+  width: 120%;
+}
+.finish-phone-content .form-code-btn.disabled {
+  background: #fff;
+}
+.finish-phone-content .form-code-btn.disabled span {
+  display: block;
+}
+.finish-phone-content .form-submit-btn {
+  text-indent: -99999em;
+  height: 0;
+  background: transparent;
+  width: 53%;
+  padding-bottom: 14%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 14%;
+}

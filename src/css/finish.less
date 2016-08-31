@@ -126,3 +126,126 @@
     }
 }
 
+/*finish null*/
+.page-finish-null
+{
+    position: relative;
+    width: 100%;
+    padding-bottom: 178%;
+    background: url("../img/guess_finish_null.png") 0 0 no-repeat;
+    background-size: cover;
+}
+
+.page-finish-phone
+{
+    position: relative;
+    width: 100%;
+    padding-bottom: 178%;
+    background: url("../img/guess_finish_phone.jpg") 0 0 no-repeat;
+    background-size: cover;
+
+}
+
+.finish-phone-content
+{
+    position: absolute;
+    top: 67%;
+    left: 10%;
+    right: 10%;
+
+    .finish-phone-content-relative
+    {
+        position: relative;
+    }
+
+    .form-input
+    {
+        display: block;
+        position: relative;
+        width: 59%;
+        padding-bottom: 12%;
+        margin-top: 4%;
+        margin-left: 28%;
+        border-radius: 20px;
+        background: transparent;
+
+        input
+        {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            padding: 0 15px;
+            border: none;
+            outline: none;
+            background: none;
+            -webkit-appearance:none;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+            font-size: 15px;
+
+        }
+
+        &.input-num
+        {
+
+        }
+
+        &.input-code
+        {
+            margin-top: 10%;
+            width: 36%;
+        }
+    }
+
+    .form-code-btn
+    {
+        position: absolute;
+        right: 5%;
+        width: 27%;
+        top: 36%;
+        padding-bottom: 13%;
+        z-index: 9;
+        background: transparent;
+        text-align: left;
+        font-size: 10px;
+        color: #333;
+
+        @media (min-width: 375px) {
+            font-size: 12px;
+        }
+
+        @media (min-width: 500px) {
+            font-size: 15px;
+        }
+
+        span
+        {
+            display: none;
+            position: absolute;
+            padding-top: 12%;
+            width: 120%;
+        }
+
+        &.disabled
+        {
+            background: #fff;
+            span
+            {
+                display: block;
+            }
+        }
+    }
+
+    .form-submit-btn
+    {
+        text-indent: -99999em;
+        height: 0;
+        background: transparent;
+        width: 53%;
+        padding-bottom: 14%;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 14%;
+    }
+
+}

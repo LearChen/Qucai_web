@@ -10,6 +10,8 @@ define(function(require)
     var Swiper = require('swiper');
     var dialog = require('dialog');
 
+    var h5 = common.getQueryString('h5')=='true';
+
     var quizId;
     var authorId;
     var answerType;
@@ -894,7 +896,15 @@ define(function(require)
                     }
                     else
                     {
-                        window.location.href = "./guess_finish.htm";
+                        if(h5)
+                        {
+                            jumpH5();
+                        }
+                        else
+                        {
+                            window.location.href = "./guess_finish.htm";
+                        }
+
                     }
 
                 }
@@ -937,12 +947,29 @@ define(function(require)
         });
     }
 
+    var jumpH5 = function()
+    {
+        var cellPhone = cookie.get('cell_num');
+        var hasPhone = cellPhone && !isNaN(cellPhone) && cellPhone.length == 11;
+
+        if(hasPhone)
+        {
+            window.location.href = "./guess_finish_null.htm";
+        }
+        else
+        {
+            window.location.href = "./guess_finish_phone.htm";
+        }
+
+    };
+
     $(function()
     {
         getScore();
 
         quizId = common.getQueryString("quiz_id");
 
+        /*有道题结束了重新发，原题链接已存在，替换到新题*/
         if(quizId=='57b569870cf245468d97b7bc')
         {
             quizId = '57b698e60cf245468d97b8bc';
@@ -954,7 +981,16 @@ define(function(require)
         {
             $('#zx').hide();
             $('body').off('touchmove');
-            window.location.href = "./guess_finish.htm";
+
+            if(h5)
+            {
+                jumpH5();
+            }
+            else
+            {
+                window.location.href = "./guess_finish.htm";
+            }
+
         });
 
     });

@@ -521,7 +521,7 @@ define(function(require) {
 
     var getPublicKey = function()
     {
-        var publicKey = {};
+        var publicKey = null;
 
         $.ajax({
             url: "/common/get_public_key-w.html",
