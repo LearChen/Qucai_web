@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="format-detection" content="telephone=no" >
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title></title>
+    <link rel="stylesheet" href="../../vender/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../../css/app.css">
+    <script src="../../js/lib/requirejs/require.min.js"></script>
+    <script src="../../js/require.config.js"></script>
+    <script>
+        require(['authorize']);
+    </script>
+</head>
+<body>
+
+    <div class="page-finish-phone">
+
+        <div class="finish-phone-content">
+            <div class="finish-phone-content-relative">
+                <div class="form-input input-num">
+                    <input type="text" id="phone_num" />
+                </div>
+
+                <div class="form-input input-code">
+                    <input type="text" id="phone_code" />
+                </div>
+
+                <div class="form-code-btn" id="get_code">
+                    <span>60s后可再获取</span>
+                </div>
+
+                <div class="form-submit-btn" id="bind_submit">
+                    确定
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        require(['phone']);
+    </script>
+
+</body>
+</html>

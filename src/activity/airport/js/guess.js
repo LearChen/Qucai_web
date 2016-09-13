@@ -1,6 +1,6 @@
 /*
-* 猜
-* */
+ * 猜
+ * */
 define(function(require)
 {
     var $ = require('jquery');
@@ -9,21 +9,24 @@ define(function(require)
     var cookie = require('cookie');
     var Swiper = require('swiper');
     var dialog = require('dialog');
-    var user = require('user');
-    var RSACoder = require('RSACoder');
-    var publicKey = common.getPublicKey();
+
+    var h5 = common.getQueryString('h5')=='true';
 
     var quizId;
     var authorId;
     var answerType;
     var quizType;
     var answer, answerId, scoreNum;
+    var rightAnswer;
+    var prizeValue;
+    var is_open_result;
+
+    var myScore=0;
 
     var isFinished = false; /*是否已经结束*/
     var isJoin = false;     /*当前用户是否已经参与过*/
-    var userAnswer;
-
-    var hasPhone;
+    var userAnswer; /*用户已参与过的答案*/
+    var chooseItem;
 
     /*分享参数*/
     var pageUrl = window.location.href.split('?')[0];
@@ -31,6 +34,7 @@ define(function(require)
     var shareDesc;
     var shareLink;
     var shareImg = pageUrl.substring(0, pageUrl.lastIndexOf("/")+1) + 'img/uguess_logo.png';
+
 
 
     function getGuessDetail(quiz_id)
@@ -43,11 +47,15 @@ define(function(require)
             type: "post",
             dataType: "json",
             data: data,
+            async: false,
             success: function (response)
             {
                 if(response.result_code ==0)
                 {
                     authorId = response.body.user_id;
+                    quizType = response.body.quiz_type;
+                    is_open_result = response.body.is_open_result;
+
                     setGuessDetail(response.body);
 
                     if(window.navigator.userAgent.indexOf('MicroMessenger') !=-1)
@@ -66,7 +74,7 @@ define(function(require)
             },
             error:function()
             {
-               // common.showInfo('无法连接服务器!');
+                common.showInfo('无法连接服务器!');
             }
         });
 
@@ -103,7 +111,8 @@ define(function(require)
         $('#publishTime').text(publishTime);
 
         var guessContent = body.content;
-        $('#guessContent').text(guessContent);
+
+        $('#guessContent').html(common.replaceUrl(guessContent));
 
         shareTitle = guessContent;
         shareDesc = guessContent;
@@ -144,8 +153,8 @@ define(function(require)
                 {
                     var html =
                         '<li class="nothing">' +
-                            '<div class="res-box">' +
-                            '</div>' +
+                        '<div class="res-box">' +
+                        '</div>' +
                         '</li>';
 
                     $('#resList').html(html);
@@ -213,11 +222,11 @@ define(function(require)
             {
                 var html =
                     '<li class="video">' +
-                        '<div class="res-box">' +
-                            '<video poster="'+files[0].thumbnail_url+'" controls>' +
-                            '<source src="'+files[0].file_url+'" />' +
-                            '</video>' +
-                        '</div>' +
+                    '<div class="res-box">' +
+                    '<video poster="'+files[0].thumbnail_url+'" controls>' +
+                    '<source src="'+files[0].file_url+'" />' +
+                    '</video>' +
+                    '</div>' +
                     '</li>';
 
                 $('#resList').html(html);
@@ -231,11 +240,11 @@ define(function(require)
             {
                 var html =
                     '<li class="audio">' +
-                        '<div class="res-box">' +
-                            '<audio controls>' +
-                            '<source src="'+files[0].file_url+'" />' +
-                            '</audio>' +
-                        '</div>' +
+                    '<div class="res-box">' +
+                    '<audio controls>' +
+                    '<source src="'+files[0].file_url+'" />' +
+                    '</audio>' +
+                    '</div>' +
                     '</li>';
 
                 $('#resList').html(html);
@@ -247,9 +256,9 @@ define(function(require)
             {
                 var html =
                     '<li class="game">' +
-                        '<div class="res-box">' +
-                            '<a><img src="img/game_download.png"></a>' +
-                        '</div>' +
+                    '<div class="res-box">' +
+                    '<a href="http://www.uguess.me/web/download.htm"><img src="img/game_download.png"></a>' +
+                    '</div>' +
                     '</li>';
 
                 $('#resList').html(html);
@@ -280,9 +289,8 @@ define(function(require)
         /*0猜豆*/
         if(prizeType == 0)
         {
-            var prizeValue = body.prize_value;
+            prizeValue = body.prize_value;
 
-            var quizType = body.quiz_type;
             if(quizType == 2)/*赔率猜*/
             {
                 var html =
@@ -291,6 +299,7 @@ define(function(require)
                     '</div>';
 
                 $('#prizeType').html(html);
+                $('#u-text').html('<p>用猜豆做赌注，一秒变赌神</p><p>快来猜题，靠你的智慧来博弈</p>')
             }
             else if(quizType == 3)/*pk猜*/
             {
@@ -300,6 +309,8 @@ define(function(require)
                     '</div>';
 
                 $('#prizeType').html(html);
+                $('#u-text').html('<p>投多少赢多少，先猜先得豆</p><p>快来猜题，靠你的智慧抢猜豆</p>')
+
             }
             else
             {
@@ -345,16 +356,16 @@ define(function(require)
             var punishment = body.punishment || "暂无";
 
             var html = '<div class="type-3">' +
-                    '<section class="win">' +
-                        '<div class="content">' +
-                            '<span>奖励: '+reward+'</span>' +
-                        '</div>' +
-                    '</section>' +
-                    '<section class="lose">' +
-                        '<div class="content">' +
-                            '<span>惩罚: '+punishment+'</span>' +
-                        '</div>' +
-                    '</section>' +
+                '<section class="win">' +
+                '<div class="content">' +
+                '<span>奖励: '+reward+'</span>' +
+                '</div>' +
+                '</section>' +
+                '<section class="lose">' +
+                '<div class="content">' +
+                '<span>惩罚: '+punishment+'</span>' +
+                '</div>' +
+                '</section>' +
                 '</div>';
 
             $('#prizeType').html(html);
@@ -376,12 +387,11 @@ define(function(require)
         {
             var html = '<div class="answer-type-0">' +
                 '<div class="answer-input-area">' +
-                    '<textarea placeholder="输入答案..."></textarea>' +
+                '<textarea placeholder="输入答案..."></textarea>' +
                 '</div>' +
                 '</div>';
 
             $('#answerType').html(html);
-
         }
         /*选择题*/
         else if(answerType == 1)
@@ -390,21 +400,20 @@ define(function(require)
 
             var html='<div class="answer-type-1"><ol>';
 
-            quizType = body.quiz_type;
 
             if(quizType == 2 || quizType == 3)/*2赔率猜, 3pk猜*/
             {
                 for(var i=0; i< answers.length; i++)
                 {
                     html+=
-                        '<li data-answerid="'+answers[i].answer_id+'" data-bean="true">' +
-                            '<div class="main">' +
-                                '<span class="code">'+String.fromCharCode(i+65)+ '</span>' +
-                                '<span class="answer">'+answers[i].answer+'</span>' +
-                            '</div>' +
-                            '<div class="aside">' +
-                                '<aside>投豆</aside>' +
-                            '</div>' +
+                        '<li data-answerid="'+answers[i].answer_id+'" data-bean="true" data-correct="'+answers[i].is_correct_answer+'">' +
+                        '<div class="main">' +
+                        '<span class="code">'+String.fromCharCode(i+65)+ '</span>' +
+                        '<span class="answer">'+answers[i].answer+'</span>' +
+                        '</div>' +
+                        '<div class="aside">' +
+                        '<aside>投豆</aside>' +
+                        '</div>' +
                         '</li>'
                 }
 
@@ -415,20 +424,30 @@ define(function(require)
                 for(var i=0; i< answers.length; i++)
                 {
                     html+=
-                        '<li data-answerid="'+answers[i].answer_id+'">' +
-                            '<div class="main">' +
-                                '<span class="code">'+String.fromCharCode(i+65)+ '</span>' +
-                                '<span class="answer">'+answers[i].answer+'</span>' +
-                            '</div>' +
-                            '<div class="aside">' +
-                                '<i class="fa fa-check-circle-o"></i>' +
-                            '</div>' +
+                        '<li data-answerid="'+answers[i].answer_id+'" data-correct="'+answers[i].is_correct_answer+'">' +
+                        '<div class="main">' +
+                        '<span class="code">'+String.fromCharCode(i+65)+ '</span>' +
+                        '<span class="answer">'+answers[i].answer+'</span>' +
+                        '</div>' +
+                        '<div class="aside">' +
+                        '<i class="fa fa-check-circle-o"></i>' +
+                        '</div>' +
                         '</li>'
                 }
             }
 
             html+='</ol></div>';
+
             $('#answerType').html(html);
+
+            var list = $('#answerType').find('li');
+            list.each(function()
+            {
+                var $li = $(this);
+
+                $li.data('correct',$li.attr('data-correct'));
+                $li.removeAttr('data-correct');
+            });
 
             if(isJoin && userAnswer)
             {
@@ -464,15 +483,16 @@ define(function(require)
             answerId = $this.data('answerid');
             $this.addClass('active').siblings('li').removeClass('active');
 
+
             if($this.data('bean'))
             {
                 var d = $.dialog({
-                    dialogClass:'qc-dialog qc-info-content qc-dialog-header-bg',
+                    dialogClass:'qc-dialog qc-info-content qc-dialog-header-bg dialog-betting',
                     showTitle:true,
                     type:'confirm',
-                    titleText:'请投注(最多5000豆)',
+                    titleText:'您的猜豆余额: ' + myScore,
                     contentHtml:'<div class="qc-bean-input-wp">' +
-                    '<input type="text" value="" placeholder="请输入数值">' +
+                    '<input type="text" value="" placeholder="请输入数值(不能大于5000)">' +
                     '<div class="qc-bean-plus">' +
                     '<span class="bean-btn" data-value="50"><i class="qc-icon icon-bean"></i>+50豆</span>' +
                     '<span class="bean-btn" data-value="100"><i class="qc-icon icon-bean"></i>+100豆</span>' +
@@ -514,6 +534,7 @@ define(function(require)
         /*提交答案*/
         $(document).on('tap','#answerOK',function(e)
         {
+
             if(isFinished)
             {
                 common.showInfo('已经结束!');
@@ -600,7 +621,7 @@ define(function(require)
         var userId = cookie.get('user_id');
         if(!authorId || !userId)
         {
-            common.showDialog('出错了','未能获取用户信息,请授权后重试!');
+            common.showDialog('出错了','未能获取用户信息,请登录后重试!');
             return false;
         }
 
@@ -620,13 +641,15 @@ define(function(require)
         /*填空题*/
         if(answerType==0)
         {
+            answer = $('.qc-answer textarea').val();
+
             if(!answer || answer.trim()=="")
             {
                 common.showDialog('系统提示','还没输入答案哦!');
                 return null;
             }
 
-           return '{"quiz_id":"'+quizId+'", "answer":"'+answer+'"}';
+            return '{"quiz_id":"'+quizId+'", "answer":"'+answer+'"}';
         }
         /*选择题*/
         else if(answerType==1)
@@ -641,7 +664,7 @@ define(function(require)
             if(quizType == 2 || quizType == 3)/*2赔率猜, 3pk猜*/
             {
 
-                if(!scoreNum || isNaN(scoreNum) || scoreNum<=0 || scoreNum >5000)
+                if(!scoreNum || isNaN(scoreNum) || scoreNum<=0 || scoreNum >5000 || scoreNum > myScore)
                 {
                     common.showDialog('系统提示','投注数据无效,请重新投注!');
                     return null;
@@ -662,6 +685,7 @@ define(function(require)
     function submitAnswer()
     {
         var answer = getUserAnswer();
+
         if(!answer)
         {
             return;
@@ -672,20 +696,118 @@ define(function(require)
             type: "post",
             dataType: "json",
             data: answer,
+            async: false,
             success: function (response)
             {
                 if(response.result_code==0)
                 {
-                    common.showInfo('竞猜成功!','success',1500);
                     isJoin = true;
+                    //common.showDialog('系统提示','参与成功!下载App获取更多精彩内容!');
 
-                    setTimeout(function()
+                    if(is_open_result && is_open_result == 1)/*即开猜*/
                     {
-                        if(!hasPhone)
+                        var result = response.body.result_type;
+                        var evidences = response.body.evidences || [{}];
+
+                        var evidence = evidences[0] || {};
+                        var evidence_type = evidence.evidence_type || -1;
+                        var content = evidence.evidence || '';
+
+                        var file = evidence.file_url ||'';
+                        var thumbnail = evidence.thumbnail_url || '';
+
+                        var clipSize = Math.floor($(window).width()/2);
+                        var clip = "?imageView2/1/w/" + clipSize + "/h/" + Math.floor(clipSize/1.5) + "/interlace/1/q/95";
+                        thumbnail = common.getSourceImageUrl(thumbnail) + clip;
+
+                        var $zx = $('#zx');
+
+                        if(result && result == 1) /*猜错了*/
                         {
-                            setPhone();
+                            $zx.find('.zx-bg').removeClass('zx-right').addClass('zx-wrong');
+
                         }
-                    },2000);
+                        else if(result && result==2) /*猜对了*/
+                        {
+                            $zx.find('.zx-bg').removeClass('zx-wrong').addClass('zx-right');
+                        }
+                        else if(result || result == 3)/*中奖的*/
+                        {
+                            $zx.find('.zx-bg').removeClass('zx-wrong').addClass('zx-right');
+                        }
+
+                        $zx.find('.zx-text').html(common.replaceUrl(content));
+
+                        if(evidence_type==0) /*文字*/
+                        {
+                            $zx.find('.zx-content').addClass('text');
+                        }
+                        else if(evidence_type == 1) /*图片*/
+                        {
+                            $zx.find('.zx-content').addClass('img');
+                            $zx.find('.zx-media').html('<img src="'+ common.getSourceImageUrl(file) + clip +'">');
+
+                            $zx.find('.zx-media img').css('max-height', Math.floor(Math.floor($(window).width()/2.5)));
+
+                            var html = '<div class="swiper-wrapper">' +
+                                '<div class="swiper-slide">' +
+                                '<img data-src="'+file+'" class="swiper-lazy">' +
+                                '<div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>' +
+                                '</div>' +
+                                '</div>' +
+                                '<div class="swiper-pagination swiper-pagination-white"></div>';
+
+                            $('#zxpic').html(html);
+
+                            var zxpic = new Swiper('#zxpic',
+                                {
+                                    pagination: '.swiper-pagination',
+                                    paginationClickable: true,
+                                    preloadImages: false,
+                                    lazyLoading: true,
+                                    virtualTranslate:false //禁止滑动
+                                });
+
+                            $(document).on('tap', '#zx .zx-media img', function(e)
+                            {
+                                $('#zxpic-wp').show();
+                                zxpic.update();
+                                e.preventDefault();
+                            });
+
+                            $(document).on('tap', '#zxpic-wp .swiper-slide', function(e)
+                            {
+                                $('#zxpic-wp').hide();
+                                zxpic.update();
+                                e.preventDefault();
+                            });
+
+
+                        }
+                        else if(evidence_type == 2) /*音频*/
+                        {
+                            $zx.find('.zx-content').addClass('audio');
+                            $zx.find('.zx-media').html('<audio controls="controls"><source src="'+file+'"></audio>');
+
+                        }
+                        else if(evidence_type == 3) /*视频*/
+                        {
+                            $zx.find('.zx-content').addClass('video');
+                            $zx.find('.zx-media').html('<video poster="'+thumbnail+'" controls="controls"><source src="'+file+'"></video>');
+                        }
+
+                        $zx.show();
+                        $('body').on('touchmove',function(e)
+                        {
+                            e.preventDefault();
+                        });
+                    }
+                    else
+                    {
+                        jumpH5();
+
+                    }
+
                 }
                 else
                 {
@@ -699,154 +821,71 @@ define(function(require)
         });
     }
 
-
-    var setPhone = function()
+    function getScore()
     {
-        var p = $.dialog({
-            dialogClass:'qc-dialog qc-info-content qc-dialog-header-bg',
-            showTitle:true,
-            type:'alert',
-            titleText:'留下手机号便于领奖',
-            buttonClass:{ok : 'no-close'},
-            contentHtml: '<div class="dialog-phone-form">' +
-            '<div class="form-control">' +
-                '<div class="error-info"></div>' +
-                '<label>手机号</label>' +
-                '<input type="text" value="" placeholder="请输入手机号" id="phone" />' +
-            '</div>' +
-            '<div class="form-control">' +
-                '<div class="error-info">*手机号不正确</div>' +
-                '<label>验证码</label>' +
-                '<input class="input-code" type="text" placeholder="验证码" id="code"/>' +
-                '<span class="btn-code" id="btnCode">获 取</span>' +
-            '</div>' +
-            '</div>',
+        var token = cookie.get('token_id');
 
-            onShow:function()
+        if(!token)
+        {
+            return;
+        }
+
+        $.ajax({
+            url: "/user/get_asset.html?t=" + token,
+            type:"post",
+            dataType:"json",
+            async: false,
+            success: function (response)
             {
-                var $phone = $(p.find('#phone'));
-                var $btnCode = $(p.find('#btnCode'));
-                var t;
-                var time=60;
-
-                $btnCode.on('tap',function(e)
+                /*成功*/
+                if(response.result_code==0)
                 {
-                    if($btnCode.data('run'))
-                    {
-                        return;
-                    }
-
-                    var phoneVal = $phone.val();
-
-                    if(!phoneVal || isNaN(phoneVal) || phoneVal.trim().length!=11)
-                    {
-                        alert('手机号格式不正确!');
-
-                        return;
-                    }
-
-                    var data = {action_type:"3", cell_num:phoneVal.toString()};
-
-                    var encryptStr = RSACoder.encryptByPublicKey(JSON.stringify(data), publicKey.exponent, publicKey.modulus);
-                    user.getVerifyCode(encryptStr);
-
-
-                    $btnCode.addClass('disabled').text(time + '秒后重新发送').data('run',true);
-
-                    t = setInterval(function(){
-                        if(time-- <=0)
-                        {
-                            clearInterval(t);
-                            $btnCode.text('获 取').removeClass('disabled').data('run',false);
-                            time = 60;
-                        }
-                        else
-                        {
-                            $btnCode.text(time + '秒后重新发送');
-                        }
-                    },1000);
-                    e.preventDefault();
-                });
-
-            },
-
-            onClickOk:function()
-            {
-
-                var phoneVal = $(p.find('#phone')).val();
-                var code = $(p.find('#code')).val();
-
-                if(!phoneVal || isNaN(phoneVal) || phoneVal.trim().length!=11)
-                {
-                    alert('手机号格式不正确!');
-                    return;
+                    var score = response.body.score_balance;
+                    myScore = parseInt(score);
                 }
-
-                if(!code || isNaN(code))
-                {
-                    alert('请填写验证码!');
-                    return;
-                }
-
-                var data = {cell_num:phoneVal.toString(), verify_code:code.toString()};
-                var encryptStr = RSACoder.encryptByPublicKey(JSON.stringify(data), publicKey.exponent, publicKey.modulus);
-
-                $.ajax({
-                    url: "/user/bind_phone-w.html?t=" + cookie.get('token_id'),
-                    type: "post",
-                    dataType: "json",
-                    data: encryptStr,
-                    async: false,
-                    success: function (response)
-                    {
-                        if (response.result_code == 0)
-                        {
-                            alert("操作成功!感谢您的参与!");
-                            cookie.set('cell_num',phoneVal);
-                            hasPhone = true;
-                            p.dialog.close();
-
-                        }
-                        else if(response.result_code == 1)
-                        {
-                            alert("请填写正确的手机号及验证码!");
-                        }
-                        else if(response.result_code == 7)
-                        {
-                            alert("该手机号已被绑定，请更换手机号!");
-                        }
-                        else if(response.result_code == 8)
-                        {
-                            alert("该手机号不存在，请更换手机号!");
-                        }
-                        else if(response.result_code == 9)
-                        {
-                            alert("验证码错误，请重新输入!");
-                        }
-                        else if(response.result_code == 10)
-                        {
-                            alert("验证码过期，请重新获取!");
-                        }
-                    },
-                    error:function()
-                    {
-                        alert("连接服务器失败，请稍后重试!");
-                    }
-                });
 
             }
-
         });
-    };
+    }
 
+    var jumpH5 = function()
+    {
+        var cellPhone = cookie.get('cell_num');
+        var hasPhone = cellPhone && !isNaN(cellPhone) && cellPhone.length == 11;
+
+        if(hasPhone)
+        {
+            window.location.href = "./guess_finish_null.htm";
+        }
+        else
+        {
+            window.location.href = "./guess_finish_phone.htm";
+        }
+
+    };
 
     $(function()
     {
-        var cellPhone = cookie.get('cell_num');
-        hasPhone = cellPhone && !isNaN(cellPhone) && cellPhone.length == 11;
+        getScore();
 
         quizId = common.getQueryString("quiz_id");
+
+        /*有道题结束了重新发，原题链接已存在，替换到新题*/
+        if(quizId=='57b569870cf245468d97b7bc')
+        {
+            quizId = '57b698e60cf245468d97b8bc';
+        }
+
         getGuessDetail(quizId);
+
+        $('#zx').on('tap','.zx-close',function()
+        {
+            $('#zx').hide();
+            $('body').off('touchmove');
+
+            jumpH5();
+
+        });
 
     });
 

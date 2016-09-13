@@ -10,11 +10,12 @@ define(function(require)
     var tokenId = cookie.get('token_id');
 
     var topicId = common.getQueryString('topic_id');
+    var filter_joined = common.getQueryString('filter_joined') || 0;
     var m_orderNum=0;
 
     function getTopicList (topicId, orderBy, orderNum)
     {
-        var params = '{"topic_id":'+topicId+',"order_by":"'+orderBy+'","order_num":"'+orderNum+'"}';
+        var params = '{"topic_id":'+topicId+',"order_by":"'+orderBy+'","order_num":"'+orderNum+'","is_filter_joined":"'+filter_joined+'"}';
 
         $.ajax({
             url: "/square/topic_quiz_list.html?t="+tokenId,

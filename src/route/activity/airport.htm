@@ -7,7 +7,7 @@
 	<title></title>
 </head>
 <body>
-
+<!--机场相关-->
 <script>
 	(function()
 	{
@@ -24,9 +24,15 @@
 
 	(function ()
 	{
+		var desc = "/web/qucai_web/src/activity/airport/index.htm";
 
-		var desc = "/web/qucai_web/src/activity/olympic/index.htm";
-		window.location.href =  window.location.protocol+'//'+window.location.hostname + '' +desc + ''+window.location.search;
+		var parm = getQueryString('parm');
+		if(parm=="prizes")
+		{
+			desc = "/web/qucai_web/src/activity/airport/prizeList.htm";
+		}
+
+		window.location.href = window.location.protocol+'//'+window.location.hostname + '' +desc + ''+window.location.search;
 	})();
 
 </script>
