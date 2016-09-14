@@ -408,36 +408,16 @@ define(function(require)
                     var id = '57bd69f90cf2a72740307cb0';
 
                     /*出发区*/
-                    if(area == '0')
+                    if(area == "0")
                     {
-                        if(type=='t1')
-                        {
-                            id = '57bd69f90cf2a72740307cb0'; /*服务类*/
-                        }
-                        else if(type=='t2')
-                        {
-                            id = '57bd69f90cf2a72740307cb0'; /*购物类*/
-                        }
-                        else if(type=='t3')
-                        {
-                            id = '57bd69f90cf2a72740307cb0'; /*美食类*/
-                        }
+
                     }
-                    else /*到达区*/
+                    /*到达区*/
+                    else
                     {
-                        if(type=='t1')
-                        {
-                            id = '57bd69f90cf2a72740307cb0'; /*服务类*/
-                        }
-                        else if(type=='t2')
-                        {
-                            id = '57bd69f90cf2a72740307cb0'; /*购物类*/
-                        }
-                        else if(type=='t3')
-                        {
-                            id = '57bd69f90cf2a72740307cb0'; /*美食类*/
-                        }
+
                     }
+
 
                     //TODO ceshi
                     //id = '57563a200cf2ef16f1b7cca5';
