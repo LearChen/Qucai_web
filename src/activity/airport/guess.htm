@@ -151,14 +151,43 @@
         </section>
 
         <section class="guess-box-comment">
-            <!--<div class="qc-tip-wp">
-                <a target="_blank" href="http://a.app.qq.com/o/simple.jsp?pkgname=com.qucai.guess&g_f=991653">
-                    <span>下载App，查看评论！</span>
-                </a>
-            </div>-->
+            <div class="qc-tip-wp" id="qc-comment" style="display: none;">
+                <span>暂无评论，说点什么吧！</span>
+                <!--<ul class="comment-list">
+                    <li>
+                        <div class="comment-avatar">
+                            <div class="qc-avatar">
+                                <div class="avatar-box">
+                                    <img src="img/demo/avatar.png">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="comment-content">
+                            <div class="comment-user">
+                                张三
+                                <span>回复</span>
+                                李四
+                            </div>
+                            <div class="comment-comment">
+                                哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
+                            </div>
+                        </div>
+                    </li>
+                </ul>-->
 
+            </div>
         </section>
+
+        <!--评论输入框-->
+        <div class="comment-input" id="comment-input" style="display: none;">
+            <div class="input">
+                <input type="text" placeholder="评论一下">
+                <i>取消</i>
+            </div>
+            <span class="comment-submit">评论</span>
+        </div>
     </div>
+
 
     <!-- pic swiper -->
     <div class="qc-guess-pic-wp swiper-pic-bg" id="swiperPicWp">
@@ -183,6 +212,10 @@
             <div class="guess-btn-wp">
                 <section class="guess-btn guess-btn-ask hide" data-index="0"><i class="fa fa-commenting"></i>去看题目</section>
                 <section class="guess-btn guess-btn-answer" data-index="1"><i class="fa fa-commenting"></i>马上去猜</section>
+            </div>
+            <div class="guess-comment-icon" id="comment-icon" style="display: none;">
+                <span class="fa fa-comment"></span>
+                <span class="comment-num">0</span>
             </div>
             <!--<div class="guess-app">
                 <a target="_blank" href="http://a.app.qq.com/o/simple.jsp?pkgname=com.qucai.guess&g_f=991653">

@@ -13,6 +13,10 @@ define(function(require)
     var filter_joined = common.getQueryString('filter_joined') || 0;
     var m_orderNum=0;
 
+    /*获取评论*/
+    var hascomment = common.getQueryString('comment') || null;
+    var commentparam = hascomment ? '&comment=true' : '';
+
     function getTopicList (topicId, orderBy, orderNum)
     {
         var params = '{"topic_id":'+topicId+',"order_by":"'+orderBy+'","order_num":"'+orderNum+'","is_filter_joined":"'+filter_joined+'"}';
@@ -55,7 +59,7 @@ define(function(require)
                     if (body[i].type == 0)
                     {
                         showInformation+='<div class="guess-item">' +
-                            '<a href="./guess.htm?quiz_id='+quizsId+'">' +
+                            '<a href="./guess.htm?quiz_id=' + quizsId + commentparam + '">' +
                                 '<div class="guess-item-pic">' +
                                     '<div class="pic-wp">' +
                                         '<img src="'+guessImg+'">' +
@@ -71,7 +75,7 @@ define(function(require)
                     else if (body[i].type == 1)/*视频*/
                     {
                         showInformation+='<div class="guess-item">' +
-                            '<a href="./guess.htm?quiz_id='+quizsId+'">' +
+                            '<a href="./guess.htm?quiz_id=' + quizsId + commentparam + '">' +
                                 '<div class="guess-item-pic">' +
                                     '<div class="pic-wp video">' +
                                         '<img src="'+guessImg+'">' +
@@ -86,7 +90,7 @@ define(function(require)
                     else if (body[i].type == 2)
                     {
                         showInformation+='<div class="guess-item">' +
-                            '<a href="./guess.htm?quiz_id='+quizsId+'">' +
+                            '<a href="./guess.htm?quiz_id=' + quizsId + commentparam + '">' +
                                 '<div class="guess-item-content">' +
                                     '<span>'+guessContent+'</span>' +
                                 '</div>' +

@@ -1732,6 +1732,127 @@ textarea:active {
   bottom: 0;
   background: #000;
 }
+/*评论*/
+.guess-comment-icon {
+  display: inline-block;
+  padding: 10px 15px;
+  color: #555;
+}
+.guess-comment-icon .fa {
+  display: inline-block;
+  font-size: 26px;
+  vertical-align: middle;
+}
+.guess-comment-icon .comment-num {
+  display: inline-block;
+  font-size: 15px;
+  vertical-align: middle;
+  padding-left: 5px;
+}
+.comment-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: left;
+  color: #999;
+}
+.comment-list li {
+  padding: 10px 0;
+}
+.comment-list li:before,
+.comment-list li:after {
+  content: " ";
+  display: table;
+}
+.comment-list li:after {
+  clear: both;
+}
+.comment-list li + li {
+  border-top: 1px solid #ccc;
+}
+.comment-list .comment-avatar {
+  float: left;
+  width: 50px;
+}
+.comment-list .comment-content {
+  padding-top: 3px;
+  margin-left: 60px;
+  font-size: 14px;
+}
+.comment-list .comment-user span {
+  color: #fc6656;
+}
+.comment-list .comment-comment {
+  color: #333;
+}
+.comment-input {
+  display: none;
+  padding: 20px;
+  background: #fff;
+}
+.comment-input:before,
+.comment-input:after {
+  content: " ";
+  display: table;
+}
+.comment-input:after {
+  clear: both;
+}
+.comment-input .input {
+  position: relative;
+  float: left;
+  display: inline-block;
+  width: 78%;
+}
+.comment-input .input input {
+  border-radius: 10px;
+  height: 34px;
+  line-height: 34px;
+  font-size: 14px;
+  padding: 5px 10px;
+  border: 1px solid #999;
+  outline: none;
+  width: 100%;
+}
+.comment-input .input input:active,
+.comment-input .input input:focus {
+  border-color: #00a6f0;
+}
+.comment-input .input i {
+  display: none;
+  content: '取消';
+  position: absolute;
+  right: 10px;
+  top: 5px;
+  font-size: 12px;
+  padding: 4px 10px;
+  border-radius: 10px;
+  background: #ccc;
+  font-style: normal;
+}
+.comment-input .input.replay i {
+  display: block;
+}
+.comment-input .input.replay input {
+  padding-right: 5em;
+}
+.comment-input .comment-submit {
+  border-radius: 10px;
+  background: #fc6656;
+  color: #fff;
+  display: inline-block;
+  width: 18%;
+  float: right;
+  height: 34px;
+  line-height: 34px;
+  text-align: center;
+  font-size: 16px;
+  cursor: pointer;
+}
+.comment-input .comment-submit.active {
+  background: #999;
+  cursor: not-allowed;
+}
 .page-finish {
   position: relative;
   width: 100%;

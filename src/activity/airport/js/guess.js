@@ -864,6 +864,8 @@ define(function(require)
 
     };
 
+
+
     $(function()
     {
         getScore();
@@ -886,6 +888,17 @@ define(function(require)
             jumpH5();
 
         });
+
+
+        /*评论*/
+        var havecomment = common.getQueryString('comment') || null;
+
+        if(havecomment)
+        {
+
+            var comment = require('comment');
+            comment.initComment();
+        }
 
     });
 

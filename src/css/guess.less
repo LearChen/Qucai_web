@@ -865,3 +865,156 @@
         background: #000;
     }
 }
+
+
+/*评论*/
+.guess-comment-icon
+{
+    display: inline-block;
+    padding: 10px 15px;
+    color: #555;
+    .fa
+    {
+        display: inline-block;
+        font-size: 26px;
+        vertical-align: middle;
+    }
+
+    .comment-num
+    {
+        display: inline-block;
+        font-size: 15px;
+        vertical-align: middle;
+        padding-left: 5px;
+    }
+}
+
+.comment-list
+{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: left;
+    color: #999;
+
+    li
+    {
+        .clearfix();
+        padding: 10px 0;
+
+        +li
+        {
+            border-top: 1px solid #ccc;
+        }
+    }
+
+    .comment-avatar
+    {
+        float: left;
+        width: 50px;
+    }
+
+    .comment-content
+    {
+        padding-top: 3px;
+        margin-left: 60px;
+        font-size: 14px;
+    }
+
+    .comment-user
+    {
+        span
+        {
+            color: @theme-color;
+        }
+    }
+
+    .comment-comment
+    {
+        color: #333;
+    }
+
+}
+
+.comment-input
+{
+    display: none;
+    padding: 20px;
+    background: #fff;
+    .clearfix();
+
+    .input
+    {
+        position: relative;
+        float: left;
+        display: inline-block;
+        width: 78%;
+
+        input
+        {
+            border-radius: 10px;
+            height: 34px;
+            line-height: 34px;
+            font-size: 14px;
+            padding: 5px 10px;
+            border: 1px solid #999;
+            outline: none;
+            width: 100%;
+
+            &:active,
+            &:focus
+            {
+                border-color: #00a6f0;
+            }
+
+        }
+
+        i
+        {
+            display: none;
+            content: '取消';
+            position: absolute;
+            right: 10px;
+            top: 5px;
+            font-size: 12px;
+            padding: 4px 10px;
+            border-radius: 10px;
+            background: #ccc;
+            font-style: normal;
+        }
+
+        &.replay
+        {
+            i
+            {
+                display: block;
+            }
+
+            input
+            {
+                padding-right: 5em;
+            }
+        }
+    }
+
+    .comment-submit
+    {
+        border-radius: 10px;
+        background: @theme-color;
+        color: #fff;
+        display: inline-block;
+        width: 18%;
+        float: right;
+        height: 34px;
+        line-height: 34px;
+        text-align: center;
+        font-size: 16px;
+        cursor: pointer;
+
+        &.active
+        {
+            background: #999;
+            cursor: not-allowed;
+        }
+    }
+}
