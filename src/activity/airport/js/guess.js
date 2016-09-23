@@ -721,6 +721,7 @@ define(function(require)
                         thumbnail = common.getSourceImageUrl(thumbnail) + clip;
 
                         var $zx = $('#zx');
+                        $zx.find('.guess-zx').removeClass('no_content');
 
                         if(result && result == 1) /*猜错了*/
                         {
@@ -794,6 +795,10 @@ define(function(require)
                         {
                             $zx.find('.zx-content').addClass('video');
                             $zx.find('.zx-media').html('<video poster="'+thumbnail+'" controls="controls"><source src="'+file+'"></video>');
+                        }
+                        else
+                        {
+                            $zx.find('.guess-zx').addClass('no_content');
                         }
 
                         $zx.show();

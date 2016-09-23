@@ -80,7 +80,7 @@ define(function(require)
                     '</div>' +
                 '</div>' +
             '</div>' +
-            '<div class="qc-btn-wp">' +
+            '<div class="qc-btn-wp" style="display: none;">' +
                 '<span class="qc-btn normal-btn">使 用</span>' +
             '</div>';
 

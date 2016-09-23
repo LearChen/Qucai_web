@@ -625,6 +625,18 @@
   background: url("../img/zx_audio.png") top center no-repeat;
   background-size: 45%;
 }
+.guess-zx.no_content {
+  top: 42%;
+}
+.guess-zx.no_content .zx-content {
+  height: 0;
+  padding: 10px 0 0 0;
+  border-radius: 0 0 10px 10px;
+  background: #ffea97;
+}
+.guess-zx.no_content .zx-type {
+  background: none;
+}
 .swiper-pic-bg:before {
   content: " ";
   position: absolute;

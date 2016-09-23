@@ -229,6 +229,8 @@ define(function(require)
                     var isWinned = body.is_winned;
                     var optionId = body.option_id;
 
+                    var thingType = body.thing_type || 0;
+
                     var $target = $priseList.filter('[data-id='+ optionId +']');
 
                     var joinId = body.join_id;
@@ -254,7 +256,11 @@ define(function(require)
                                         {
                                             $winDialog.dialog.close();
 
-                                            showAddress(joinId, id);
+                                            if(thingType)
+                                            {
+                                                showAddress(joinId, id);
+
+                                            }
 
                                         }
                                     });
@@ -410,17 +416,16 @@ define(function(require)
                     /*出发区*/
                     if(area == "0")
                     {
-
+                        id = '57df7ae70cf22f08c26e66e5';
                     }
                     /*到达区*/
                     else
                     {
-
+                        id = '57df7b6d0cf22f08c26e66ee';
                     }
 
-
                     //TODO ceshi
-                    //id = '57563a200cf2ef16f1b7cca5';
+                    /*id = '57563a200cf2ef16f1b7cca5';*/
 
                     initLottery(id);
 
