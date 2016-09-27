@@ -1290,6 +1290,9 @@ textarea:active {
 .qc-guess-box .guess-box-res .res-list > li.img {
   padding-bottom: 100%;
 }
+.qc-guess-box .guess-box-res .res-list > li.img.only {
+  padding-bottom: 70%;
+}
 .qc-guess-box .guess-box-res .res-list > li.video {
   padding-bottom: 70%;
 }

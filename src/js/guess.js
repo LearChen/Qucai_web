@@ -185,10 +185,17 @@ define(function(require)
 
                     var clip = "?imageView2/1/w/" + clipSize + "/h/" + clipSize + "/interlace/1/q/95";
                     var html = '';
+
+                    var imgclz = '';
+                    if(size ==1)
+                    {
+                        imgclz = 'only'
+                    }
+
                     for(var i=0; i<size;i++)
                     {
                         html+=
-                            '<li class="img">' +
+                            '<li class="img '+imgclz+'">' +
                             '<div class="res-box">' +
                             '<img data-index="'+i+'" src="'+common.getSourceImageUrl(files[i].file_url) + clip +'">' +
                             '</div>' +
