@@ -23,6 +23,9 @@
 .guess-list .guess-item a {
   text-decoration: none;
 }
+.guess-list .guess-item > a {
+  display: block;
+}
 .guess-list .guess-item .guess-item-pic {
   position: relative;
   width: 100%;
