@@ -871,7 +871,7 @@ define(function(require)
 
         if(hasPhone)
         {
-            window.location.href = "./guess_finish_null.htm";
+            window.location.href = "./guess_finish_airport.htm";
         }
         else
         {

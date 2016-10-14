@@ -8,17 +8,49 @@
     <title></title>
     <link rel="stylesheet" href="../../vender/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="../../css/app.css">
+    <link rel="stylesheet" href="./css/airport.css">
     <script src="../../js/lib/requirejs/require.min.js"></script>
     <script src="../../js/require.config.js"></script>
-    <script>
-        // require(['authorize']);
-    </script>
 </head>
-<body>
+<body class="airport-finish">
 
-<div class="page-finish-null">
+    <div class="page-finish">
+        <div class="finish-content">
+            <section class="fc-header">
+                <div class="avatar">
+                    <div class="qc-avatar">
+                        <div class="avatar-box">
+                            <img id="portraitUrl" src="">
+                        </div>
+                    </div>
+                </div>
+                <div class="info">
+                    <p class="nick" id="nickName">用户</p>
+                    <p class="score">您已累积 <strong id="scoreBalance">2000</strong> 豆</p>
+                    <p class="play">可在优猜App内抽奖<span id="playTime">1</span>次</p>
+                </div>
+            </section>
+            <section class="fc-content">
+                <img src="img/finish_content.png">
+            </section>
+            <section class="fc-footer">
+                <a href="./index.htm">
+                    <img src="img/btn_goon.png">
+                </a>
+                <a href="lottery.htm">
+                    <img src="img/btn_lottery.png">
+                </a>
+            </section>
+        </div>
+    </div>
 
-</div>
+    <script>
+        require(['user'],function(user)
+        {
+            user.setBaseInfo();
+            user.setAsset();
+        });
+    </script>
 
 </body>
 </html>

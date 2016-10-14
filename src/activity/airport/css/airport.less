@@ -116,3 +116,67 @@
         background: #fff;
     }
 }
+
+.airport-finish
+{
+    .page-finish
+    {
+        background-image: url('../img/airport_guess_finish.png')
+    }
+
+    .finish-content
+    {
+        .fc-header
+        {
+            .avatar
+            {
+                width: 75px;
+
+                @media (max-width: 320px) {
+                    width: 65px;
+                }
+            }
+        }
+
+        .fc-content
+        {
+            text-align: center;
+            margin-top: 0;
+
+            img
+            {
+                box-shadow: none;
+                margin-top: -2px;
+            }
+        }
+
+        .fc-footer
+        {
+            padding-top: 2%;
+            background: none;
+            text-align: center;
+            .clearfix();
+
+            @media (min-width: 376px) {
+                padding-top: 6%;
+            }
+
+            @media (min-width: 470px) {
+                padding-top: 10%;
+            }
+
+            @media (min-width: 768px) {
+                padding-top: 20%;
+            }
+
+            a
+            {
+                float: left;
+                display: inline-block;
+                width: 40%;
+                margin: 0 5%;
+            }
+        }
+    }
+
+}

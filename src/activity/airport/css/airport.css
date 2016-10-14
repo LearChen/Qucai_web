@@ -79,3 +79,56 @@
 .airport-banner .swiper-pagination-bullet-active {
   background: #fff;
 }
+.airport-finish .page-finish {
+  background-image: url('../img/airport_guess_finish.png');
+}
+.airport-finish .finish-content .fc-header .avatar {
+  width: 75px;
+}
+@media (max-width: 320px) {
+  .airport-finish .finish-content .fc-header .avatar {
+    width: 65px;
+  }
+}
+.airport-finish .finish-content .fc-content {
+  text-align: center;
+  margin-top: 0;
+}
+.airport-finish .finish-content .fc-content img {
+  box-shadow: none;
+  margin-top: -2px;
+}
+.airport-finish .finish-content .fc-footer {
+  padding-top: 2%;
+  background: none;
+  text-align: center;
+}
+.airport-finish .finish-content .fc-footer:before,
+.airport-finish .finish-content .fc-footer:after {
+  content: " ";
+  display: table;
+}
+.airport-finish .finish-content .fc-footer:after {
+  clear: both;
+}
+@media (min-width: 376px) {
+  .airport-finish .finish-content .fc-footer {
+    padding-top: 6%;
+  }
+}
+@media (min-width: 470px) {
+  .airport-finish .finish-content .fc-footer {
+    padding-top: 10%;
+  }
+}
+@media (min-width: 768px) {
+  .airport-finish .finish-content .fc-footer {
+    padding-top: 20%;
+  }
+}
+.airport-finish .finish-content .fc-footer a {
+  float: left;
+  display: inline-block;
+  width: 40%;
+  margin: 0 5%;
+}
