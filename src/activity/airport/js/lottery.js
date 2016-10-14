@@ -579,7 +579,8 @@ define(function(require)
         * */
 
         var type = common.getQueryString('type');
-        showAreaDialog(type);
+        /*showAreaDialog(type);*/
+        initLottery(type);
 
     });
 

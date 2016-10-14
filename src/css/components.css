@@ -363,3 +363,24 @@
   line-height: 40px;
   color: #fc6656;
 }
+/*返回按钮*/
+#air_btn_back {
+  display: block;
+  position: fixed;
+  z-index: 99999;
+  right: 25px;
+  bottom: 55px;
+}
+#air_btn_back a {
+  display: block;
+  width: 50px;
+  height: 50px;
+  text-decoration: none;
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid #999;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 50px;
+  color: #999;
+  font-size: 15px;
+}

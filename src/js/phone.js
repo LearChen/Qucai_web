@@ -9,6 +9,8 @@ define(function(require) {
 
     var cellPhone = cookie.get('cell_num') || '';
 
+    var airport = common.getQueryString('airport')=='true';
+
     var setPhone = function()
     {
         /*获取验证码*/
@@ -122,8 +124,26 @@ define(function(require) {
                 {
                     if (response.result_code == 0)
                     {
-                        alert("操作成功!感谢您的参与!");
                         cookie.set('cell_num',phoneVal);
+
+                        if(airport)
+                        {
+                            setTimeout(function()
+                            {
+                                window.location.href = "./guess_finish_airport.htm";
+
+                            },200);
+                        }
+                        else
+                        {
+                            setTimeout(function()
+                            {
+                                window.location.href = "./guess_finish.htm";
+
+                            },200);
+                        }
+
+                       // alert("操作成功!感谢您的参与!");
 
                     }
                     else if(response.result_code == 1)

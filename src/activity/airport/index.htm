@@ -11,13 +11,10 @@
     <link rel="stylesheet" href="css/airport.css">
     <script src="../../js/lib/requirejs/require.min.js"></script>
     <script src="../../js/require.config.js"></script>
-    <script>
-        require(['authorize']);
-    </script>
 </head>
 <body>
 
-    <header class="qc-header margin shadow">
+    <!--<header class="qc-header margin shadow">
         <div class="header-pic">
             <a href="lottery.htm">
                 <img src="img/top.png">
@@ -35,23 +32,43 @@
                     <i class="qc-icon icon-bean"></i>
                     <span>
                         我的猜豆
-                        <small id="scoreBalance">0</small>
+                        &lt;!&ndash;<small id="scoreBalance">0</small>&ndash;&gt;
                     </span>
                 </a>
             </section>
         </div>
-    </header>
+    </header>-->
+
+    <div class="airport-banner">
+        <div class="swiper-container" id="swiperBanner">
+            <!-- Additional required wrapper -->
+            <div class="swiper-wrapper" id="swiperBannerContent">
+                <!-- Slides -->
+                <!--<div class="swiper-slide">
+                    <a href="lottery.htm">
+                        <img src="http://images.uguess.me/aa4fef77b1faf7e92ce05cd4a4e3358f58004ba60cf2c30fe3a7ed3c.png" />
+                    </a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="lottery.htm">
+                        <img src="http://images.uguess.me/aa4fef77b1faf7e92ce05cd4a4e3358f58004b680cf2c30fe3a7ed3b.png" />
+                    </a>
+                </div>-->
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+    </div>
 
     <div class="airport-body">
 
         <!--白云寻宝（探索白云）-->
-        <div class="airport-box">
+        <div class="airport-box" id="by_discover">
             <a class="anchor" href="./guessList.htm?topic_id=57d967990cf22f08c26e63e3&filter_joined=1">
                 <section class="airport-tag">
                     <img src="img/airportTopicTip02.png">
                 </section>
                 <section class="airport-bg">
-                    <img src="img/airportTopic02.png" />
+                    <img src="./img/blank.png" />
                     <span class="btn">去猜吧<i class="fa fa-angle-double-right"></i></span>
                 </section>
                 <section class="airport-text">
@@ -63,13 +80,13 @@
         </div>
 
         <!--航旅百科-->
-        <div class="airport-box">
+        <div class="airport-box" id="by_air">
             <a class="anchor" href="./guessList.htm?topic_id=57d966b30cf22f08c26e63e1&filter_joined=1">
                 <section class="airport-tag">
                     <img src="img/airportTopicTip01.png">
                 </section>
                 <section class="airport-bg">
-                    <img src="img/airportTopic01.png" />
+                    <img src="./img/blank.png" />
                     <span class="btn">去猜吧<i class="fa fa-angle-double-right"></i></span>
                 </section>
                 <section class="airport-text">
@@ -102,11 +119,7 @@
     </div>
 
     <script>
-        require(['user'],function(user)
-        {
-            user.setAsset();
-        });
+        require(['../activity/airport/js/index']);
     </script>
-
 </body>
 </html>

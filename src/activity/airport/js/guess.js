@@ -35,8 +35,6 @@ define(function(require)
     var shareLink;
     var shareImg = pageUrl.substring(0, pageUrl.lastIndexOf("/")+1) + 'img/uguess_logo.png';
 
-
-
     function getGuessDetail(quiz_id)
     {
         var queryType = cookie.get('token_id')? 5: 7;
@@ -554,6 +552,12 @@ define(function(require)
                 return;
             }
 
+            if(!cookie.get('token_id'))
+            {
+                require(['authorize']);
+                return;
+            }
+
             if(!checkUser())
             {
                 return;
@@ -623,7 +627,7 @@ define(function(require)
     }
 
     /*检查用户*/
-    function checkUser()
+    function  checkUser()
     {
         var userId = cookie.get('user_id');
         if(!authorId || !userId)
@@ -871,7 +875,7 @@ define(function(require)
         }
         else
         {
-            window.location.href = "./guess_finish_phone.htm";
+            window.location.href = "./guess_finish_phone.htm?airport=true";
         }
 
     };

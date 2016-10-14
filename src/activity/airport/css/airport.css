@@ -5,7 +5,7 @@
   position: relative;
   border-radius: 5px;
   margin-bottom: 20px;
-  background: #fff;
+  background: rgba(255, 255, 255, 0.5);
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
 }
 .airport-box .anchor {
@@ -56,4 +56,26 @@
   color: #666;
   font-size: 1.4rem;
   display: block;
+}
+.airport-banner {
+  padding: 10px;
+}
+.airport-banner .swiper-container {
+  height: auto;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+}
+.airport-banner .swiper-slide a {
+  width: 100%;
+  display: block;
+}
+.airport-banner .swiper-slide img {
+  width: 100%;
+  height: auto;
+  vertical-align: top;
+}
+.airport-banner .swiper-pagination-bullets {
+  bottom: 2% !important;
+}
+.airport-banner .swiper-pagination-bullet-active {
+  background: #fff;
 }

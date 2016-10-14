@@ -10,13 +10,10 @@
     <link rel="stylesheet" href="../../css/app.css">
     <script src="../../js/lib/requirejs/require.min.js"></script>
     <script src="../../js/require.config.js"></script>
-    <script>
-        require(['authorize']);
-    </script>
 </head>
 <body>
 
-    <header class="qc-header margin shadow">
+    <!--<header class="qc-header margin shadow">
         <div class="header-user">
             <section class="user-avatar">
                 <div class="qc-avatar">
@@ -47,7 +44,7 @@
                 </a>
             </section>
         </div>
-    </header>
+    </header>-->
 
     <div class="qc-guess-list padding no-tip" id="guessListCtx">
 
@@ -90,11 +87,7 @@
     </div>
 
     <script>
-        require(['user','../activity/airport/js/guessList'],function(user)
-        {
-            user.setBaseInfo();
-            user.setAsset();
-        });
+        require(['../activity/airport/js/guessList','backbutton']);
     </script>
 
 </body>

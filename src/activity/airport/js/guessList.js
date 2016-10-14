@@ -19,13 +19,13 @@ define(function(require)
 
     function getTopicList (topicId, orderBy, orderNum)
     {
-        var params = '{"topic_id":'+topicId+',"order_by":"'+orderBy+'","order_num":"'+orderNum+'","is_filter_joined":"'+filter_joined+'"}';
+        var params = {topic_id:topicId,order_by:orderBy,order_num:orderNum,is_filter_joined:filter_joined};
 
         $.ajax({
-            url: "/square/topic_quiz_list.html?t="+tokenId,
+            url: "/square/topic_quiz_list.html",
             type: "post",
             dataType: "json",
-            data: params,
+            data: JSON.stringify(params),
             async: false,
             success:function(response)
             {
